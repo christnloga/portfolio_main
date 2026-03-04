@@ -20,6 +20,14 @@ export default function Welcome({
             <div className="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]">
                 <header className="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl">
                     <nav className="flex items-center justify-end gap-4">
+                        <button
+                            type="button"
+                            className={
+                                'rounded-full bg-sky-300 px-4 py-2 font-medium text-white transition-all duration-150 hover:border hover:bg-white/10 hover:text-white active:brightness-90 dark:text-zinc-700'
+                            }
+                        >
+                            Download CV
+                        </button>
                         {auth.user ? (
                             <Link
                                 href={dashboard()}
