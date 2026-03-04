@@ -1,7 +1,7 @@
 # Use the official PHP image with FPM
 FROM php:8.2-fpm
 
-# Install Nginx and system dependencies
+# Install Nginx, Node.js, and system dependencies
 RUN apt-get update && apt-get install -y \
     nginx \
     libpq-dev \
@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
+    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && docker-php-ext-install pdo_pgsql pdo_mysql zip pcntl bcmath
 
 # Copy Composer from the official image
@@ -23,8 +26,12 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --optimize-autoloader --no-dev
 
-# Set strict permissions for Laravel
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Install NPM dependencies and build React/Vite assets
+RUN npm install
+RUN npm run build
+
+# Set strict permissions for Laravel and the new build directory
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build
 
 # Setup a clean, single-location Nginx configuration
 RUN echo 'server {\n\
