@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { BiChevronDown } from 'react-icons/bi';
 import { BsMoonFill, BsX } from 'react-icons/bs';
 import { MdMenu } from 'react-icons/md';
+import { useGlobal } from '@/contexts/GlobalContext';
 
 const Navbar = () => {
+    const { navbarLight } = useGlobal();
     const { url } = usePage();
 
     const [mobileMenu, setMobileMenu] = useState(false);
