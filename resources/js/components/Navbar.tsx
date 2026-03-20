@@ -31,17 +31,25 @@ const Navbar = () => {
 
     const navLinks = [
         { link: '/', title: 'Accueil', isActive: url === '/' },
-        { link: '/about', title: 'À propos', isActive: url.startsWith('/about') },
-        { link: '/contact', title: 'Contact', isActive: url.startsWith('/contact') },
+        {
+            link: '/about',
+            title: 'À propos',
+            isActive: url.startsWith('/about'),
+        },
+        {
+            link: '/contact',
+            title: 'Contact',
+            isActive: url.startsWith('/contact'),
+        },
     ];
 
     React.useEffect(() => {
         const handleScroll = () => {
-             if (window.scrollY >= 60) {
-                 setNavbarScroll(true);
-             } else {
-                 setNavbarScroll(false);
-             }
+            if (window.scrollY >= 60) {
+                setNavbarScroll(true);
+            } else {
+                setNavbarScroll(false);
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -57,10 +65,10 @@ const Navbar = () => {
     return (
         <nav
             className={
-                `fixed left-0 top-0 z-50 w-full backdrop-blur-md transition-all duration-500 bg-zinc-900 ` +
+                `fixed top-0 left-0 z-50 w-full bg-zinc-900 backdrop-blur-md transition-all duration-500 ` +
                 (navbarScroll
-                    ? 'h-[70px] bg-white/70 text-gray-800 shadow-md '
-                    : 'h-[80px] bg-white/0 text-white ')
+                    ? 'h-[70px] bg-white/70 text-gray-800 shadow-md'
+                    : 'h-[80px] bg-white/0 text-white')
             }
         >
             <div className="relative h-full w-full px-4">
@@ -79,14 +87,14 @@ const Navbar = () => {
                                 <Link
                                     key={link.link}
                                     href={link.link}
-                                    className={`relative flex h-full items-center px-4 font-medium transition-colors duration-150 ${link.isActive ? 'text-sky-300 font-semibold' : 'text-zinc-400 dark:text-zinc-400 hover:text-sky-300'}`}
+                                    className={`relative flex h-full items-center px-4 font-medium transition-colors duration-150 ${link.isActive ? 'font-semibold text-sky-300' : 'text-zinc-400 hover:text-sky-300 dark:text-zinc-400'}`}
                                 >
                                     {link.title}
                                 </Link>
                             );
                         })}
                     </div>
-                    <div className="ml-auto relative hidden gap-4 lg:flex">
+                    <div className="relative ml-auto hidden gap-4 lg:flex">
                         <a
                             href={'#'}
                             className={
@@ -114,7 +122,7 @@ const Navbar = () => {
                                     'shrink-0 text-zinc-100 duration-150 dark:text-zinc-100'
                                 }
                             />
-                            <div className="absolute right-0 top-full mt-2 invisible w-48 rounded-xl border border-sky-300/20 bg-zinc-800 p-2 opacity-0 shadow-2xl transition-all duration-150 group-hover:visible group-hover:opacity-100">
+                            <div className="invisible absolute top-full right-0 mt-2 w-48 rounded-xl border border-sky-300/20 bg-zinc-800 p-2 opacity-0 shadow-2xl transition-all duration-150 group-hover:visible group-hover:opacity-100">
                                 <p className="p-2 text-left text-sm font-semibold text-slate-400 dark:text-slate-400">
                                     Site language
                                 </p>
@@ -123,7 +131,9 @@ const Navbar = () => {
                                         <div
                                             key={lang.id}
                                             className="flex flex-col rounded-lg p-2 duration-150 hover:bg-sky-300/10 active:hover:bg-sky-300/20"
-                                            onClick={() => changeLanguage(lang.id)}
+                                            onClick={() =>
+                                                changeLanguage(lang.id)
+                                            }
                                         >
                                             <div className="flex items-center">
                                                 <div className="mr-2 flex h-5 w-5 items-center justify-center overflow-hidden rounded-full">
@@ -151,7 +161,7 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="lg:hidden">
+                    <div className="ml-auto lg:hidden">
                         <button
                             className="rounded-lg bg-sky-300/10 p-1 font-medium text-white transition-colors duration-150 active:bg-sky-300/20"
                             onClick={() => setMobileMenu(true)}
@@ -161,27 +171,30 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-             {/* Mobile Menu Simplified placeholder  */}
+            {/* Mobile Menu Simplified placeholder  */}
             {mobileMenu && (
-                 <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm">
-                    <div className="absolute right-0 top-0 h-full w-64 bg-zinc-900 p-6 shadow-2xl">
-                         <button className="absolute right-4 top-4 text-white" onClick={() => setMobileMenu(false)}>
+                <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm">
+                    <div className="absolute top-0 right-0 h-full w-64 bg-zinc-900 p-6 shadow-2xl">
+                        <button
+                            className="absolute top-4 right-4 text-white"
+                            onClick={() => setMobileMenu(false)}
+                        >
                             <BsX size={32} />
-                         </button>
-                         <div className="mt-16 flex flex-col gap-6">
-                             {navLinks.map((link) => (
-                                 <Link
-                                     key={link.link}
-                                     href={link.link}
-                                     className={`text-xl font-medium ${link.isActive ? 'text-sky-300' : 'text-white'}`}
-                                     onClick={() => setMobileMenu(false)}
-                                 >
+                        </button>
+                        <div className="mt-16 flex flex-col gap-6">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.link}
+                                    href={link.link}
+                                    className={`text-xl font-medium ${link.isActive ? 'text-sky-300' : 'text-white'}`}
+                                    onClick={() => setMobileMenu(false)}
+                                >
                                     {link.title}
-                                 </Link>
-                             ))}
-                         </div>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-                 </div>
+                </div>
             )}
         </nav>
     );

@@ -7,11 +7,11 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 import { LuGitPullRequestArrow } from 'react-icons/lu';
 import { MdDesignServices } from 'react-icons/md';
 import { TbBlocks } from 'react-icons/tb';
+import Header from '@/components/home/Header';
 import RevealElement from '../components/RevealElement';
 import ServiceCard from '../components/ServiceCard';
 import Testimanial from '../components/Testimanial';
 import MainLayout from '../layouts/MainLayout';
-import Header from '@/components/home/Header';
 
 function Home() {
     const { i18n } = useTranslation();
@@ -147,13 +147,13 @@ function Home() {
 
     return (
         <>
-            <Head title="Welcome">
+            {/* <Head title="Hello">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
                     href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
                     rel="stylesheet"
                 />
-            </Head>
+            </Head> */}
             <div className="overflow-x-hidden">
                 <Header />
                 <section className="relative z-10 flex flex-col items-center py-28 lg:mb-4">
@@ -170,7 +170,7 @@ function Home() {
               to transform ideas into reliable, market‑ready digital products.
             </p> */}
                         </div>
-                        <div className="grid w-full cursor-default grid-cols-2 gap-6 bg-gray-950/5 px-4 py-16">
+                        <div className="flex w-full cursor-default grid-cols-2 flex-col gap-6 bg-gray-950/5 px-4 py-16 lg:grid">
                             {/* Card */}
                             {services.map((service) => (
                                 <ServiceCard
