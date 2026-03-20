@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { BsMoon, BsMoonFill, BsMoonStars, BsX } from "react-icons/bs";
 import { MdMenu, MdMood } from "react-icons/md";
 // import { Dialog, Slide } from '@mui/material';
-import { NavLink } from 'react-router-dom';
 import { useGlobal } from '../contexts/GlobalContext';
 import LanguageSelectorMobile from './LanguageSelectorMobile';
 import { useTranslation } from 'react-i18next';
