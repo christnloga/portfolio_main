@@ -12,6 +12,9 @@ import RevealElement from '../components/RevealElement';
 import ServiceCard from '../components/ServiceCard';
 import Testimanial from '../components/Testimanial';
 import MainLayout from '../layouts/MainLayout';
+import { BiLogoReact } from 'react-icons/bi';
+import { LucidePaintRoller } from 'lucide-react';
+import { PiPaintBrush } from 'react-icons/pi';
 
 function Home() {
     const { i18n } = useTranslation();
@@ -37,11 +40,11 @@ function Home() {
         },
         {
             id: 2,
-            title: 'UX/UI Design for Web & Mobile Applications',
+            title: 'UX/UI Design',
             description:
                 'I design interfaces that are clear, intuitive, and conversion‑focused, informed by real user needs and modern design principles.',
             subTitle: 'Deliverables:',
-            icon: <MdDesignServices className="m-auto" size={30} />,
+            icon: <PiPaintBrush className="m-auto" size={30} />,
             features: [
                 'User research & flows',
                 'Wireframes and prototypes',
@@ -56,7 +59,7 @@ function Home() {
             description:
                 'I build fast, maintainable, and visually refined user interfaces using modern frameworks and performance‑driven best practices.',
             subTitle: 'Core technologies:',
-            icon: <MdDesignServices className="m-auto" size={30} />,
+            icon: <BiLogoReact className="m-auto" size={30} />,
             features: [
                 'React & Next.js',
                 'TypeScript',
@@ -99,11 +102,11 @@ function Home() {
         },
         {
             id: 2,
-            title: 'Design UX/UI pour applications web et mobiles',
+            title: 'Design UX/UI',
             description:
                 'Je conçois des interfaces claires, intuitives et axées sur la conversion, basées sur les besoins réels des utilisateurs et les principes de design modernes.',
             subTitle: 'Livrables :',
-            icon: <MdDesignServices className="m-auto" size={30} />,
+            icon: <PiPaintBrush className="m-auto" size={30} />,
             features: [
                 'Recherche utilisateur et flux',
                 'Wireframes et prototypes',
@@ -118,7 +121,7 @@ function Home() {
             description:
                 'Je construis des interfaces utilisateur rapides, maintenables et visuellement raffinées en utilisant des frameworks modernes et des meilleures pratiques axées sur la performance.',
             subTitle: 'Technologies clés :',
-            icon: <MdDesignServices className="m-auto" size={30} />,
+            icon: <BiLogoReact className="m-auto" size={30} />,
             features: [
                 'React & Next.js',
                 'TypeScript',
@@ -182,7 +185,7 @@ function Home() {
                     </div>
                 </section>
 
-                <section className="relative z-10 flex flex-col items-center bg-zinc-900 lg:h-[calc(100vh-60px)]">
+                <section className="relative z-10 flex flex-col items-center bg-[#081118] lg:h-[calc(100vh-60px)]">
                     <Testimanial />
                 </section>
 

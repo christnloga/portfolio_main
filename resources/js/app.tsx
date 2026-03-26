@@ -3,6 +3,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../css/app.css';
+import './i18n';
 import { GlobalProvider } from '@/contexts/GlobalContext';
 import { initializeTheme } from '@/hooks/use-appearance';
 

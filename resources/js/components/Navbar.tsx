@@ -1,5 +1,6 @@
-import { Link, usePage } from '@inertiajs/react';
-import React, { useState } from 'react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
+import { Link, usePage, router } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiChevronDown } from 'react-icons/bi';
 import { BsMoonFill, BsX } from 'react-icons/bs';
@@ -8,13 +9,13 @@ import { useGlobal } from '@/contexts/GlobalContext';
 
 const Navbar = () => {
     const { navbarLight } = useGlobal();
-    const { url } = usePage();
+    const { url, props } = usePage();
+    const locale = (props as any).locale || 'fr';
 
     const [mobileMenu, setMobileMenu] = useState(false);
     const [navbarScroll, setNavbarScroll] = useState(false);
 
-    const { i18n } = useTranslation();
-    const language = i18n.resolvedLanguage;
+    const { t, i18n } = useTranslation();
 
     const languages = [
         {
@@ -32,20 +33,26 @@ const Navbar = () => {
     ];
 
     const navLinks = [
-        { link: '/', title: 'Accueil', isActive: url === '/' },
         {
-            link: '/about',
-            title: 'À propos',
-            isActive: url.startsWith('/about'),
+            link: `/${locale}`,
+            title: t('Accueil'),
+            isActive: url === `/${locale}` || url === `/${locale}/`,
         },
         {
-            link: '/contact',
-            title: 'Contact',
-            isActive: url.startsWith('/contact'),
+            link: `/${locale}/about`,
+            title: t('À propos'),
+            isActive: url.startsWith(`/${locale}/about`),
+        },
+        {
+            link: `/${locale}/contact`,
+            title: t('Contact'),
+            isActive: url.startsWith(`/${locale}/contact`),
         },
     ];
 
-    React.useEffect(() => {
+    useEffect(() => {
+        console.log('The URL is: ', url);
+
         const handleScroll = () => {
             if (window.scrollY >= 60) {
                 setNavbarScroll(true);
@@ -56,21 +63,40 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [url]);
+
+    useEffect(() => {
+        if (
+            i18n &&
+            typeof i18n.changeLanguage === 'function' &&
+            i18n.resolvedLanguage !== locale
+        ) {
+            i18n.changeLanguage(locale);
+        }
+    }, [locale, i18n]);
 
     const changeLanguage = (lang: string) => {
-        console.log(lang);
+        if (lang === locale) return;
 
-        // Language change logic...
+        let pathname = window.location.pathname;
+        if (pathname === `/${locale}`) {
+            pathname = `/${lang}`;
+        } else if (pathname.startsWith(`/${locale}/`)) {
+            pathname = pathname.replace(`/${locale}/`, `/${lang}/`);
+        } else {
+            pathname = `/${lang}${pathname === '/' ? '' : pathname}`;
+        }
+
+        router.visit(pathname + window.location.search + window.location.hash);
     };
 
     return (
         <nav
             className={
-                `fixed top-0 left-0 z-50 w-full bg-zinc-900 backdrop-blur-md transition-all duration-500 ` +
-                (navbarScroll
-                    ? 'h-[70px] bg-white/70 text-gray-800 shadow-md'
-                    : 'h-[80px] bg-white/0 text-white')
+                `fixed top-0 left-0 z-50 w-full bg-[#081118] backdrop-blur-md transition-all duration-500 ` +
+                (navbarScroll || navbarLight
+                    ? 'h-[70px] bg-[#081118]/70 text-gray-800 shadow-md'
+                    : 'h-[80px] bg-[#081118] text-white')
             }
         >
             <div className="relative h-full w-full px-4">
@@ -79,7 +105,7 @@ const Navbar = () => {
                         href={'/'}
                         className="flex items-center shadow-sky-500 hover:shadow-2xl"
                     >
-                        <p className="text-3xl font-black text-sky-300">
+                        <p className="text-3xl font-black text-sky-500">
                             nloga
                         </p>
                     </Link>
@@ -89,7 +115,7 @@ const Navbar = () => {
                                 <Link
                                     key={link.link}
                                     href={link.link}
-                                    className={`relative flex h-full items-center px-4 font-medium transition-colors duration-150 ${link.isActive ? 'font-semibold text-sky-300' : 'text-zinc-400 hover:text-sky-300 dark:text-zinc-400'}`}
+                                    className={`relative flex h-full items-center px-4 font-medium transition-all duration-150 hover:opacity-75 ${link.isActive ? 'font-semibold text-sky-400' : 'text-zinc-400 dark:text-zinc-400'}`}
                                 >
                                     {link.title}
                                 </Link>
@@ -100,10 +126,10 @@ const Navbar = () => {
                         <a
                             href={'#'}
                             className={
-                                'rounded-full bg-sky-300 px-4 py-2 font-medium text-white transition-all duration-150 hover:border hover:bg-white/10 hover:text-white active:brightness-90 dark:text-zinc-700'
+                                'rounded-full bg-sky-500 px-4 py-2 font-medium text-white transition-all duration-150 hover:border hover:bg-white/10 hover:text-white active:brightness-90 dark:text-zinc-700'
                             }
                         >
-                            Download CV
+                            {t('Download CV')}
                         </a>
                         {/* Language selector */}
                         <div className="group relative flex w-20 cursor-pointer items-center justify-center rounded-full bg-sky-300/5 hover:bg-sky-300/10">
@@ -111,10 +137,10 @@ const Navbar = () => {
                                 <img
                                     src={
                                         'https://flagcdn.com/' +
-                                        (language === 'en' ? 'gb' : language) +
+                                        (locale === 'en' ? 'gb' : locale) +
                                         '.svg'
                                     }
-                                    alt={language}
+                                    alt={locale}
                                     className="h-full object-cover"
                                 />
                             </div>
@@ -126,7 +152,7 @@ const Navbar = () => {
                             />
                             <div className="invisible absolute top-full right-0 mt-2 w-48 rounded-xl border border-sky-300/20 bg-zinc-800 p-2 opacity-0 shadow-2xl transition-all duration-150 group-hover:visible group-hover:opacity-100">
                                 <p className="p-2 text-left text-sm font-semibold text-slate-400 dark:text-slate-400">
-                                    Site language
+                                    {t('Site language')}
                                 </p>
                                 {languages.map((lang) => {
                                     return (
@@ -157,7 +183,7 @@ const Navbar = () => {
                         <div className="">
                             <div className="flex h-full w-11 items-center justify-center rounded-full bg-sky-300/5 hover:bg-sky-300/10">
                                 <BsMoonFill
-                                    className="text-sky-300 dark:text-sky-300"
+                                    className="text-sky-500 dark:text-sky-500"
                                     size={18}
                                 />
                             </div>
@@ -173,31 +199,57 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            {/* Mobile Menu Simplified placeholder  */}
-            {mobileMenu && (
-                <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm">
-                    <div className="absolute top-0 right-0 h-full w-64 bg-zinc-900 p-6 shadow-2xl">
-                        <button
-                            className="absolute top-4 right-4 text-white"
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            <BsX size={32} />
-                        </button>
-                        <div className="mt-16 flex flex-col gap-6">
+            {/* Mobile Menu using Headless UI Dialog to solve stacking context / containing block glitch */}
+            <Dialog
+                open={mobileMenu}
+                onClose={() => setMobileMenu(false)}
+                className="relative z-100"
+            >
+                <DialogBackdrop
+                    transition
+                    className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out data-closed:opacity-0"
+                />
+
+                <div className="fixed inset-0 flex justify-end">
+                    <DialogPanel
+                        transition
+                        className="w-full max-w-sm transform bg-zinc-900 shadow-2xl transition duration-300 ease-in-out data-closed:translate-x-full sm:w-80"
+                    >
+                        <div className="flex items-center justify-between p-6">
+                            <span className="text-2xl font-bold text-white">
+                                {t('Menu')}
+                            </span>
+                            <button
+                                className="text-white transition-colors hover:text-sky-300"
+                                onClick={() => setMobileMenu(false)}
+                            >
+                                <BsX size={32} />
+                            </button>
+                        </div>
+                        <div className="mt-8 flex flex-col gap-6 px-6">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.link}
                                     href={link.link}
-                                    className={`text-xl font-medium ${link.isActive ? 'text-sky-300' : 'text-white'}`}
+                                    className={`text-xl font-medium transition-colors ${link.isActive ? 'text-sky-300' : 'text-zinc-400 hover:text-white'}`}
                                     onClick={() => setMobileMenu(false)}
                                 >
                                     {link.title}
                                 </Link>
                             ))}
                         </div>
-                    </div>
+                        {/* Optional extra links */}
+                        <div className="absolute bottom-8 mt-auto flex w-full flex-col gap-4 px-6">
+                            <a
+                                href="#"
+                                className="flex w-full items-center justify-center rounded-full bg-sky-300/10 py-3 font-medium text-sky-300 transition-colors hover:bg-sky-300/20"
+                            >
+                                {t('Download CV')}
+                            </a>
+                        </div>
+                    </DialogPanel>
                 </div>
-            )}
+            </Dialog>
         </nav>
     );
 };
