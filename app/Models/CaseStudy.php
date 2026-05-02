@@ -78,6 +78,14 @@ class CaseStudy extends Model
                             $block['data']['url'] = $baseUrl.$url;
                         }
                     }
+
+                    if ($block['type'] === 'gallery' && isset($block['data']['images'])) {
+                        foreach ($block['data']['images'] as &$image) {
+                            if (isset($image['url']) && ! str_starts_with($image['url'], 'http')) {
+                                $image['url'] = $baseUrl.$image['url'];
+                            }
+                        }
+                    }
                 }
 
                 return $blocks;
@@ -93,6 +101,14 @@ class CaseStudy extends Model
                 foreach ($blocks as &$block) {
                     if (in_array($block['type'], ['image', 'gallery']) && isset($block['data']['url'])) {
                         $block['data']['url'] = str_replace($baseUrl, '', $block['data']['url']);
+                    }
+
+                    if ($block['type'] === 'gallery' && isset($block['data']['images'])) {
+                        foreach ($block['data']['images'] as &$image) {
+                            if (isset($image['url'])) {
+                                $image['url'] = str_replace($baseUrl, '', $image['url']);
+                            }
+                        }
                     }
                 }
 
