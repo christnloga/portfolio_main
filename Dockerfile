@@ -30,8 +30,11 @@ RUN composer install --optimize-autoloader --no-dev
 RUN npm install
 RUN npm run build
 
-# Set strict permissions for Laravel and the new build directory
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build
+# Set strict permissions for Laravel and ensure directories exist
+# This solves the "No such file or directory" error seen in image_a31603.png
+RUN mkdir -p /var/www/storage /var/www/bootstrap/cache /var/www/public/build \
+    && chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Setup a clean, single-location Nginx configuration
 RUN echo 'server {\n\
@@ -51,5 +54,6 @@ RUN echo 'server {\n\
 # Expose the standard web port
 EXPOSE 80
 
-# Start both Nginx in the background and PHP-FPM in the foreground
-CMD service nginx start && php-fpm
+# Start PHP-FPM in the background and Nginx in the foreground
+# This ensures the container stays active and the gateway stays open
+CMD php-fpm -D && nginx -g "daemon off;"
