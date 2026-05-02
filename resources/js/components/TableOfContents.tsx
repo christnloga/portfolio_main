@@ -10,7 +10,6 @@ import {
     SheetTrigger,
 } from './ui/sheet';
 
-// Extracted outside of render to prevent "Cannot create components during render" error
 const TocList = ({
     headings,
     activeId,
@@ -20,19 +19,17 @@ const TocList = ({
     activeId: string;
     onItemClick?: () => void;
 }) => (
-    <ul className="space-y-3">
+    <ul className="relative space-y-1 before:absolute before:inset-y-0 before:left-0 before:w-[2px] before:bg-slate-200 dark:before:bg-slate-800/60">
         {headings.map((heading) => (
-            <li
-                key={heading.id}
-                // Indent h3 tags to create a visual hierarchy
-                className={`${heading.level === 3 ? 'ml-4' : ''}`}
-            >
+            <li key={heading.id} className="relative">
                 <a
                     href={`#${heading.id}`}
-                    className={`block text-sm transition-colors duration-200 ${
+                    className={`block py-1.5 pr-3 transition-all duration-200 ${
+                        heading.level === 3 ? 'pl-8 text-sm' : 'pl-4 text-sm'
+                    } ${
                         activeId === heading.id
                             ? 'font-semibold text-[#00A6F4]'
-                            : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-200'
+                            : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
                     }`}
                     onClick={(e) => {
                         e.preventDefault();
@@ -42,6 +39,10 @@ const TocList = ({
                         onItemClick?.();
                     }}
                 >
+                    {/* Active Indicator Line */}
+                    {activeId === heading.id && (
+                        <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#00A6F4] rounded-full z-10" />
+                    )}
                     {heading.text}
                 </a>
             </li>

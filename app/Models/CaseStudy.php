@@ -41,7 +41,11 @@ class CaseStudy extends Model
                 if (! $value) {
                     return null;
                 }
-                // If it already starts with http, return it (external or already full URL)
+                
+                // Strip any hardcoded local development URLs
+                $value = preg_replace('/^https?:\/\/[^\/]+\/storage\//', '', $value);
+
+                // If it still starts with http, return it (external or already full URL)
                 if (str_starts_with($value, 'http')) {
                     return $value;
                 }
@@ -52,7 +56,8 @@ class CaseStudy extends Model
                 if (! $value) {
                     return null;
                 }
-                // Strip the base url before storing
+                
+                $value = preg_replace('/^https?:\/\/[^\/]+\/storage\//', '', $value);
                 $baseUrl = Storage::disk($this->getStorageDisk())->url('');
 
                 return str_replace($baseUrl, '', $value);
@@ -73,16 +78,23 @@ class CaseStudy extends Model
 
                 foreach ($blocks as &$block) {
                     if (in_array($block['type'], ['image', 'gallery']) && isset($block['data']['url'])) {
-                        $url = $block['data']['url'];
+                        $url = preg_replace('/^https?:\/\/[^\/]+\/storage\//', '', $block['data']['url']);
                         if (! str_starts_with($url, 'http')) {
                             $block['data']['url'] = $baseUrl.$url;
+                        } else {
+                            $block['data']['url'] = $url;
                         }
                     }
 
                     if ($block['type'] === 'gallery' && isset($block['data']['images'])) {
                         foreach ($block['data']['images'] as &$image) {
-                            if (isset($image['url']) && ! str_starts_with($image['url'], 'http')) {
-                                $image['url'] = $baseUrl.$image['url'];
+                            if (isset($image['url'])) {
+                                $url = preg_replace('/^https?:\/\/[^\/]+\/storage\//', '', $image['url']);
+                                if (! str_starts_with($url, 'http')) {
+                                    $image['url'] = $baseUrl.$url;
+                                } else {
+                                    $image['url'] = $url;
+                                }
                             }
                         }
                     }
@@ -100,13 +112,15 @@ class CaseStudy extends Model
 
                 foreach ($blocks as &$block) {
                     if (in_array($block['type'], ['image', 'gallery']) && isset($block['data']['url'])) {
-                        $block['data']['url'] = str_replace($baseUrl, '', $block['data']['url']);
+                        $url = preg_replace('/^https?:\/\/[^\/]+\/storage\//', '', $block['data']['url']);
+                        $block['data']['url'] = str_replace($baseUrl, '', $url);
                     }
 
                     if ($block['type'] === 'gallery' && isset($block['data']['images'])) {
                         foreach ($block['data']['images'] as &$image) {
                             if (isset($image['url'])) {
-                                $image['url'] = str_replace($baseUrl, '', $image['url']);
+                                $url = preg_replace('/^https?:\/\/[^\/]+\/storage\//', '', $image['url']);
+                                $image['url'] = str_replace($baseUrl, '', $url);
                             }
                         }
                     }

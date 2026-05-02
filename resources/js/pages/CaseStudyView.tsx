@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PiCalendarDotFill } from 'react-icons/pi';
 import RevealElement from '@/components/RevealElement';
 import { useGlobal } from '@/contexts/GlobalContext';
@@ -15,9 +14,25 @@ interface CaseStudyViewProps {
 
 export const CaseStudyView = ({ caseStudy }: CaseStudyViewProps) => {
     const { setNavbarLight } = useGlobal();
+    const [readingProgress, setReadingProgress] = useState(0);
 
     useEffect(() => {
         setNavbarLight(true);
+
+        const handleScroll = () => {
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            if (totalHeight > 0) {
+                setReadingProgress(
+                    Math.min(
+                        100,
+                        Math.max(0, (window.scrollY / totalHeight) * 100),
+                    ),
+                );
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [setNavbarLight]);
 
     if (!caseStudy) {
@@ -29,129 +44,132 @@ export const CaseStudyView = ({ caseStudy }: CaseStudyViewProps) => {
     }
 
     return (
-        <article className="px-1 pt-1 pb-16">
+        <article className="relative px-1 pt-1 pb-16">
+            {/* Reading Progress Bar */}
+            <div className="fixed top-0 left-0 z-50 h-1.5 w-full bg-transparent">
+                <div
+                    className="h-full rounded-r-full bg-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.7)] transition-all duration-150 ease-out"
+                    style={{ width: `${readingProgress}%` }}
+                />
+            </div>
+
             {/* Header Section */}
             <header className="overflow-hidden rounded-b-md px-1 pt-[84px]">
-                <div className="relative flex h-[580px] items-center overflow-hidden rounded-xl bg-[#EAF3FA] lg:h-[700px]">
-                    {/* Cover Image */}
-                    {caseStudy.cover_image_url && (
-                        <img
-                            className="absolute my-auto h-full w-full object-cover"
-                            src={caseStudy.cover_image_url}
-                            alt={`${caseStudy.title} Cover`}
-                        />
-                    )}
-                    <div className="absolute bottom-0 left-0 flex h-full w-full items-center justify-center bg-slate-800/90 px-2 py-2 duration-300"></div>
-                    <div className="relative z-20 mx-auto h-full space-y-12 lg:w-6xl lg:space-y-28">
-                        <div className="flex h-full flex-col">
-                            <div className="my-auto">
-                                <div className="my-auto mt-16 space-y-8 px-4 lg:mt-0 lg:w-4xl lg:px-0">
-                                    <RevealElement>
-                                        {/* Category */}
-                                        {/* <div className="mb-4 flex">
-                                            <span className="flex rounded-md bg-white/10 px-2 py-1">
-                                                <p className="font-semibold text-white">
-                                                    {caseStudy.category}
-                                                </p>
-                                            </span>
-                                        </div> */}
-                                        {/* Title */}
-                                        <h1 className="text-4xl font-bold text-white lg:text-5xl">
-                                            {caseStudy.title}
-                                        </h1>
-                                        {/* Exerp */}
-                                        <p className="mt-4 text-white/80">
-                                            {caseStudy.short_description}
-                                        </p>
-                                    </RevealElement>
+                <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-[#EAF3FA] bg-gradient-to-b from-[#EAF3FA] to-white px-4 pt-20 sm:px-8 lg:px-16 dark:border-slate-800/50 dark:from-[#EAF3FA]/5 dark:to-transparent">
+                    {/* Background decorations */}
+                    <div className="pointer-events-none absolute top-0 left-1/2 h-full w-full -translate-x-1/2 overflow-hidden">
+                        <div className="absolute top-[-10%] left-[-10%] h-96 w-96 rounded-full bg-blue-400/10 mix-blend-multiply blur-3xl"></div>
+                        <div className="absolute top-[20%] right-[-5%] h-80 w-80 rounded-full bg-sky-300/10 mix-blend-multiply blur-3xl"></div>
+                    </div>
 
-                                    <RevealElement>
-                                        <div className="mt-8 grid-cols-2 gap-8 border-t border-white/10 pt-8 lg:grid">
-                                            <div className="space-y-4">
-                                                <div className="space-y-1">
-                                                    <p className="text-xs font-semibold tracking-wider text-white/40 uppercase">
-                                                        Client
-                                                    </p>
-                                                    <p className="text-lg font-medium text-white">
-                                                        {caseStudy.client_name}
-                                                    </p>
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <p className="text-xs font-semibold tracking-wider text-white/40 uppercase">
-                                                        Roles
-                                                    </p>
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {caseStudy.roles.map(
-                                                            (role, i) => (
-                                                                <span
-                                                                    key={i}
-                                                                    className="text-sm text-white/80"
-                                                                >
-                                                                    {role}
-                                                                    {i <
-                                                                    caseStudy
-                                                                        .roles
-                                                                        .length -
-                                                                        1
-                                                                        ? ' • '
-                                                                        : ''}
-                                                                </span>
-                                                            ),
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="space-y-4">
-                                                <div className="space-y-1">
-                                                    <p className="text-xs font-semibold tracking-wider text-white/40 uppercase">
-                                                        Duration
-                                                    </p>
-                                                    <div className="flex items-center gap-2 text-white">
-                                                        <PiCalendarDotFill
-                                                            size={20}
-                                                            className="text-white/60"
-                                                        />
-                                                        <p className="text-lg font-medium">
-                                                            {dayjs(
-                                                                caseStudy.start_date,
-                                                            ).format(
-                                                                'MMM YYYY',
-                                                            )}
-                                                            {' — '}
-                                                            {caseStudy.end_date
-                                                                ? dayjs(
-                                                                      caseStudy.end_date,
-                                                                  ).format(
-                                                                      'MMM YYYY',
-                                                                  )
-                                                                : 'Present'}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <p className="text-xs font-semibold tracking-wider text-white/40 uppercase">
-                                                        Technologies
-                                                    </p>
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {caseStudy.tech_stack.map(
-                                                            (tech, index) => (
-                                                                <div
-                                                                    key={index}
-                                                                    className="rounded-lg border border-white/5 bg-white/10 px-2 py-0.5 text-xs font-medium text-white"
-                                                                >
-                                                                    {tech}
-                                                                </div>
-                                                            ),
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </RevealElement>
+                    <div className="relative z-20 mx-auto mb-16 w-full max-w-5xl space-y-8 text-center">
+                        <RevealElement>
+                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 shadow-sm dark:border-slate-700 dark:bg-slate-800/50">
+                                <span className="h-2 w-2 animate-pulse rounded-full bg-[#00A6F4]"></span>
+                                <span className="text-xs font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-300">
+                                    Case Study
+                                </span>
+                            </div>
+                            <h1 className="text-4xl leading-[1.1] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-7xl dark:text-white">
+                                {caseStudy.title}
+                            </h1>
+                            <p className="mx-auto mt-8 max-w-3xl text-xl leading-relaxed font-light text-slate-600 sm:text-2xl dark:text-slate-400">
+                                {caseStudy.short_description}
+                            </p>
+                        </RevealElement>
+
+                        <RevealElement>
+                            <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 border-t border-slate-200 pt-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-16 dark:border-slate-800/50">
+                                <div className="flex flex-col items-center space-y-2">
+                                    <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                                        Client
+                                    </span>
+                                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                                        {caseStudy.client_name}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col items-center space-y-2">
+                                    <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                                        Duration
+                                    </span>
+                                    <div className="flex items-center gap-1.5">
+                                        <PiCalendarDotFill
+                                            size={16}
+                                            className="text-[#00A6F4]"
+                                        />
+                                        <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                                            {dayjs(caseStudy.start_date).format(
+                                                'MMM YYYY',
+                                            )}{' '}
+                                            —{' '}
+                                            {caseStudy.end_date
+                                                ? dayjs(
+                                                      caseStudy.end_date,
+                                                  ).format('MMM YYYY')
+                                                : 'Present'}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col items-center space-y-2">
+                                    <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                                        Roles
+                                    </span>
+                                    <div className="flex max-w-[250px] flex-wrap justify-center gap-2">
+                                        {caseStudy.roles.map((role, i) => (
+                                            <span
+                                                key={i}
+                                                className="text-sm font-semibold text-slate-800 dark:text-slate-200"
+                                            >
+                                                {role}
+                                                {i < caseStudy.roles.length - 1
+                                                    ? ','
+                                                    : ''}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="flex flex-col items-center space-y-2">
+                                    <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                                        Tech
+                                    </span>
+                                    <div className="flex max-w-[250px] flex-wrap justify-center gap-1.5">
+                                        {caseStudy.tech_stack
+                                            .slice(0, 3)
+                                            .map((tech, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        {caseStudy.tech_stack.length > 3 && (
+                                            <span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800">
+                                                +
+                                                {caseStudy.tech_stack.length -
+                                                    3}
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </RevealElement>
                     </div>
+
+                    {/* Cover Image Parallax Container */}
+                    {caseStudy.cover_image_url && (
+                        <RevealElement className="flex w-full justify-center">
+                            <div className="group relative z-30 mx-auto mt-16 w-full max-w-5xl overflow-hidden rounded-t-3xl border-t border-r border-l border-white/50 shadow-[0_-20px_40px_-15px_rgba(0,0,0,0.1)] dark:border-slate-700/50">
+                                <div className="absolute inset-0 z-10 bg-slate-900/10 transition-colors duration-700 group-hover:bg-transparent"></div>
+                                <img
+                                    className="w-full object-cover transition-transform duration-1000 group-hover:scale-[1.02]"
+                                    style={{ maxHeight: '600px' }}
+                                    src={caseStudy.cover_image_url}
+                                    alt={`${caseStudy.title} Cover`}
+                                />
+                            </div>
+                        </RevealElement>
+                    )}
                 </div>
             </header>
 
@@ -160,7 +178,7 @@ export const CaseStudyView = ({ caseStudy }: CaseStudyViewProps) => {
                 {/* Main Layout Grid */}
                 <div className="relative flex flex-col gap-12 lg:flex-row lg:items-stretch">
                     {/* Left Side: The Case Study Content */}
-                    <div className="case-study-content w-full lg:w-3/5">
+                    <div className="case-study-content w-full lg:w-3/5 lg:pr-8">
                         <BlockRenderer blocks={caseStudy.content_blocks} />
                     </div>
 

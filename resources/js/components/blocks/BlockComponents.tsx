@@ -25,13 +25,16 @@ export const HeadingBlock = ({
     data: { text: string; level: number };
 }) => {
     const Tag = `h${data.level}` as React.ElementType;
-    // const Tag = `h${data.level}` as keyof JSX.IntrinsicElements;
     const slug = generateSlug(data.text);
 
     return (
         <Tag
             id={slug}
-            className={`mt-8 mb-4 ${data.level == 2 && 'text-3xl'} ${data.level == 3 && 'text-2xl'} ${data.level == 4 && 'text-xl'} scroll-mt-24 font-bold text-slate-900 dark:text-slate-100`}
+            className={`mt-12 mb-6 scroll-mt-28 font-bold text-slate-900 dark:text-slate-100 ${
+                data.level === 2 ? 'text-3xl md:text-4xl tracking-tight' : ''
+            } ${data.level === 3 ? 'text-2xl md:text-3xl tracking-tight' : ''} ${
+                data.level === 4 ? 'text-xl md:text-2xl' : ''
+            }`}
         >
             {data.text}
         </Tag>
@@ -40,22 +43,62 @@ export const HeadingBlock = ({
 
 export const TextBlock = ({ data }: { data: { content: string } }) => {
     return (
-        <div className="case-study-text-wrapper">
+        <div className="case-study-text-wrapper text-lg md:text-xl leading-relaxed text-slate-700 dark:text-slate-300">
             <style>{`
                 .case-study-text-wrapper p {
-                    margin-bottom: 1.5rem; /* Equivalent to mb-6 */
-                    line-height: 1.75;
+                    margin-bottom: 1.75rem;
                 }
                 .case-study-text-wrapper ul,
                 .case-study-text-wrapper ol {
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 1.75rem;
+                    padding-left: 1.5rem;
+                }
+                .case-study-text-wrapper ul {
+                    list-style-type: disc;
+                }
+                .case-study-text-wrapper ol {
+                    list-style-type: decimal;
                 }
                 .case-study-text-wrapper li {
-                    margin-bottom: 0.5rem;
+                    margin-bottom: 0.75rem;
+                    padding-left: 0.5rem;
+                }
+                .case-study-text-wrapper a {
+                    color: #00A6F4;
+                    text-decoration: underline;
+                    text-decoration-thickness: 2px;
+                    text-underline-offset: 4px;
+                    transition: all 0.2s ease;
+                }
+                .case-study-text-wrapper a:hover {
+                    color: #0082c4;
+                    text-decoration-color: #0082c4;
+                }
+                .case-study-text-wrapper blockquote {
+                    border-left: 4px solid #00A6F4;
+                    padding-left: 1.5rem;
+                    margin-left: 0;
+                    margin-right: 0;
+                    font-style: italic;
+                    color: #475569;
+                    background: linear-gradient(to right, rgba(0, 166, 244, 0.05), transparent);
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    border-radius: 0 0.5rem 0.5rem 0;
+                }
+                .dark .case-study-text-wrapper blockquote {
+                    color: #94a3b8;
+                }
+                .case-study-text-wrapper strong {
+                    font-weight: 700;
+                    color: #0f172a;
+                }
+                .dark .case-study-text-wrapper strong {
+                    color: #f1f5f9;
                 }
             `}</style>
 
-            <div className="max-w-none text-slate-700 dark:text-slate-300">
+            <div className="max-w-none">
                 <ReactMarkdown rehypePlugins={[rehypeSlug]}>
                     {data.content}
                 </ReactMarkdown>
@@ -70,15 +113,15 @@ export const ImageBlock = ({
     data: { url: string; caption?: string };
 }) => {
     return (
-        <figure className="my-8">
+        <figure className="my-12">
             <img
                 src={data.url}
                 alt={data.caption || 'Case study visual'}
-                className="w-full rounded-xl object-cover shadow-lg"
+                className="w-full rounded-2xl object-cover shadow-2xl shadow-black/10 border border-gray-100 dark:border-gray-800"
                 loading="lazy"
             />
             {data.caption && (
-                <figcaption className="mt-3 text-center text-sm text-gray-500">
+                <figcaption className="mt-4 text-center text-sm md:text-base italic text-gray-500 dark:text-gray-400">
                     {data.caption}
                 </figcaption>
             )}
@@ -88,20 +131,27 @@ export const ImageBlock = ({
 
 export const CodeBlock = ({ data }: { data: { code: string; language: string } }) => {
     return (
-        <div className="my-8 rounded-lg overflow-hidden shadow-xl text-sm">
-            <div className="bg-gray-800 px-4 py-2 text-gray-400 text-xs flex justify-between uppercase tracking-widest">
-                <span>{data.language || 'typescript'}</span>
-                <button 
-                    onClick={() => navigator.clipboard.writeText(data.code)}
-                    className="hover:text-white transition-colors cursor-pointer"
-                >
-                    Copy
-                </button>
+        <div className="my-10 overflow-hidden rounded-xl shadow-2xl shadow-black/20 border border-gray-800/50 bg-[#1e1e24] text-sm">
+            <div className="flex items-center justify-between bg-gray-900/80 px-4 py-3">
+                <div className="flex items-center gap-2">
+                    <div className="h-3 w-3 rounded-full bg-[#ff5f56]"></div>
+                    <div className="h-3 w-3 rounded-full bg-[#ffbd2e]"></div>
+                    <div className="h-3 w-3 rounded-full bg-[#27c93f]"></div>
+                </div>
+                <div className="flex items-center gap-4 text-xs tracking-widest text-gray-400 uppercase">
+                    <span>{data.language || 'typescript'}</span>
+                    <button 
+                        onClick={() => navigator.clipboard.writeText(data.code)}
+                        className="cursor-pointer hover:text-white transition-colors"
+                    >
+                        Copy
+                    </button>
+                </div>
             </div>
             <SyntaxHighlighter 
                 language={data.language || 'typescript'} 
                 style={dracula}
-                customStyle={{ margin: 0, padding: '1.5rem', background: '#1e1e24' }}
+                customStyle={{ margin: 0, padding: '1.5rem', background: 'transparent' }}
             >
                 {data.code}
             </SyntaxHighlighter>
