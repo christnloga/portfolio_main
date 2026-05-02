@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import { Badge } from '@/components/ui/badge';
 import {
     SidebarGroup,
     SidebarGroupLabel,
@@ -23,9 +24,21 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                             isActive={isCurrentUrl(item.href)}
                             tooltip={{ children: item.title }}
                         >
-                            <Link href={item.href} prefetch>
-                                {item.icon && <item.icon />}
+                            <Link
+                                className="flex items-center gap-4"
+                                href={item.href}
+                                prefetch
+                            >
+                                {item.icon && <item.icon size={28} />}
                                 <span>{item.title}</span>
+                                {item.badge && (
+                                    <Badge
+                                        variant="default"
+                                        className="ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full p-0 text-[10px] font-bold"
+                                    >
+                                        {item.badge}
+                                    </Badge>
+                                )}
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

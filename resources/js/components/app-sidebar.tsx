@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import { Link, usePage } from '@inertiajs/react';
+import { BookOpen, FolderGit2, LayoutGrid, MessageSquare, TrendingUp, Users, Folder } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -13,16 +13,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
-
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-];
+import { dashboard } from '@/routes';
+import { pipeline as dashboardPipeline, teams as dashboardTeams, projects as dashboardProjects, caseStudies as dashboardCaseStudies, messages as dashboardMessages } from '@/routes/dashboard/index';
 
 const footerNavItems: NavItem[] = [
     {
@@ -38,6 +31,43 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
+    const { unreadMessagesCount } = usePage<{
+        unreadMessagesCount: number;
+    }>().props;
+
+    const mainNavItems: NavItem[] = [
+        {
+            title: 'Overview',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: 'Case Studies',
+            href: dashboardCaseStudies(),
+            icon: BookOpen,
+        },
+        {
+            title: 'Messages',
+            href: dashboardMessages(),
+            icon: MessageSquare,
+            badge: unreadMessagesCount > 0 ? unreadMessagesCount : null,
+        },
+        {
+            title: 'Pipeline',
+            href: dashboardPipeline(),
+            icon: TrendingUp,
+        },
+        {
+            title: 'Teams',
+            href: dashboardTeams(),
+            icon: Users,
+        },
+        {
+            title: 'Projects',
+            href: dashboardProjects(),
+            icon: Folder,
+        },
+    ];
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>

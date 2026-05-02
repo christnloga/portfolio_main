@@ -42,7 +42,7 @@ export function NavUser() {
                                 ? 'bottom'
                                 : state === 'collapsed'
                                   ? 'left'
-                                  : 'bottom'
+                                  : 'left'
                         }
                     >
                         <UserMenuContent user={auth.user} />

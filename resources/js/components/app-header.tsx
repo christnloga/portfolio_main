@@ -1,5 +1,13 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
+import {
+    BookOpen,
+    Folder,
+    LayoutGrid,
+    Menu,
+    Search,
+    TrendingUp,
+    Users,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Breadcrumbs } from '@/components/breadcrumbs';
@@ -33,20 +41,17 @@ import { UserMenuContent } from '@/components/user-menu-content';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { useInitials } from '@/hooks/use-initials';
 import { cn, toUrl } from '@/lib/utils';
-import { dashboard } from '@/routes';
 import type { BreadcrumbItem, NavItem } from '@/types';
+import {
+    pipeline as dashboardPipeline,
+    teams as dashboardTeams,
+    projects as dashboardProjects,
+} from '@/routes/dashboard/index';
+import { dashboard } from '@/routes/index';
 
 type Props = {
     breadcrumbs?: BreadcrumbItem[];
 };
-
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-];
 
 const rightNavItems: NavItem[] = [
     {
@@ -69,6 +74,30 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
     const { auth } = page.props;
     const getInitials = useInitials();
     const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl();
+
+    const mainNavItems: NavItem[] = [
+        {
+            title: 'Overview',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: 'Pipeline',
+            href: dashboardPipeline(),
+            icon: TrendingUp,
+        },
+        {
+            title: 'Teams',
+            href: dashboardTeams(),
+            icon: Users,
+        },
+        {
+            title: 'Projects',
+            href: dashboardProjects(),
+            icon: Folder,
+        },
+    ];
+
     return (
         <>
             <div className="border-b border-sidebar-border/80">
@@ -239,7 +268,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     </div>
                 </div>
             </div>
-            {breadcrumbs.length > 1 && (
+            {breadcrumbs.length > 0 && (
                 <div className="flex w-full border-b border-sidebar-border/70">
                     <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
                         <Breadcrumbs breadcrumbs={breadcrumbs} />

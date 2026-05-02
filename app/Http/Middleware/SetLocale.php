@@ -17,16 +17,17 @@ class SetLocale
     {
         $locale = $request->segment(1);
 
-        if (!in_array($locale, ['en', 'fr'])) {
+        if (! in_array($locale, ['en', 'fr'])) {
             if (app()->runningInConsole()) {
                 $locale = 'fr';
             } else {
-                return redirect('/fr' . $request->getRequestUri());
+                return redirect('/fr'.$request->getRequestUri());
             }
         }
 
         App::setLocale($locale);
         URL::defaults(['locale' => $locale]);
+        config(['fortify.home' => route('dashboard', ['locale' => $locale])]);
 
         return $next($request);
     }

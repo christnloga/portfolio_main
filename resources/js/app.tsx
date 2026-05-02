@@ -6,8 +6,13 @@ import '../css/app.css';
 import './i18n';
 import { GlobalProvider } from '@/contexts/GlobalContext';
 import { initializeTheme } from '@/hooks/use-appearance';
+import { addUrlDefault } from '@/wayfinder';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -17,13 +22,16 @@ createInertiaApp({
             import.meta.glob('./pages/**/*.tsx'),
         ),
     setup({ el, App, props }) {
+        addUrlDefault('locale', props.initialPage.props.locale as string);
         const root = createRoot(el);
 
         root.render(
             <StrictMode>
-                <GlobalProvider>
-                    <App {...props} />
-                </GlobalProvider>
+                <QueryClientProvider client={queryClient}>
+                    <GlobalProvider>
+                        <App {...props} />
+                    </GlobalProvider>
+                </QueryClientProvider>
             </StrictMode>,
         );
     },

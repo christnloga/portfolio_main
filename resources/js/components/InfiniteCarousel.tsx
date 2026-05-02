@@ -1,86 +1,74 @@
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 type InfiniteCarouselProps = {
-  items: React.ReactNode[];
-  speed?: number; // desktop duration
+    items: React.ReactNode[];
+    speed?: number; // desktop duration
 };
 
 export default function InfiniteCarousel({
-  items,
-  speed = 25,
+    items,
+    speed = 25,
 }: InfiniteCarouselProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const shouldReduceMotion = useReducedMotion();
 
-  const [width, setWidth] = useState(0);
+    const [width, setWidth] = useState(0);
 
-  // Measure content width dynamically
-  useEffect(() => {
-    if (!contentRef.current) return;
+    // Measure content width dynamically
+    useEffect(() => {
+        if (!contentRef.current) return;
 
-    const resizeObserver = new ResizeObserver(() => {
-      setWidth(contentRef.current!.scrollWidth);
-    });
+        const resizeObserver = new ResizeObserver(() => {
+            setWidth(contentRef.current!.scrollWidth);
+        });
 
-    resizeObserver.observe(contentRef.current);
+        resizeObserver.observe(contentRef.current);
 
-    return () => resizeObserver.disconnect();
-  }, []);
+        return () => resizeObserver.disconnect();
+    }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className="relative overflow-hidden max-w-[100vw] w-full"
-    >
-      {/* Fade edges */}
-      <div
-        className="pointer-events-none absolute inset-0 z-10
-        bg-linear-to-r from-white via-transparent to-white
-        dark:from-zinc-800 dark:to-zinc-800"
-      />
+    return (
+        <div
+            ref={containerRef}
+            className="relative w-full max-w-[100vw] overflow-hidden"
+        >
+            {/* Fade edges */}
+            <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-r from-white via-transparent to-white dark:from-[#081118] dark:to-[#081118]" />
 
-      <motion.div
-        className="flex will-change-transform touch-pan-x"
-        animate={shouldReduceMotion ? undefined : { x: [0, -width] }}
-        transition={{
-          repeat: Infinity,
-          ease: "linear",
-          duration: speed,
-        }}
-      >
-        <div ref={contentRef} className="flex">
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className="
-                px-3 sm:px-4 md:px-6
-                shrink-0
-                whitespace-nowrap
-              "
+            <motion.div
+                className="flex touch-pan-x will-change-transform"
+                animate={shouldReduceMotion ? undefined : { x: [0, -width] }}
+                transition={{
+                    repeat: Infinity,
+                    ease: 'linear',
+                    duration: speed,
+                }}
             >
-              {item}
-            </div>
-          ))}
-        </div>
+                <div ref={contentRef} className="flex">
+                    {items.map((item, i) => (
+                        <div
+                            key={i}
+                            className="shrink-0 px-3 whitespace-nowrap sm:px-4 md:px-6"
+                        >
+                            {item}
+                        </div>
+                    ))}
+                </div>
 
-        {/* Duplicate */}
-        <div className="flex">
-          {items.map((item, i) => (
-            <div
-              key={`dup-${i}`}
-              className="
-                px-3 sm:px-4 md:px-6
-                shrink-0
-                whitespace-nowrap
-              "
-            >
-              {item}
-            </div>
-          ))}
+                {/* Duplicate */}
+                <div className="flex">
+                    {items.map((item, i) => (
+                        <div
+                            key={`dup-${i}`}
+                            className="shrink-0 px-3 whitespace-nowrap sm:px-4 md:px-6"
+                        >
+                            {item}
+                        </div>
+                    ))}
+                </div>
+            </motion.div>
         </div>
-      </motion.div>
-    </div>
-  );
+    );
 }

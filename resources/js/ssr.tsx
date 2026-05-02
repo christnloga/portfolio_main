@@ -2,6 +2,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import createServer from '@inertiajs/react/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import ReactDOMServer from 'react-dom/server';
+import { addUrlDefault } from '@/wayfinder';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -16,6 +17,7 @@ createServer((page) =>
                 import.meta.glob('./pages/**/*.tsx'),
             ),
         setup: ({ App, props }) => {
+            addUrlDefault('locale', props.initialPage.props.locale as string);
             return <App {...props} />;
         },
     }),

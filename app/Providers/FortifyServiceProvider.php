@@ -31,6 +31,7 @@ class FortifyServiceProvider extends ServiceProvider
         $this->configureActions();
         $this->configureViews();
         $this->configureRateLimiting();
+        $this->configureResponses();
     }
 
     /**
@@ -87,5 +88,41 @@ class FortifyServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by($throttleKey);
         });
+    }
+
+    /**
+     * Configure Fortify response bindings for locale-aware redirects.
+     */
+    private function configureResponses(): void
+    {
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            \App\Http\Responses\LoginResponse::class,
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\RegisterResponse::class,
+            \App\Http\Responses\RegisterResponse::class,
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LogoutResponse::class,
+            \App\Http\Responses\LogoutResponse::class,
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\VerifyEmailResponse::class,
+            \App\Http\Responses\VerifyEmailResponse::class,
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\TwoFactorLoginResponse::class,
+            \App\Http\Responses\LoginResponse::class,
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse::class,
+            \App\Http\Responses\EmailVerificationNotificationSentResponse::class,
+        );
     }
 }

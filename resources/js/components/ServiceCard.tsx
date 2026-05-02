@@ -1,61 +1,62 @@
+import { Minus, Plus } from 'lucide-react';
 import { motion } from 'motion/react';
 import React from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { GoDotFill } from 'react-icons/go';
 import useMeasure from 'react-use-measure';
 
 interface ServiceCardProps {
     service: {
+        id: number;
         title: string;
         description: string;
         subTitle: string;
         icon: any;
         features: any;
     };
+    activeService: number;
+    setActiveService: Dispatch<SetStateAction<number>>;
 }
 
-const ServiceCard = ({ service }: ServiceCardProps) => {
+const ServiceCard = ({
+    service,
+    activeService,
+    setActiveService,
+}: ServiceCardProps) => {
     const [ref, { height }] = useMeasure();
 
     return (
-        <motion.div
-            className="group relative z-10 flex flex-col overflow-hidden rounded-2xl border border-sky-500/10 bg-sky-800/10 shadow-2xl duration-150 hover:scale-101 hover:shadow-sky-500/40"
-            animate={{ height }}
-            transition={{ duration: 0.1 }}
-        >
-            <div
-                ref={ref}
-                className="flex flex-col items-start p-6 transition-[padding] duration-150 group-hover:p-4"
-            >
-                <div className="relative z-10">
-                    {/* Icon */}
-                    <div className="mb-7 flex size-12 shrink-0 overflow-hidden rounded-full border border-sky-400/20 bg-sky-500/10 text-sky-500">
+        <motion.div className="group relative h-full rounded-4xl bg-[#00A6F4]/0 bg-linear-to-r to-[#7C3AED]/0 p-px duration-150 hover:-rotate-5">
+            <div className="rounded-4xl border border-slate-500/20 bg-[#0A1D26] p-8 group-hover:bg-[#00A6F4]/10 lg:h-full">
+                <div className="relative flex h-full flex-col items-start gap-6">
+                    <span className="mb-4 flex shrink-0 overflow-hidden text-[#00A6F4] transition-all duration-150 group-hover:hidden">
                         {service.icon}
+                    </span>
+                    {/* Main face */}
+                    <div className="space-y-4 transition-all duration-150 group-hover:hidden group-hover:opacity-0">
+                        <h4 className="text-lg font-semibold text-white">
+                            {service.title}
+                        </h4>
+                        <p className="text-sm text-slate-400">
+                            {service.description}
+                        </p>
                     </div>
-                    <h3 className="text-xl font-bold text-white">
-                        {service.title}
-                    </h3>
-                    <p className="mt-4 text-slate-300">
-                        {service.description}{' '}
-                        <span className="text-sky-300 duration-300 group-hover:opacity-0">
-                            Read more.
-                        </span>
-                    </p>
-                </div>
-                {/* Sub-card */}
-                <div className="h-0 w-full overflow-hidden group-hover:h-auto">
-                    <div className="relative z-10 mt-4 w-full rounded-xl p-4 dark:bg-white/5">
-                        <h3 className="text-lg font-bold text-white">
+                    {/* Back face */}
+                    <div className="hidden space-y-4 group-hover:block group-hover:opacity-100">
+                        <h4 className="text-lg font-semibold text-white">
                             {service.subTitle}
-                        </h3>
+                        </h4>
                         <ul className="mt-4 text-slate-300">
                             {service.features.map(
                                 (feature: any, index: number) => (
-                                    <li
-                                        key={index}
-                                        className="flex items-center gap-2"
-                                    >
-                                        <GoDotFill className="mt-0.5 shrink-0 text-sky-500" />
-                                        <p>{feature}</p>
+                                    <li key={index} className="flex gap-2">
+                                        <GoDotFill
+                                            size={14}
+                                            className="mt-[1.7px] shrink-0 text-[#00A6F4]"
+                                        />
+                                        <p className="text-sm text-slate-400">
+                                            {feature}
+                                        </p>
                                     </li>
                                 ),
                             )}
