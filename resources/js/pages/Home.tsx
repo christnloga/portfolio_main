@@ -1,5 +1,5 @@
 // import "./App.css";
-import { useForm, usePage } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { useTranslation } from 'react-i18next';
@@ -40,7 +40,6 @@ function Home() {
     console.log(language);
 
     const [activeService, setActiveService] = useState(1);
-    const { flash } = usePage<{ flash: { success?: string } }>().props;
 
     const contactForm = useForm({
         name: '',

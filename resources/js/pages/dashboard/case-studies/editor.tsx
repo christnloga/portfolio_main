@@ -20,8 +20,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useCaseStudyBuilder } from '@/hooks/useCaseStudyBuilder';
 import AppLayout from '@/layouts/app-layout';
-import type { BreadcrumbItem, CaseStudy } from '@/types';
 import { caseStudies as dashboardCaseStudies } from '@/routes/dashboard/index';
+import type { BreadcrumbItem, CaseStudy } from '@/types';
 
 interface EditorPageProps {
     caseStudy?: CaseStudy;
@@ -136,7 +136,7 @@ export default function CaseStudyEditorPage({ caseStudy }: EditorPageProps) {
                 if (!response.ok) throw new Error('Cover upload failed');
                 const { data } = await response.json();
                 finalCoverUrl = data.public_url;
-            } catch (err) {
+            } catch {
                 setErrors((prev) => ({
                     ...prev,
                     cover_image_url: [

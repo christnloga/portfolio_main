@@ -176,8 +176,13 @@ export const GalleryBlock = ({ data }: { data: { images: { url: string; caption?
 
     useEffect(() => {
         if (!emblaApi) return;
-        onSelect();
-        setScrollSnaps(emblaApi.scrollSnapList());
+        
+        // Avoid calling setState synchronously during render
+        setTimeout(() => {
+            onSelect();
+            setScrollSnaps(emblaApi.scrollSnapList());
+        }, 0);
+        
         emblaApi.on('select', onSelect);
         emblaApi.on('reInit', onSelect);
     }, [emblaApi, onSelect]);

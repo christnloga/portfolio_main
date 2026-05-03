@@ -1,9 +1,6 @@
-import { Minus, Plus } from 'lucide-react';
 import { motion } from 'motion/react';
 import React from 'react';
-import type { Dispatch, SetStateAction } from 'react';
 import { GoDotFill } from 'react-icons/go';
-import useMeasure from 'react-use-measure';
 
 interface ServiceCardProps {
     service: {
@@ -14,16 +11,11 @@ interface ServiceCardProps {
         icon: any;
         features: any;
     };
-    activeService: number;
-    setActiveService: Dispatch<SetStateAction<number>>;
 }
 
 const ServiceCard = ({
     service,
-    activeService,
-    setActiveService,
 }: ServiceCardProps) => {
-    const [ref, { height }] = useMeasure();
 
     return (
         <motion.div className="group relative h-full rounded-4xl bg-[#00A6F4]/0 bg-linear-to-r to-[#7C3AED]/0 p-px duration-150 hover:-rotate-5">

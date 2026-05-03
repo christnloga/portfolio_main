@@ -1,7 +1,7 @@
 import { router } from '@inertiajs/react';
 import { useQuery } from '@tanstack/react-query';
 import useEmblaCarousel from 'embla-carousel-react';
-import { AnimatePresence, motion } from 'motion/react';
+
 import { useCallback, useEffect, useState } from 'react';
 import { HiArrowSmallLeft, HiArrowSmallRight } from 'react-icons/hi2';
 

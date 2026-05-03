@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import {
     ArrowRight,
     BrainIcon,
@@ -22,8 +22,7 @@ import MainLayout from '@/layouts/MainLayout';
 import { apply } from '@/routes/page/njc';
 
 const Landing = () => {
-    const { props } = usePage();
-    const locale = (props as any).locale || 'fr';
+
 
     const { setNavbarLight } = useGlobal();
     const [logoLoading, setLogoLoading] = useState(false);
