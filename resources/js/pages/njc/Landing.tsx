@@ -22,8 +22,6 @@ import MainLayout from '@/layouts/MainLayout';
 import { apply } from '@/routes/page/njc';
 
 const Landing = () => {
-
-
     const { setNavbarLight } = useGlobal();
     const [logoLoading, setLogoLoading] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -51,9 +49,12 @@ const Landing = () => {
         setNavbarLight(true);
     }, [setNavbarLight]);
 
-    setTimeout(() => {
-        return setLogoLoading(false);
-    }, 3000);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLogoLoading(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <>
@@ -63,7 +64,7 @@ const Landing = () => {
                 </div>
             ) : (
                 <>
-                    <header className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#081118] px-4 pt-20 pb-32">
+                    <header className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#081118] px-4 pt-32 pb-32">
                         {/* Futuristic Background Elements */}
                         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             {/* Grid pattern with overlay */}
@@ -868,8 +869,9 @@ const Landing = () => {
                                     </div>
                                     <RevealElement delay={200}>
                                         <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-slate-400">
-                                            You will be placed in a cross-functional team of 3-5
-                                            members to simulate high-stakes startup
+                                            You will be placed in a
+                                            cross-functional team of 3-5 members
+                                            to simulate high-stakes startup
                                             environments.
                                         </p>
                                     </RevealElement>
@@ -882,7 +884,7 @@ const Landing = () => {
                                 <RevealElement delay={300}>
                                     <TeamIllustration className="relative z-10 mx-auto -mb-[59px] w-full lg:-mb-2" />
                                 </RevealElement>
-                                
+
                                 <RevealElement delay={400}>
                                     <div className="group relative flex w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-linear-to-b from-white/5 to-transparent p-px shadow-2xl backdrop-blur-md lg:items-center">
                                         <div className="absolute inset-0 bg-linear-to-br from-[#00A6F4]/5 via-transparent to-[#7C3AED]/5 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
@@ -892,20 +894,28 @@ const Landing = () => {
                                             </h2>
                                             <div className="mt-10 flex flex-col gap-6 lg:flex-row lg:gap-0 lg:divide-x lg:divide-white/10">
                                                 <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)] rounded-full" />
-                                                    <p className="font-medium text-slate-300">Logistics platform</p>
+                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)]" />
+                                                    <p className="font-medium text-slate-300">
+                                                        Logistics platform
+                                                    </p>
                                                 </div>
                                                 <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)] rounded-full" />
-                                                    <p className="font-medium text-slate-300">Fintech solution</p>
+                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)]" />
+                                                    <p className="font-medium text-slate-300">
+                                                        Fintech solution
+                                                    </p>
                                                 </div>
                                                 <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 text-[#7C3AED] shadow-[0_0_10px_rgba(124,58,237,0.3)] rounded-full" />
-                                                    <p className="font-medium text-slate-300">Health tech system</p>
+                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#7C3AED] shadow-[0_0_10px_rgba(124,58,237,0.3)]" />
+                                                    <p className="font-medium text-slate-300">
+                                                        Health tech system
+                                                    </p>
                                                 </div>
                                                 <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 text-[#7C3AED] shadow-[0_0_10px_rgba(124,58,237,0.3)] rounded-full" />
-                                                    <p className="font-medium text-slate-300">Marketplace</p>
+                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#7C3AED] shadow-[0_0_10px_rgba(124,58,237,0.3)]" />
+                                                    <p className="font-medium text-slate-300">
+                                                        Marketplace
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>

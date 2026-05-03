@@ -54,7 +54,7 @@ export const CaseStudyView = ({ caseStudy }: CaseStudyViewProps) => {
             </div>
 
             {/* Header Section */}
-            <header className="overflow-hidden rounded-b-md px-1 pt-[84px]">
+            <header className="overflow-hidden rounded-b-md px-1 pt-[100px]">
                 <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-[#EAF3FA] bg-gradient-to-b from-[#EAF3FA] to-white px-4 pt-20 sm:px-8 lg:px-16 dark:border-slate-800/50 dark:from-[#EAF3FA]/5 dark:to-transparent">
                     {/* Background decorations */}
                     <div className="pointer-events-none absolute top-0 left-1/2 h-full w-full -translate-x-1/2 overflow-hidden">
@@ -62,7 +62,7 @@ export const CaseStudyView = ({ caseStudy }: CaseStudyViewProps) => {
                         <div className="absolute top-[20%] right-[-5%] h-80 w-80 rounded-full bg-sky-300/10 mix-blend-multiply blur-3xl"></div>
                     </div>
 
-                    <div className="relative z-20 mx-auto mb-16 w-full max-w-5xl space-y-8 text-center">
+                    <div className="relative z-20 mx-auto mb-16 w-full max-w-xl space-y-8 text-center">
                         <RevealElement>
                             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 shadow-sm dark:border-slate-700 dark:bg-slate-800/50">
                                 <span className="h-2 w-2 animate-pulse rounded-full bg-[#00A6F4]"></span>
