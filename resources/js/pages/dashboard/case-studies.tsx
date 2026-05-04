@@ -33,9 +33,9 @@ import {
     useUpdateCaseStatus,
 } from '@/hooks/use-case-studies';
 import AppLayout from '@/layouts/app-layout';
-import type { BreadcrumbItem, CaseStudy } from '@/types';
 import { show as showCaseStudy } from '@/routes/case-study/index';
 import { caseStudies as dashboardCaseStudies } from '@/routes/dashboard/index';
+import type { BreadcrumbItem, CaseStudy } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

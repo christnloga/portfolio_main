@@ -1,5 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BiLogoReact } from 'react-icons/bi';
 import {
     BsArrowLeft,
@@ -16,7 +17,6 @@ import { SiLaravel } from 'react-icons/si';
 import { useGlobal } from '@/contexts/GlobalContext';
 import RevealElement from '../components/RevealElement';
 import MainLayout from '../layouts/MainLayout';
-import { useTranslation } from 'react-i18next';
 
 // --- Types ---
 interface Experience {

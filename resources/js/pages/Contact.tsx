@@ -208,7 +208,9 @@ const Contact = () => {
                                         see how we can work together.
                                     </p>
                                     <a
-                                        href="#"
+                                        href="https://planner.adna.cards/appointments/bookable/user_1732892830_6N0Y1iShrk"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-black transition-all hover:scale-105 active:scale-95"
                                     >
                                         <LuCalendarCheck size={18} />

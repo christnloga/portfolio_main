@@ -1,5 +1,13 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid, MessageSquare, TrendingUp, Users, Folder } from 'lucide-react';
+import {
+    BookOpen,
+    FolderGit2,
+    LayoutGrid,
+    MessageSquare,
+    TrendingUp,
+    Users,
+    Folder,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -13,9 +21,15 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import type { NavItem } from '@/types';
 import { dashboard } from '@/routes';
-import { pipeline as dashboardPipeline, teams as dashboardTeams, projects as dashboardProjects, caseStudies as dashboardCaseStudies, messages as dashboardMessages } from '@/routes/dashboard/index';
+import {
+    pipeline as dashboardPipeline,
+    teams as dashboardTeams,
+    projects as dashboardProjects,
+    caseStudies as dashboardCaseStudies,
+    messages as dashboardMessages,
+} from '@/routes/dashboard/index';
+import type { NavItem } from '@/types';
 
 const footerNavItems: NavItem[] = [
     {

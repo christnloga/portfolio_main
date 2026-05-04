@@ -251,7 +251,7 @@ function Home() {
                             </h2>
                             <Link
                                 href={`/${locale}/about`}
-                                className="group inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4]"
+                                className="group hidden w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4] lg:inline-flex"
                             >
                                 {t('Read more')}{' '}
                                 <BsArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -259,6 +259,27 @@ function Home() {
                         </div>
 
                         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
+                            {/* Card 2: Profile summary */}
+                            <div className="group relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0C1821] p-8 text-center shadow-2xl backdrop-blur-xl transition-all hover:border-[#7C3AED]/30 lg:row-span-2 lg:hidden">
+                                <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-[#7C3AED]/20 to-transparent opacity-50 transition-opacity duration-700 group-hover:opacity-100" />
+                                <div className="relative z-10 mb-6 size-[140px] overflow-hidden rounded-3xl border-2 border-[#00A6F4]/30 shadow-[0_0_30px_rgba(0,166,244,0.3)]">
+                                    <img
+                                        src="/my-photo-3.jpg"
+                                        alt="Joseph Christ"
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                </div>
+                                <h3 className="text-xl font-bold text-white">
+                                    Joseph Christ NLOGA
+                                </h3>
+                                <p className="mb-4 font-medium text-[#00A6F4]">
+                                    Solution Architect & UX Engineer
+                                </p>
+                                <p className="text-sm text-slate-400">
+                                    Bridging the gap between aesthetic
+                                    excellence and technical scalability.
+                                </p>
+                            </div>
                             {/* Card 1: Core Philosophy */}
                             <div className="group relative col-span-1 flex flex-col justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0A1520]/80 p-8 shadow-2xl backdrop-blur-xl transition-all hover:border-[#00A6F4]/30 lg:col-span-2 lg:row-span-1">
                                 <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/10 blur-[80px] transition-transform duration-700 group-hover:scale-150" />
@@ -275,7 +296,7 @@ function Home() {
                             </div>
 
                             {/* Card 2: Profile summary */}
-                            <div className="group relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0C1821] p-8 text-center shadow-2xl backdrop-blur-xl transition-all hover:border-[#7C3AED]/30 lg:row-span-2">
+                            <div className="group relative col-span-1 hidden flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0C1821] p-8 text-center shadow-2xl backdrop-blur-xl transition-all hover:border-[#7C3AED]/30 lg:row-span-2 lg:flex">
                                 <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-[#7C3AED]/20 to-transparent opacity-50 transition-opacity duration-700 group-hover:opacity-100" />
                                 <div className="relative z-10 mb-6 size-[140px] overflow-hidden rounded-3xl border-2 border-[#00A6F4]/30 shadow-[0_0_30px_rgba(0,166,244,0.3)]">
                                     <img
@@ -315,6 +336,13 @@ function Home() {
                                     </p>
                                 </RevealElement>
                             </div>
+                            <Link
+                                href={`/${locale}/about`}
+                                className="group mx-auto inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4] lg:hidden"
+                            >
+                                {t('Read more')}{' '}
+                                <BsArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -393,7 +421,10 @@ function Home() {
                     </div>
                 </section>
                 {/* CASE STUDIES */}
-                <section className="relative z-10 flex flex-col items-center bg-[#0C1821] lg:h-[calc(100vh-60px)]">
+                <section
+                    id="work"
+                    className="relative z-10 flex flex-col items-center bg-[#0C1821] lg:h-[calc(100vh-60px)]"
+                >
                     <CaseStudies />
                 </section>
 
@@ -627,7 +658,11 @@ function Home() {
                                                     <div className="h-px grow bg-slate-600"></div>
                                                 </div>
                                                 <a
-                                                    href={'#'}
+                                                    href={
+                                                        'https://planner.adna.cards/appointments/bookable/user_1732892830_6N0Y1iShrk'
+                                                    }
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="group flex h-14 items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 font-semibold text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4]"
                                                 >
                                                     <LuCalendarCheck

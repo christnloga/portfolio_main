@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'motion/react';
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiOutlinePhone } from 'react-icons/ai';
 import { BsGithub, BsTwitterX } from 'react-icons/bs';
 import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
@@ -8,6 +8,8 @@ import RevealElement from '../RevealElement';
 const Header = () => {
     const { scrollY } = useScroll();
     const scale = useTransform(scrollY, [0, 500], [1, 1.25]);
+
+    const { t } = useTranslation();
 
     return (
         <header className="relative px-1 pt-1 lg:pt-1.5">
@@ -41,14 +43,14 @@ const Header = () => {
                                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00A6F4] opacity-75"></span>
                                             <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00A6F4]"></span>
                                         </span>
-                                        Welcome to my domain
+                                        {t('Welcome to my domain')}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-col gap-2">
                                     <RevealElement>
                                         <h1 className="text-5xl font-bold text-white lg:text-7xl/tight">
-                                            I'm{' '}
+                                            {t("I'm")}{' '}
                                             <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                                 nloga
                                             </span>
@@ -60,22 +62,27 @@ const Header = () => {
                                     <RevealElement>
                                         <div className="mt-2">
                                             <h4 className="inline-block text-2xl font-semibold text-slate-300 lg:text-[28px]/snug">
-                                                Solution Architect & UX Engineer
+                                                {t(
+                                                    'Solution Architect & UX Engineer',
+                                                )}
                                             </h4>
                                         </div>
                                     </RevealElement>
                                 </div>
                                 <RevealElement>
                                     <h4 className="max-w-lg text-lg text-slate-400">
-                                        I partner with startups, growing
-                                        businesses, and international teams to
-                                        transform ideas into reliable,
-                                        market-ready digital products.
+                                        {t(
+                                            'I partner with startups, growing businesses, and international teams to transform ideas into reliable, market-ready digital products.',
+                                        )}
                                     </h4>
                                 </RevealElement>
                                 <div className="mt-4 flex w-full justify-center gap-4 lg:justify-start">
                                     <a
-                                        href={'#'}
+                                        href={
+                                            'https://planner.adna.cards/appointments/bookable/user_1732892830_6N0Y1iShrk'
+                                        }
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="group relative flex h-14 items-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-[#00A6F4] to-[#7C3AED] px-8 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(0,166,244,0.8)]"
                                     >
                                         <div className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -84,14 +91,14 @@ const Header = () => {
                                             size={22}
                                         />
                                         <span className="relative z-10">
-                                            Let's talk
+                                            {t("Let's talk")}
                                         </span>
                                     </a>
                                     <a
-                                        href={'#'}
+                                        href={'#work'}
                                         className="group flex h-14 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 font-semibold text-white backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 hover:text-[#00A6F4]"
                                     >
-                                        See My Work
+                                        {t('See My Work')}
                                     </a>
                                 </div>
                             </div>
@@ -157,7 +164,7 @@ const Header = () => {
                             </a>
                             <a
                                 target="_blank"
-                                href="mailto:christ.nloga@gmail.com"
+                                href="https://x.com/_nloga"
                                 className="mb-11 flex size-10 shrink-0 overflow-hidden rounded-md transition-all duration-150 hover:bg-[#00A6F4]/5 hover:brightness-110 active:brightness-125"
                             >
                                 <BsTwitterX

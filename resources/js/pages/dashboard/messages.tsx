@@ -1,4 +1,5 @@
 import { Head, router, usePage } from '@inertiajs/react';
+import dayjs from 'dayjs';
 import {
     Mail,
     MailOpen,
@@ -8,7 +9,6 @@ import {
     Clock,
     Calendar,
 } from 'lucide-react';
-import dayjs from 'dayjs';
 import { useMemo, useState } from 'react';
 
 import {
@@ -18,6 +18,13 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import {
     Sheet,
     SheetContent,
     SheetDescription,
@@ -25,18 +32,11 @@ import {
     SheetHeader,
     SheetTitle,
 } from '@/components/ui/sheet';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import AppLayout from '@/layouts/app-layout';
 import { cn } from '@/lib/utils';
-import type { BreadcrumbItem } from '@/types';
 import { messages as dashboardMessages } from '@/routes/dashboard/index';
+import type { BreadcrumbItem } from '@/types';
 
 interface ContactMessage {
     id: number;
@@ -146,9 +146,7 @@ export default function Messages() {
                             value={statusFilter}
                             onValueChange={(v) =>
                                 v &&
-                                setStatusFilter(
-                                    v as 'all' | 'read' | 'unread',
-                                )
+                                setStatusFilter(v as 'all' | 'read' | 'unread')
                             }
                             variant="outline"
                             size="sm"
@@ -177,7 +175,9 @@ export default function Messages() {
                             <SelectContent>
                                 <SelectItem value="all">All Time</SelectItem>
                                 <SelectItem value="today">Today</SelectItem>
-                                <SelectItem value="week">Last 7 Days</SelectItem>
+                                <SelectItem value="week">
+                                    Last 7 Days
+                                </SelectItem>
                                 <SelectItem value="month">
                                     Last 30 Days
                                 </SelectItem>

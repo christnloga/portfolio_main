@@ -1,10 +1,21 @@
 import { Link } from '@inertiajs/react';
 import {
+    AlertTriangle,
+    ArrowDown,
     ArrowRight,
     BrainIcon,
+    Building2,
     ChevronDown,
-    DotIcon,
+    HelpCircle,
+    MinusCircle,
+    PlusCircle,
+    Presentation,
+    Rocket,
+    Target,
+    Trophy,
     UserPlus,
+    Users2,
+    Zap,
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { BsCheckCircle, BsCheckCircleFill, BsStarFill } from 'react-icons/bs';
@@ -64,7 +75,7 @@ const Landing = () => {
                 </div>
             ) : (
                 <>
-                    <header className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#081118] px-4 pt-32 pb-32">
+                    <header className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#081118] px-4 pt-28 lg:pt-48">
                         {/* Futuristic Background Elements */}
                         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             {/* Grid pattern with overlay */}
@@ -290,53 +301,100 @@ const Landing = () => {
                             </div>
                         </div>
                     </section>
-                    <section className="relative overflow-hidden bg-[#081118] py-28">
-                        {/* Background Spotlight */}
-                        <div className="absolute top-1/2 left-0 z-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/10 blur-[120px]"></div>
+                    {/* THE PROBLEM / THE GAP */}
+                    <section className="relative overflow-hidden bg-[#081118] py-20 lg:py-40">
+                        <div className="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-[#7C3AED]/5 blur-[120px]" />
+                        <div className="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-[#00A6F4]/5 blur-[120px]" />
 
-                        <div className="relative z-10 flex w-full justify-center">
-                            <div className="flex w-full lg:max-w-6xl">
-                                <div className="grid w-full gap-12 px-4 lg:grid-cols-2 lg:items-center lg:gap-24">
+                        <div className="container mx-auto max-w-6xl px-4">
+                            <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
+                                {/* Left: Content */}
+                                <div className="space-y-10">
                                     <RevealElement>
-                                        <div className="space-y-6">
-                                            <h2 className="text-4xl font-bold tracking-tight text-white lg:text-7xl">
+                                        <div className="space-y-4">
+                                            <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/5 px-4 py-1.5 text-xs font-bold tracking-widest text-red-400 uppercase">
+                                                <AlertTriangle className="size-3.5" />
+                                                Reality Check
+                                            </div>
+                                            <h2 className="text-5xl font-bold text-white lg:text-7xl/tight">
                                                 The Gap <br />
-                                                <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
-                                                    Is Real.
-                                                </span>
+                                                <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">Is Real.</span>
                                             </h2>
-                                            <div className="h-1 w-20 bg-[#00A6F4]"></div>
                                         </div>
                                     </RevealElement>
 
-                                    <div className="space-y-8">
+                                    <div className="space-y-6">
                                         <RevealElement delay={200}>
-                                            <p className="text-xl leading-relaxed text-slate-300 lg:text-2xl">
-                                                Tech is moving fast, but the gap
-                                                between{' '}
-                                                <span className="text-white italic">
-                                                    "knowing how to code"
-                                                </span>{' '}
-                                                and{' '}
-                                                <span className="font-semibold text-white italic">
-                                                    "building world-class
-                                                    solutions"
-                                                </span>{' '}
-                                                is wide.
+                                            <p className="text-xl leading-relaxed text-slate-300">
+                                                Tech is moving at light speed, but the distance between 
+                                                <span className="text-white italic"> "knowing syntax" </span> 
+                                                and 
+                                                <span className="font-semibold text-white italic"> "shipping world-class products" </span> 
+                                                is growing every day.
                                             </p>
                                         </RevealElement>
-
+                                        
                                         <RevealElement delay={400}>
-                                            <p className="text-lg leading-relaxed text-slate-400">
-                                                NJC exists to bridge that gap.
-                                                We are grooming the 25
-                                                specialists who will put our
-                                                tech scene on the map alongside
-                                                the giants of Nigeria and Kenya.
-                                            </p>
+                                            <div className="flex gap-4 rounded-3xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm">
+                                                <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-[#00A6F4]/10 text-[#00A6F4]">
+                                                    <Target size={24} />
+                                                </div>
+                                                <p className="text-base text-slate-400">
+                                                    NJC exists to bridge that gap. We don't just teach code; 
+                                                    we groom the specialists who will put our region on the map 
+                                                    alongside the tech giants of Nigeria and Kenya.
+                                                </p>
+                                            </div>
                                         </RevealElement>
                                     </div>
                                 </div>
+
+                                {/* Right: Visual Graphic */}
+                                <RevealElement delay={600} className="relative">
+                                    <div className="relative grid gap-6">
+                                        {/* Background decoration */}
+                                        <div className="absolute inset-0 -z-10 rounded-full bg-linear-to-br from-[#00A6F4]/20 to-[#7C3AED]/20 opacity-30 blur-3xl" />
+                                        
+                                        {/* Card 1: The Old Way */}
+                                        <div className="group relative -rotate-1 rounded-[2.5rem] border border-white/5 bg-[#0A1520]/60 p-8 shadow-xl backdrop-blur-xl transition-all hover:-translate-y-2">
+                                            <div className="mb-4 flex items-center justify-between">
+                                                <span className="text-xs font-bold text-slate-500 uppercase">The Common Path</span>
+                                                <MinusCircle className="text-slate-600" size={20} />
+                                            </div>
+                                            <h3 className="mb-2 text-xl font-bold text-slate-300 line-through decoration-red-500/50">Tutorial Hell & Local Logic</h3>
+                                            <p className="text-sm text-slate-400">Learning syntax without context. Building for local browsers instead of global users.</p>
+                                        </div>
+
+                                        {/* Bridge Icon */}
+                                        <div className="relative z-10 -my-3 flex justify-center">
+                                            <div className="flex size-12 items-center justify-center rounded-full border border-[#00A6F4]/50 bg-[#081118] shadow-[0_0_20px_rgba(0,166,244,0.3)]">
+                                                <ArrowDown className="animate-bounce text-[#00A6F4]" />
+                                            </div>
+                                        </div>
+
+                                        {/* Card 2: The NJC Way */}
+                                        <div className="group relative rotate-1 rounded-[2.5rem] border border-[#00A6F4]/30 bg-[#0A1D26] p-10 shadow-2xl shadow-[#00A6F4]/10 backdrop-blur-xl transition-all hover:-translate-y-2">
+                                            <div className="absolute -right-2 -top-2">
+                                                <div className="flex size-10 items-center justify-center rounded-full bg-[#00A6F4] text-black shadow-lg">
+                                                    <Zap size={20} />
+                                                </div>
+                                            </div>
+                                            <div className="mb-4 flex items-center justify-between">
+                                                <span className="text-xs font-bold tracking-widest text-[#00A6F4] uppercase">The NJC Standard</span>
+                                                <PlusCircle className="text-[#00A6F4]" size={20} />
+                                            </div>
+                                            <h3 className="mb-3 text-2xl font-bold text-white">Engineering Excellence</h3>
+                                            <p className="text-slate-400">Mastering architectural design, performance optimization, and global-scale product thinking.</p>
+                                            
+                                            <div className="mt-6 flex items-center gap-4">
+                                                <div className="h-1 flex-1 rounded-full bg-white/5">
+                                                    <div className="h-full w-[90%] rounded-full bg-linear-to-r from-[#00A6F4] to-[#7C3AED]" />
+                                                </div>
+                                                <span className="text-xs font-bold text-white">Top 1%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </RevealElement>
                             </div>
                         </div>
                     </section>
@@ -925,59 +983,172 @@ const Landing = () => {
                         </div>
                     </section>
                     {/* DEMO DAY SECTION */}
-                    <section className="relative z-10 flex flex-col items-center bg-[#0C1821] lg:py-28">
-                        <div className="flex w-full justify-center">
-                            <div className="flex lg:max-w-6xl">
-                                <div className="w-full cursor-default gap-12 px-4 py-16 lg:grid lg:grid-cols-12">
-                                    <div className="col-span-6 mb-6 flex flex-col gap-4 lg:mt-12 lg:mb-0 lg:gap-6">
-                                        <div className="flex items-center justify-center">
-                                            <span className="flex rounded-md bg-[#1A323F] px-2 py-1 text-xs font-medium text-[#00A6F4] uppercase">
-                                                The Grand Finale
+                    <section className="relative z-10 flex flex-col items-center bg-[#0C1821] py-20 lg:py-32">
+                        <div className="absolute top-0 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-[#00A6F4]/10 blur-[120px]" />
+
+                        <div className="w-full max-w-6xl px-4">
+                            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+                                {/* Left Column: Content */}
+                                <div className="space-y-8">
+                                    <div className="inline-flex items-center gap-2 rounded-full border border-[#00A6F4]/20 bg-[#00A6F4]/5 px-4 py-1.5 text-xs font-bold tracking-widest text-[#00A6F4] uppercase">
+                                        <Trophy className="size-3.5" />
+                                        The Grand Finale
+                                    </div>
+
+                                    <RevealElement>
+                                        <h2 className="text-4xl font-bold text-white lg:text-6xl/tight">
+                                            The{' '}
+                                            <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                                                Demo Day
                                             </span>
-                                        </div>
-                                        <RevealElement>
-                                            <h2 className="text-center text-3xl font-semibold text-white lg:text-left lg:text-5xl/snug">
-                                                The Demo Day
-                                            </h2>
-                                        </RevealElement>
-                                        <RevealElement>
-                                            <p className="text-center text-slate-400 lg:text-left">
-                                                This isn't just a demo; it is a
-                                                high-stakes pitch event where
-                                                industry leaders, big firms, and
-                                                potential employers are invited
-                                                to see what "the best in the
-                                                country" looks like.
-                                            </p>
-                                        </RevealElement>
-                                        <p className="text-center text-slate-400 lg:text-left">
-                                            Present your product to:
-                                        </p>
+                                        </h2>
+                                    </RevealElement>
 
-                                        <div className="flex gap-4">
-                                            <div className="flex items-center gap-2">
-                                                {/* <DotIcon className="text-green-400" /> */}
-                                                <p>Companies</p>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <DotIcon className="text-green-400" />
-                                                <p>Recruiters</p>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <DotIcon className="text-green-400" />
-                                                <p>Founders</p>
-                                            </div>
-                                        </div>
-                                        <p className="inline-block bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text font-semibold text-transparent">
-                                            This is where opportunities begin.
+                                    <RevealElement>
+                                        <p className="max-w-xl text-lg leading-relaxed text-pretty text-slate-400">
+                                            This isn't just a presentation; it's
+                                            a high-stakes pitch event where
+                                            industry leaders, top-tier firms,
+                                            and venture capitalists are invited
+                                            to witness the pinnacle of talent
+                                            and innovation in the country.
                                         </p>
+                                    </RevealElement>
+
+                                    <div className="grid gap-4 sm:grid-cols-3">
+                                        {[
+                                            {
+                                                label: 'Companies',
+                                                icon: (
+                                                    <Building2 className="size-5" />
+                                                ),
+                                                color: 'text-blue-400',
+                                            },
+                                            {
+                                                label: 'Recruiters',
+                                                icon: (
+                                                    <Users2 className="size-5" />
+                                                ),
+                                                color: 'text-purple-400',
+                                            },
+                                            {
+                                                label: 'Founders',
+                                                icon: (
+                                                    <Rocket className="size-5" />
+                                                ),
+                                                color: 'text-orange-400',
+                                            },
+                                        ].map((item, i) => (
+                                            <div
+                                                key={i}
+                                                className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 transition-all hover:bg-white/10"
+                                            >
+                                                <span className={item.color}>
+                                                    {item.icon}
+                                                </span>
+                                                <span className="text-sm font-medium text-white">
+                                                    {item.label}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
 
-                                    {/* Card 1 */}
-                                    <div className="col-span-6 rounded-4xl bg-[#00A6F4]/0 bg-linear-to-r to-[#7C3AED]/0 p-px">
-                                        <div className="h-full rounded-4xl bg-[#0A1D26] p-8"></div>
-                                    </div>
+                                    <RevealElement>
+                                        <p className="text-lg font-semibold text-[#00A6F4] italic">
+                                            "This is where opportunities
+                                            transform into careers."
+                                        </p>
+                                    </RevealElement>
                                 </div>
+
+                                {/* Right Column: Visual Card */}
+                                <RevealElement className="relative">
+                                    <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0A1520]/80 p-10 shadow-2xl backdrop-blur-xl transition-all hover:border-[#00A6F4]/30">
+                                        {/* Background decoration */}
+                                        <div className="absolute top-0 right-0 h-40 w-40 translate-x-1/4 -translate-y-1/4 rounded-full bg-[#7C3AED]/10 blur-[60px] transition-transform duration-700 group-hover:scale-150" />
+
+                                        <div className="relative z-10 space-y-8">
+                                            <div className="flex items-center gap-4">
+                                                <div className="flex size-12 items-center justify-center rounded-2xl bg-linear-to-br from-[#00A6F4] to-[#7C3AED] text-white shadow-lg shadow-[#00A6F4]/20">
+                                                    <Presentation size={24} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-xl font-bold text-white">
+                                                        The Pitch Experience
+                                                    </h3>
+                                                    <p className="text-sm text-slate-400">
+                                                        6 Months of work, 10
+                                                        Minutes to shine.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-6">
+                                                {[
+                                                    {
+                                                        title: 'Direct Access',
+                                                        desc: 'Face-to-face networking with decision makers and tech leads.',
+                                                    },
+                                                    {
+                                                        title: 'Real Investment',
+                                                        desc: 'Seed funding opportunities for standout products and ventures.',
+                                                    },
+                                                    {
+                                                        title: 'Talent Showcase',
+                                                        desc: 'Verified skills proven through live execution and building.',
+                                                    },
+                                                ].map((feature, i) => (
+                                                    <div
+                                                        key={i}
+                                                        className="flex gap-4"
+                                                    >
+                                                        <BsCheckCircle className="mt-1 size-5 shrink-0 text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)]" />
+                                                        <div>
+                                                            <h4 className="font-semibold text-white">
+                                                                {feature.title}
+                                                            </h4>
+                                                            <p className="text-sm text-slate-400">
+                                                                {feature.desc}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="mt-6 flex items-center border-t border-white/5 pt-8">
+                                                <div className="flex -space-x-3">
+                                                    {[1, 2, 3, 4].map((i) => (
+                                                        <div
+                                                            key={i}
+                                                            className="flex size-10 items-center justify-center overflow-hidden rounded-full border-2 border-[#0A1520] bg-slate-800"
+                                                        >
+                                                            <img
+                                                                src={`https://i.pravatar.cc/100?u=recruiter${i}`}
+                                                                alt="Attendee"
+                                                            />
+                                                        </div>
+                                                    ))}
+                                                    <div className="flex size-10 items-center justify-center rounded-full border-2 border-[#0A1520] bg-[#1A323F] text-[10px] font-bold text-[#00A6F4]">
+                                                        +50
+                                                    </div>
+                                                </div>
+                                                <div className="ml-4 flex flex-col">
+                                                    <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">
+                                                        Attendees
+                                                    </span>
+                                                    <span className="text-sm font-bold text-white">
+                                                        Industry Leaders
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Floating Decorative Element */}
+                                    <div className="absolute -bottom-6 -left-6 hidden size-24 items-center justify-center rounded-3xl border border-white/10 bg-[#0C1821] p-6 shadow-2xl backdrop-blur-xl transition-transform hover:scale-110 lg:flex">
+                                        <Target className="size-10 text-[#7C3AED] drop-shadow-[0_0_10px_rgba(124,58,237,0.5)]" />
+                                    </div>
+                                </RevealElement>
                             </div>
                         </div>
                     </section>
@@ -991,7 +1162,7 @@ const Landing = () => {
                         <div className="absolute top-1/2 left-1/2 z-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4] opacity-50 blur-3xl"></div>
                         <div className="flex w-full justify-center">
                             <div className="flex lg:max-w-6xl">
-                                <div className="relative z-10 w-full cursor-default gap-12 px-4 py-16 lg:grid lg:grid-cols-12 lg:px-0">
+                                <div className="relative z-10 w-full cursor-default gap-12 py-16 lg:grid lg:grid-cols-12 lg:px-0">
                                     <div className="col-span-12 lg:col-span-6">
                                         <div className="flex h-full flex-col gap-6 rounded-4xl border border-slate-500/20 bg-[#0A1D26]/80 p-8 backdrop-blur-lg lg:p-10">
                                             <div className="space-y-4">
@@ -1130,134 +1301,189 @@ const Landing = () => {
                         </div>
                     </section>
                     {/* FAQ */}
-                    <section className="relative z-10 bg-[#0C1821] py-28">
-                        <div className="flex w-full justify-center">
-                            <div className="flex w-full lg:max-w-4xl">
-                                <div className="w-full px-4">
-                                    <RevealElement>
-                                        <div className="mb-16 text-center">
-                                            <h2 className="text-3xl font-bold text-white lg:text-5xl">
-                                                Common Questions
-                                            </h2>
-                                            <p className="mt-4 text-slate-400">
-                                                Everything you need to know
-                                                about the NJC Fellowship.
-                                            </p>
+                    {/* FAQ SECTION */}
+                    <section
+                        id="faq"
+                        className="relative z-10 flex flex-col items-center bg-[#0C1821] py-20 lg:py-32"
+                    >
+                        <div className="w-full max-w-6xl px-4">
+                            <div className="grid gap-16 lg:grid-cols-12">
+                                {/* Left side: Header */}
+                                <div className="lg:col-span-5">
+                                    <div className="sticky top-32 space-y-6">
+                                        <div className="inline-flex items-center gap-2 rounded-full border border-[#00A6F4]/20 bg-[#00A6F4]/5 px-4 py-1.5 text-xs font-bold tracking-widest text-[#00A6F4] uppercase">
+                                            <HelpCircle className="size-3.5" />
+                                            Common Questions
                                         </div>
-                                    </RevealElement>
-
-                                    <div className="space-y-4">
-                                        {faqData.map((faq, index) => (
-                                            <RevealElement
-                                                key={index}
-                                                delay={index * 100}
+                                        <RevealElement>
+                                            <h2 className="text-4xl font-bold text-white lg:text-5xl">
+                                                Everything you{' '}
+                                                <span className="text-[#00A6F4]">
+                                                    need to know
+                                                </span>
+                                            </h2>
+                                        </RevealElement>
+                                        <RevealElement>
+                                            <p className="text-lg leading-relaxed text-slate-400">
+                                                Have questions about the
+                                                fellowship, the selection
+                                                process, or the curriculum?
+                                                We've compiled answers to the
+                                                most frequent inquiries.
+                                            </p>
+                                        </RevealElement>
+                                        {/* <div className="rounded-3xl border border-white/5 bg-white/5 p-8 transition-all hover:border-[#00A6F4]/20">
+                                            <p className="mb-4 text-sm font-medium text-white">
+                                                Still have questions?
+                                            </p>
+                                            <a
+                                                href="mailto:christ.nloga@gmail.com"
+                                                className="text-sm font-bold text-[#00A6F4] hover:underline"
                                             >
-                                                <div
-                                                    className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
-                                                        openFaq === index
-                                                            ? 'border-[#00A6F4]/50 bg-[#0A1D26]'
-                                                            : 'border-slate-500/20 bg-[#0A1D26]/40 hover:border-slate-500/40'
-                                                    }`}
-                                                >
-                                                    <button
-                                                        onClick={() =>
-                                                            setOpenFaq(
-                                                                openFaq ===
-                                                                    index
-                                                                    ? null
-                                                                    : index,
-                                                            )
-                                                        }
-                                                        className="flex w-full items-center justify-between p-6 text-left"
-                                                    >
-                                                        <span className="text-lg font-semibold text-white">
-                                                            {faq.question}
-                                                        </span>
-                                                        <ChevronDown
-                                                            className={`text-[#00A6F4] transition-transform duration-300 ${
-                                                                openFaq ===
-                                                                index
-                                                                    ? 'rotate-180'
-                                                                    : ''
-                                                            }`}
-                                                            size={20}
-                                                        />
-                                                    </button>
-                                                    <div
-                                                        className={`transition-all duration-300 ease-in-out ${
+                                                Contact our support team →
+                                            </a>
+                                        </div> */}
+                                    </div>
+                                </div>
+
+                                {/* Right side: Accordions */}
+                                <div className="space-y-4 lg:col-span-7">
+                                    {faqData.map((faq, index) => (
+                                        <RevealElement
+                                            key={index}
+                                            delay={index * 100}
+                                        >
+                                            <div
+                                                className={`group overflow-hidden rounded-3xl border transition-all duration-500 ${
+                                                    openFaq === index
+                                                        ? 'border-[#00A6F4]/30 bg-[#0A1D26] shadow-[0_0_30px_-10px_rgba(0,166,244,0.2)]'
+                                                        : 'border-white/5 bg-[#0A1D26]/40 hover:border-white/10 hover:bg-[#0A1D26]/60'
+                                                }`}
+                                            >
+                                                <button
+                                                    onClick={() =>
+                                                        setOpenFaq(
                                                             openFaq === index
-                                                                ? 'max-h-48 opacity-100'
-                                                                : 'max-h-0 opacity-0'
+                                                                ? null
+                                                                : index,
+                                                        )
+                                                    }
+                                                    className="flex w-full items-center justify-between p-7 text-left"
+                                                >
+                                                    <span
+                                                        className={`text-lg font-semibold transition-colors duration-300 ${
+                                                            openFaq === index
+                                                                ? 'text-[#00A6F4]'
+                                                                : 'text-white'
                                                         }`}
                                                     >
-                                                        <div className="border-t border-slate-500/10 p-6 pt-0 text-slate-400">
-                                                            {faq.answer}
-                                                        </div>
+                                                        {faq.question}
+                                                    </span>
+                                                    <div
+                                                        className={`flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                                                            openFaq === index
+                                                                ? 'rotate-180 border-[#00A6F4]/50 bg-[#00A6F4] text-black shadow-[0_0_15px_rgba(0,166,244,0.4)]'
+                                                                : 'border-white/10 bg-white/5 text-white'
+                                                        }`}
+                                                    >
+                                                        <ChevronDown
+                                                            size={18}
+                                                        />
+                                                    </div>
+                                                </button>
+                                                <div
+                                                    className={`transition-all duration-500 ease-in-out ${
+                                                        openFaq === index
+                                                            ? 'max-h-96 opacity-100'
+                                                            : 'max-h-0 opacity-0'
+                                                    }`}
+                                                >
+                                                    <div className="px-7 pb-7 text-base leading-relaxed text-slate-400">
+                                                        <div className="mb-6 h-px w-full bg-white/5" />
+                                                        {faq.answer}
                                                     </div>
                                                 </div>
-                                            </RevealElement>
-                                        ))}
-                                    </div>
+                                            </div>
+                                        </RevealElement>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </section>
                     {/* FINAL CALL TO ACTION */}
-                    <section className="relative overflow-hidden bg-[#0C1821] py-28">
-                        {/* Background Glow */}
-                        <div className="absolute top-1/2 left-1/2 z-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4] opacity-20 blur-3xl"></div>
+                    <section className="relative overflow-hidden bg-[#0C1821] py-28 lg:py-40">
+                        {/* Animated Background Elements */}
+                        <div className="absolute top-1/2 left-1/2 -z-10 size-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/10 blur-[120px]" />
+                        <div className="absolute top-1/2 left-1/2 -z-10 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7C3AED]/5 blur-[100px]" />
 
-                        <div className="relative z-10 flex w-full justify-center">
-                            <div className="flex lg:max-w-4xl">
-                                <div className="flex flex-col items-center gap-8 rounded-4xl border border-slate-500/20 bg-[#0A1D26]/50 px-6 py-16 text-center backdrop-blur-xl lg:px-20 lg:py-24">
-                                    <div className="flex">
-                                        <RevealElement>
-                                            <span className="flex rounded-md bg-[#1A323F] px-3 py-1 text-xs font-semibold tracking-wider text-[#00A6F4] uppercase">
+                        <div className="container mx-auto max-w-6xl">
+                            <RevealElement>
+                                <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#0A1520]/80 p-8 shadow-2xl backdrop-blur-3xl lg:p-20">
+                                    {/* Internal Glow */}
+                                    <div className="absolute -top-20 -right-20 size-64 rounded-full bg-[#00A6F4]/10 blur-3xl" />
+                                    <div className="absolute -bottom-20 -left-20 size-64 rounded-full bg-[#7C3AED]/10 blur-3xl" />
+
+                                    <div className="relative z-10 flex flex-col items-center text-center">
+                                        <div className="mb-8 flex items-center gap-3">
+                                            <div className="h-px w-8 bg-linear-to-r from-transparent to-[#00A6F4]" />
+                                            <span className="text-xs font-bold tracking-[0.3em] text-[#00A6F4] uppercase">
                                                 Induction 2026
                                             </span>
-                                        </RevealElement>
-                                    </div>
+                                            <div className="h-px w-8 bg-linear-to-l from-transparent to-[#00A6F4]" />
+                                        </div>
 
-                                    <div className="space-y-4">
-                                        <RevealElement>
-                                            <h2 className="text-4xl font-bold text-white lg:text-6xl">
-                                                Ready to Build the Future?
-                                            </h2>
-                                        </RevealElement>
-                                        <RevealElement>
-                                            <p className="mx-auto max-w-2xl text-lg text-slate-400">
-                                                Join a selective cohort of
-                                                engineers and designers. Master
-                                                the craft of shipping
-                                                world-class products and launch
-                                                your career into the top 1%.
-                                            </p>
-                                        </RevealElement>
-                                    </div>
+                                        <h2 className="mb-8 text-4xl font-bold text-pretty text-white sm:text-5xl lg:text-7xl/tight">
+                                            Ready to{' '}
+                                            <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                                                Build the Future?
+                                            </span>
+                                        </h2>
 
-                                    <RevealElement>
-                                        <div className="flex w-full flex-col justify-center gap-4 sm:flex-row">
+                                        <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-pretty text-slate-400">
+                                            Join a selective cohort of visionary
+                                            engineers and designers. Master the
+                                            craft of shipping world-class
+                                            products and launch your career into
+                                            the top 1%.
+                                        </p>
+
+                                        <div className="flex w-full flex-col items-center justify-center gap-6 sm:flex-row">
                                             <Link
                                                 href={apply.url()}
-                                                className="group flex h-14 items-center justify-center gap-2 rounded-xl bg-[#00A6F4] bg-linear-to-r from-[#00A6F4] to-[#7C3AED] px-8 text-base font-bold text-white transition-all duration-300 hover:brightness-110 active:scale-95"
+                                                className="group relative flex h-16 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-linear-to-r from-[#00A6F4] to-[#7C3AED] px-10 text-lg font-bold text-white shadow-2xl shadow-[#00A6F4]/30 transition-all hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] sm:w-auto"
                                             >
-                                                <UserPlus size={20} />
+                                                <UserPlus size={22} />
                                                 Start Your Application
+                                                <div className="absolute inset-0 -z-10 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100" />
                                             </Link>
+
                                             <a
                                                 href="#program"
-                                                className="group flex h-14 items-center justify-center gap-2 rounded-xl border border-slate-500/30 bg-slate-900/50 px-8 text-base font-semibold text-white transition-all duration-300 hover:border-slate-500 hover:bg-slate-900 active:scale-95"
+                                                className="group flex h-16 w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-10 text-lg font-semibold text-white backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 active:scale-[0.98] sm:w-auto"
                                             >
                                                 Explore Program
                                                 <ArrowRight
-                                                    size={20}
+                                                    size={22}
                                                     className="transition-transform group-hover:translate-x-1"
                                                 />
                                             </a>
                                         </div>
-                                    </RevealElement>
+
+                                        <div className="mt-16 flex flex-col items-center gap-4 border-t border-white/5 pt-12">
+                                            <p className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase">
+                                                Limited Slots Available
+                                            </p>
+                                            <div className="flex items-center gap-2">
+                                                <span className="flex size-2 animate-pulse rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+                                                <span className="text-xs font-medium text-slate-400">
+                                                    Applications are currently
+                                                    open for the next cohort
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </RevealElement>
                         </div>
                     </section>
                 </>

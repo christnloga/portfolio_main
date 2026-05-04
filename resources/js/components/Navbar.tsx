@@ -107,17 +107,22 @@ const Navbar = () => {
             <div className="container mx-auto max-w-6xl px-4">
                 <div
                     className={`relative flex items-center justify-between rounded-2xl border border-white/5 bg-[#0A1520]/80 px-6 py-3 shadow-2xl backdrop-blur-xl transition-all duration-500 ${
-                        isScrolled ? 'scale-[0.98] border-white/10 shadow-[0_0_30px_-10px_rgba(0,166,244,0.3)]' : 'scale-100'
+                        isScrolled
+                            ? 'scale-[0.98] border-white/10 shadow-[0_0_30px_-10px_rgba(0,166,244,0.3)]'
+                            : 'scale-100'
                     }`}
                 >
                     {/* Background Glows */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
                         <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-[#00A6F4]/5 blur-2xl" />
-                        <div className="absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-[#7C3AED]/5 blur-2xl" />
+                        <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-[#7C3AED]/5 blur-2xl" />
                     </div>
 
                     {/* Logo */}
-                    <Link href={`/${locale}`} className="relative z-10 flex items-center gap-2">
+                    <Link
+                        href={`/${locale}`}
+                        className="relative z-10 flex items-center gap-2"
+                    >
                         <span className="text-2xl font-black tracking-tighter text-white">
                             nloga<span className="text-[#00A6F4]">.</span>
                         </span>
@@ -130,14 +135,16 @@ const Navbar = () => {
                                 key={link.link}
                                 href={link.link}
                                 className={`group relative px-4 py-2 text-sm font-medium transition-colors ${
-                                    link.isActive ? 'text-white' : 'text-slate-400 hover:text-white'
+                                    link.isActive
+                                        ? 'text-white'
+                                        : 'text-slate-400 hover:text-white'
                                 }`}
                             >
                                 {link.title}
                                 {link.isActive && (
                                     <motion.div
                                         layoutId="nav-active"
-                                        className="absolute bottom-0 left-4 right-4 h-0.5 bg-linear-to-r from-[#00A6F4] to-[#7C3AED]"
+                                        className="absolute right-4 bottom-0 left-4 h-0.5 bg-linear-to-r from-[#00A6F4] to-[#7C3AED]"
                                     />
                                 )}
                                 <div className="absolute inset-0 -z-10 rounded-lg bg-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -154,20 +161,24 @@ const Navbar = () => {
                                 <span className="uppercase">{locale}</span>
                                 <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                             </button>
-                            
+
                             <div className="invisible absolute top-full right-0 mt-2 w-40 origin-top-right scale-95 rounded-xl border border-white/10 bg-[#0C1821] p-1.5 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
                                 {languages.map((lang) => (
                                     <button
                                         key={lang.id}
                                         onClick={() => changeLanguage(lang.id)}
                                         className={cn(
-                                            "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                                            'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
                                             locale === lang.id
-                                                ? "bg-[#00A6F4]/10 text-[#00A6F4]"
-                                                : "text-slate-400 hover:bg-white/5 hover:text-white"
+                                                ? 'bg-[#00A6F4]/10 text-[#00A6F4]'
+                                                : 'text-slate-400 hover:bg-white/5 hover:text-white',
                                         )}
                                     >
-                                        <img src={lang.flag} alt={lang.name} className="h-3.5 w-5 rounded-sm object-cover" />
+                                        <img
+                                            src={lang.flag}
+                                            alt={lang.name}
+                                            className="h-3.5 w-5 rounded-sm object-cover"
+                                        />
                                         <span>{lang.name}</span>
                                     </button>
                                 ))}
@@ -176,7 +187,7 @@ const Navbar = () => {
 
                         {/* CV Button */}
                         <a
-                            href="#"
+                            href="https://s3.christnloga.com/portfolio-assets/Professional_Resume_Christ Nloga_v2.pdf"
                             className="group relative flex items-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-[#00A6F4] to-[#7C3AED] px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-[0_0_20px_-5px_rgba(0,166,244,0.5)]"
                         >
                             <div className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -200,7 +211,10 @@ const Navbar = () => {
                                 <div className="flex h-full flex-col p-8">
                                     <SheetHeader className="mb-12 text-left">
                                         <SheetTitle className="text-2xl font-black text-white">
-                                            nloga<span className="text-[#00A6F4]">.</span>
+                                            nloga
+                                            <span className="text-[#00A6F4]">
+                                                .
+                                            </span>
                                         </SheetTitle>
                                     </SheetHeader>
 
@@ -221,7 +235,9 @@ const Navbar = () => {
                                                                 : 'border-white/5 bg-white/5 text-slate-400'
                                                         }`}
                                                     >
-                                                        <span className="text-lg font-bold">{link.title}</span>
+                                                        <span className="text-lg font-bold">
+                                                            {link.title}
+                                                        </span>
                                                         <ChevronDown className="h-5 w-5 -rotate-90 text-[#00A6F4]" />
                                                     </Link>
                                                 </SheetClose>
@@ -231,14 +247,20 @@ const Navbar = () => {
 
                                     <div className="mt-auto space-y-6">
                                         <div className="space-y-3">
-                                            <p className="text-xs font-bold tracking-widest text-slate-500 uppercase">Language</p>
+                                            <p className="text-xs font-bold tracking-widest text-slate-500 uppercase">
+                                                Language
+                                            </p>
                                             <div className="grid grid-cols-2 gap-3">
                                                 {languages.map((lang) => (
                                                     <button
                                                         key={lang.id}
                                                         onClick={() => {
-                                                            changeLanguage(lang.id);
-                                                            setMobileMenu(false);
+                                                            changeLanguage(
+                                                                lang.id,
+                                                            );
+                                                            setMobileMenu(
+                                                                false,
+                                                            );
                                                         }}
                                                         className={`flex items-center justify-center gap-2 rounded-xl border py-3 transition-all ${
                                                             locale === lang.id
@@ -246,15 +268,21 @@ const Navbar = () => {
                                                                 : 'border-white/5 bg-white/5 text-slate-400'
                                                         }`}
                                                     >
-                                                        <img src={lang.flag} alt={lang.name} className="h-3 w-4 rounded-sm object-cover" />
-                                                        <span className="text-sm font-bold">{lang.name}</span>
+                                                        <img
+                                                            src={lang.flag}
+                                                            alt={lang.name}
+                                                            className="h-3 w-4 rounded-sm object-cover"
+                                                        />
+                                                        <span className="text-sm font-bold">
+                                                            {lang.name}
+                                                        </span>
                                                     </button>
                                                 ))}
                                             </div>
                                         </div>
 
                                         <a
-                                            href="#"
+                                            href="https://s3.christnloga.com/portfolio-assets/Professional_Resume_Christ Nloga_v2.pdf"
                                             className="flex w-full items-center justify-center gap-3 rounded-2xl bg-linear-to-r from-[#00A6F4] to-[#7C3AED] py-4 text-lg font-bold text-white shadow-xl shadow-[#00A6F4]/20"
                                         >
                                             <FileText className="h-5 w-5" />
