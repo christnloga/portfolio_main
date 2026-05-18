@@ -59,8 +59,15 @@ export default function CaseStudyEditorPage({ caseStudy }: EditorPageProps) {
     );
 
     // Content blocks state (managed by the hook)
-    const { blocks, addBlock, updateBlock, removeBlock, moveBlock, duplicateBlock, transformBlock } =
-        useCaseStudyBuilder(caseStudy?.content_blocks ?? []);
+    const {
+        blocks,
+        addBlock,
+        updateBlock,
+        removeBlock,
+        moveBlock,
+        duplicateBlock,
+        transformBlock,
+    } = useCaseStudyBuilder(caseStudy?.content_blocks ?? []);
 
     const [isSaving, setIsSaving] = useState(false);
     const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
@@ -226,7 +233,7 @@ export default function CaseStudyEditorPage({ caseStudy }: EditorPageProps) {
                     <div className="flex items-center gap-3">
                         <Button variant="ghost" size="sm" asChild>
                             <Link href={dashboardCaseStudies().url}>
-                                <ArrowLeft className="mr-1 h-4 w-4" />
+                                <ArrowLeft className="h-4 w-4" />
                                 Back
                             </Link>
                         </Button>
@@ -238,7 +245,7 @@ export default function CaseStudyEditorPage({ caseStudy }: EditorPageProps) {
                     <div className="flex items-center gap-2">
                         <Button variant="outline" size="sm" asChild>
                             <Link href={dashboardCaseStudies().url}>
-                                <X className="mr-1 h-4 w-4" />
+                                <X className="h-4 w-4" />
                                 Cancel
                             </Link>
                         </Button>
@@ -250,7 +257,7 @@ export default function CaseStudyEditorPage({ caseStudy }: EditorPageProps) {
                             {isSaving ? (
                                 <Loader2 className="animate-spin" />
                             ) : (
-                                <Save />
+                                <Save className="h-4 w-4" />
                             )}
                             {isSaving ? 'Saving…' : 'Save'}
                         </Button>

@@ -13,251 +13,251 @@ export default function NJCLogo(props: SVGAttributes<SVGElement>) {
             <g clipPath="url(#clip0_42_145)">
                 <path
                     d="M239 92.1575H238.209"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M236.638 92.1575H1.60034"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M0.814592 92.1575H0.0236816"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M239 84.6718H238.209"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M236.638 84.6718H1.60034"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M0.814592 84.6718H0.0236816"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M239 191.61H238.209"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M236.638 191.61H1.57666"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M0.790911 191.61H0"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M124.381 208V207.208"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M124.381 205.631V1.57959"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M124.381 0.792411V0"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M116.844 208V207.208"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M116.844 205.631V1.57959"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M116.844 0.792411V0"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M95.1843 208V207.303"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M95.1843 205.916V26.3898"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M95.1843 25.6972V25"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M87.7646 208V207.208"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M87.8823 206V26"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M87.7646 0.792411V0"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M16.4141 208V207.208"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M16.4141 205.631V1.57959"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M16.4141 0.792411V0"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M222.531 208V207.208"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M222.531 205.623V85.929"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M222.531 85.134V84.3416"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeOpacity="0.25"
                     strokeMiterlimit="10"
                     strokeDasharray="2 2"
                 />
                 <path
                     d="M142.327 13.9569V31.4164H136.862L131.078 22.6365V31.4164H125.612V13.9569H131.078L136.862 22.8847V13.9569H142.327Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M153.281 31.5908C148.333 31.5908 144.296 27.8664 144.296 22.6127C144.296 17.3591 148.333 13.6611 153.281 13.6611C158.23 13.6611 162.216 17.3617 162.216 22.6127C162.216 27.8638 158.203 31.5908 153.281 31.5908ZM153.281 26.485C155.472 26.485 156.677 24.9319 156.677 22.6127C156.677 20.2936 155.469 18.7167 153.281 18.7167C151.093 18.7167 149.859 20.2461 149.859 22.6127C149.859 24.9794 151.04 26.485 153.281 26.485Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M163.695 13.9569H169.579L171.156 24.9556L173.518 13.9569H179.476L181.838 24.9556L183.415 13.9569H189.299L185.31 31.4164H178.516L176.497 21.5033L174.477 31.4164H167.683L163.695 13.9569Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M132.333 40.9412H137.771V52.212C137.771 56.4778 135.383 58.575 131.544 58.575C127.458 58.575 124.626 56.3061 124.626 51.718H130.018C130.018 53.2474 130.585 53.6409 131.296 53.6409C131.887 53.6409 132.33 53.3451 132.33 52.2093V40.9386L132.333 40.9412Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M140.039 40.9412H145.477V50.7803C145.477 52.2858 146.068 53.3952 147.718 53.3952C149.369 53.3952 150.033 52.2858 150.033 50.7803V40.9412H155.472V50.7803C155.472 55.9336 151.952 58.5723 147.594 58.5723C143.236 58.5723 140.039 55.9336 140.039 50.7803V40.9412Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M164.654 58.575C160.668 58.575 157.542 56.726 157.294 52.8036H163.104C163.202 54.0873 163.893 54.3092 164.433 54.3092C164.973 54.3092 165.49 54.0635 165.49 53.4455C165.466 51.0788 157.244 51.9399 157.341 45.973C157.341 42.4706 160.294 40.6454 164.011 40.6454C168.221 40.6454 170.929 42.6687 171.077 46.2926H165.195C165.145 45.2308 164.581 44.9112 163.987 44.9112C163.545 44.9112 163.199 45.207 163.199 45.7987C163.199 47.9937 171.298 47.6239 171.298 52.9991C171.298 56.2057 168.862 58.5724 164.652 58.5724L164.654 58.575Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M172.237 40.9412H186.908V45.2809H182.281V58.4006H176.816V45.2809H172.237V40.9412Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M133.735 66.3777C138.338 66.3777 141.465 69.1406 142.179 73.2585H136.419C135.902 72.0989 134.869 71.4333 133.637 71.4333C131.792 71.4333 130.658 72.9389 130.658 75.2553C130.658 77.5718 131.789 79.0774 133.637 79.0774C134.869 79.0774 135.902 78.4118 136.419 77.2522H142.179C141.465 81.3701 138.338 84.133 133.735 84.133C128.394 84.133 125.119 80.4588 125.119 75.2553C125.119 70.0518 128.394 66.3777 133.735 66.3777Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M152.271 66.5493C156.653 66.5493 158.894 69.0639 158.894 72.2705C158.894 74.5632 157.615 76.5126 155.127 77.3261L158.918 84.0088H152.912L149.638 77.7434H149.614V84.0088H144.149V66.5493H152.271ZM151.778 71.1374H149.611V74.0957H151.778C152.812 74.0957 153.355 73.652 153.355 72.6165C153.355 71.729 152.814 71.1374 151.778 71.1374Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M172.26 70.9155H166.107V73.0603H171.522V77.1782H166.107V79.6453H172.26V84.0115H160.642V66.552H172.26V70.9182V70.9155Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M185.503 81.37H179.692L178.83 84.0088H173.096L179.471 66.5493H185.772L192.123 84.0088H186.362L185.5 81.37H185.503ZM182.597 72.392L181.021 77.2495H184.171L182.595 72.392H182.597Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M192.373 66.5493H207.044V70.8891H202.418V84.0088H196.952V70.8891H192.373V66.5493Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M220.139 70.9155H213.986V73.0603H219.401V77.1782H213.986V79.6453H220.139V84.0115H208.521V66.552H220.139V70.9182V70.9155Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M200.868 152.381C200.599 153.065 200.314 153.741 199.998 154.399C199.895 154.607 199.789 154.816 199.686 155.025C199.497 155.384 199.307 155.754 199.101 156.105C198.874 156.512 198.629 156.911 198.374 157.31C193.217 165.366 184.203 170.712 173.955 170.712C170.257 170.712 166.719 170.009 163.465 168.749C162.595 168.409 161.744 168.02 160.911 167.592C160.702 167.487 160.494 167.373 160.296 167.27C160.088 167.157 159.89 167.043 159.682 166.929C151.035 161.945 145.198 152.589 145.198 141.889C145.198 125.967 158.129 113.008 174.024 113.008C186.22 113.008 196.668 120.642 200.87 131.387H222.536C219.907 119.131 212.781 108.547 202.953 101.474C194.807 95.6071 184.817 92.1575 174.024 92.1575C163.231 92.1575 153.126 95.6441 144.963 101.569C132.496 110.602 124.386 125.293 124.386 141.889C124.386 161.198 135.37 177.936 151.425 186.172C151.728 186.333 152.039 186.483 152.343 186.637C153.044 186.969 153.742 187.292 154.462 187.593C160.47 190.181 167.082 191.61 174.027 191.61C189.212 191.61 202.787 184.769 211.893 174.003C211.938 173.95 211.985 173.895 212.03 173.842C212.412 173.388 212.789 172.928 213.156 172.458C213.617 171.869 214.07 171.274 214.508 170.664C214.537 170.627 214.566 170.588 214.585 170.551C215.049 169.896 215.502 169.233 215.919 168.551C216.572 167.547 217.187 166.504 217.753 165.442C219.928 161.396 221.55 157.006 222.541 152.381H200.878H200.868Z"
                     fill="#00A6F4"
                 />
-                <path d="M87 26H67V85H87V26Z" fill="white" />
-                <mask id="path-43-inside-1_42_145" fill="white">
+                <path d="M87 26H67V85H87V26Z" fill="currentColor" />
+                <mask id="path-43-inside-1_42_145" fill="currentColor">
                     <path d="M116.377 0V141.71C116.377 155.49 110.806 167.963 101.79 176.996C92.7764 186.027 80.3249 191.61 66.5713 191.61C50.6872 191.61 36.5352 184.159 27.416 172.558C20.7487 164.066 16.7647 153.355 16.7646 141.707V92.1553H37.5791V141.707C37.5792 157.724 50.5865 170.757 66.5732 170.757C82.5601 170.757 95.5683 157.724 95.5684 141.707V20H67V0H116.377Z" />
                 </mask>
                 <path
@@ -265,14 +265,14 @@ export default function NJCLogo(props: SVGAttributes<SVGElement>) {
                     fill="url(#paint0_linear_42_145)"
                     mask="url(#path-43-inside-1_42_145)"
                 />
-                <path d="M37.5761 0H16.7646V84.5001H37.5761V0Z" fill="white" />
+                <path d="M37.5761 0H16.7646V84.5001H37.5761V0Z" fill="currentColor" />
                 <path
                     d="M37.5762 0L19.554 10.4255L66.5762 84.4816L84.6011 74.0561L37.5762 0Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M238.979 85.0389H223.002V91.7375H238.979V85.0389Z"
-                    fill="white"
+                    fill="currentColor"
                 />
                 <path
                     d="M15.9923 191.954H0.0158691V207.96H15.9923V191.954Z"
@@ -292,7 +292,7 @@ export default function NJCLogo(props: SVGAttributes<SVGElement>) {
                     <stop offset="0.7206" stopColor="#7C3AED" />
                 </linearGradient>
                 <clipPath id="clip0_42_145">
-                    <rect width="239" height="208" fill="white" />
+                    <rect width="239" height="208" fill="currentColor" />
                 </clipPath>
             </defs>
         </svg>

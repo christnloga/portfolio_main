@@ -237,21 +237,21 @@ function Home() {
                     rel="stylesheet"
                 /> */}
             </Head>
-            <div className="overflow-x-hidden bg-[#081118]">
+            <div className="overflow-x-hidden bg-background">
                 <Header />
 
                 {/* About Me (Bento Layout) */}
                 <section className="relative z-10 flex flex-col items-center py-16 lg:py-28">
                     <div className="w-full max-w-6xl px-4">
                         <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                            <h2 className="text-3xl font-bold text-white lg:text-5xl">
-                                <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                            <h2 className="text-3xl font-bold text-foreground lg:text-5xl">
+                                <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
                                     {t('The Person You Need')}
                                 </span>
                             </h2>
                             <Link
                                 href={`/${locale}/about`}
-                                className="group hidden w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4] lg:inline-flex"
+                                className="group hidden w-fit items-center gap-2 rounded-full border border-border bg-foreground/5 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur-md transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary lg:inline-flex"
                             >
                                 {t('Read more')}{' '}
                                 <BsArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -259,35 +259,35 @@ function Home() {
                         </div>
 
                         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
-                            {/* Card 2: Profile summary */}
-                            <div className="group relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0C1821] p-8 text-center shadow-2xl backdrop-blur-xl transition-all hover:border-[#7C3AED]/30 lg:row-span-2 lg:hidden">
-                                <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-[#7C3AED]/20 to-transparent opacity-50 transition-opacity duration-700 group-hover:opacity-100" />
-                                <div className="relative z-10 mb-6 size-[140px] overflow-hidden rounded-3xl border-2 border-[#00A6F4]/30 shadow-[0_0_30px_rgba(0,166,244,0.3)]">
+                            {/* Card 2: Profile summary (Mobile) */}
+                            <div className="group relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-border bg-card p-8 text-center shadow-lg shadow-foreground/5 backdrop-blur-xl transition-all hover:border-purple-500/30 lg:row-span-2 lg:hidden dark:shadow-2xl dark:shadow-black/50">
+                                <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-purple-500/20 to-transparent opacity-50 transition-opacity duration-700 group-hover:opacity-100" />
+                                <div className="relative z-10 mb-6 size-[140px] overflow-hidden rounded-3xl border-2 border-primary/30 shadow-[0_0_30px_rgba(0,166,244,0.3)]">
                                     <img
                                         src="/my-photo-3.jpg"
                                         alt="Joseph Christ"
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                 </div>
-                                <h3 className="text-xl font-bold text-white">
+                                <h3 className="text-xl font-bold text-foreground">
                                     Joseph Christ NLOGA
                                 </h3>
-                                <p className="mb-4 font-medium text-[#00A6F4]">
+                                <p className="mb-4 font-medium text-primary">
                                     Solution Architect & UX Engineer
                                 </p>
-                                <p className="text-sm text-slate-400">
+                                <p className="text-sm text-muted-foreground">
                                     Bridging the gap between aesthetic
                                     excellence and technical scalability.
                                 </p>
                             </div>
                             {/* Card 1: Core Philosophy */}
-                            <div className="group relative col-span-1 flex flex-col justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0A1520]/80 p-8 shadow-2xl backdrop-blur-xl transition-all hover:border-[#00A6F4]/30 lg:col-span-2 lg:row-span-1">
-                                <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/10 blur-[80px] transition-transform duration-700 group-hover:scale-150" />
+                            <div className="group relative col-span-1 flex flex-col justify-center overflow-hidden rounded-[2.5rem] border border-border bg-card/80 p-8 shadow-lg shadow-foreground/5 backdrop-blur-xl transition-all hover:border-primary/30 lg:col-span-2 lg:row-span-1 dark:shadow-2xl dark:shadow-black/50">
+                                <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[80px] transition-transform duration-700 group-hover:scale-150" />
                                 <RevealElement>
-                                    <h3 className="mb-4 text-2xl font-bold text-white lg:text-3xl">
+                                    <h3 className="mb-4 text-2xl font-bold text-foreground lg:text-3xl">
                                         {t('Transforming Complex Ideas')}
                                     </h3>
-                                    <p className="text-lg leading-relaxed text-slate-300">
+                                    <p className="text-lg leading-relaxed text-muted-foreground">
                                         {t(
                                             'Behind every complex idea is a real human need. I specialize in breaking down intricate problems into clear, meaningful solutions that prioritize usability and impact. By combining design thinking with engineering expertise, I create products that are genuinely valuable to the people they serve.',
                                         )}
@@ -295,36 +295,36 @@ function Home() {
                                 </RevealElement>
                             </div>
 
-                            {/* Card 2: Profile summary */}
-                            <div className="group relative col-span-1 hidden flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0C1821] p-8 text-center shadow-2xl backdrop-blur-xl transition-all hover:border-[#7C3AED]/30 lg:row-span-2 lg:flex">
-                                <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-[#7C3AED]/20 to-transparent opacity-50 transition-opacity duration-700 group-hover:opacity-100" />
-                                <div className="relative z-10 mb-6 size-[140px] overflow-hidden rounded-3xl border-2 border-[#00A6F4]/30 shadow-[0_0_30px_rgba(0,166,244,0.3)]">
+                            {/* Card 2: Profile summary (Desktop) */}
+                            <div className="group relative col-span-1 hidden flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border border-border bg-card p-8 text-center shadow-lg shadow-foreground/5 backdrop-blur-xl transition-all hover:border-purple-500/30 lg:row-span-2 lg:flex dark:shadow-2xl dark:shadow-black/50">
+                                <div className="absolute bottom-0 left-0 h-1/2 w-full bg-linear-to-t from-purple-500/20 to-transparent opacity-50 transition-opacity duration-700 group-hover:opacity-100" />
+                                <div className="relative z-10 mb-6 size-[140px] overflow-hidden rounded-3xl border-2 border-primary/30 shadow-[0_0_30px_rgba(0,166,244,0.3)]">
                                     <img
                                         src="/my-photo-3.jpg"
                                         alt="Joseph Christ"
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                 </div>
-                                <h3 className="text-xl font-bold text-white">
+                                <h3 className="text-xl font-bold text-foreground">
                                     Joseph Christ NLOGA
                                 </h3>
-                                <p className="mb-4 font-medium text-[#00A6F4]">
+                                <p className="mb-4 font-medium text-primary">
                                     Solution Architect & UX Engineer
                                 </p>
-                                <p className="text-sm text-slate-400">
+                                <p className="text-sm text-muted-foreground">
                                     Bridging the gap between aesthetic
                                     excellence and technical scalability.
                                 </p>
                             </div>
 
                             {/* Card 3: Experience & Approach */}
-                            <div className="group relative col-span-1 flex flex-col justify-center overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0A1520]/80 p-8 shadow-2xl backdrop-blur-xl transition-all hover:border-[#7C3AED]/30 lg:col-span-2 lg:row-span-1">
-                                <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#7C3AED]/10 blur-[80px] transition-transform duration-700 group-hover:scale-150" />
+                            <div className="group relative col-span-1 flex flex-col justify-center overflow-hidden rounded-[2.5rem] border border-border bg-card/80 p-8 shadow-lg shadow-foreground/5 backdrop-blur-xl transition-all hover:border-purple-500/30 lg:col-span-2 lg:row-span-1 dark:shadow-2xl dark:shadow-black/50">
+                                <div className="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-purple-500/10 blur-[80px] transition-transform duration-700 group-hover:scale-150" />
                                 <RevealElement>
-                                    <h3 className="mb-4 text-2xl font-bold text-white lg:text-3xl">
+                                    <h3 className="mb-4 text-2xl font-bold text-foreground lg:text-3xl">
                                         Architecture-First Approach
                                     </h3>
-                                    <p className="leading-relaxed text-slate-300">
+                                    <p className="leading-relaxed text-muted-foreground">
                                         With over 7 years of progressive
                                         experience, I contribute across the full
                                         product lifecycle. Proficient in
@@ -338,7 +338,7 @@ function Home() {
                             </div>
                             <Link
                                 href={`/${locale}/about`}
-                                className="group mx-auto inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4] lg:hidden"
+                                className="group mx-auto inline-flex w-fit items-center gap-2 rounded-full border border-border bg-foreground/5 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur-md transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary lg:hidden"
                             >
                                 {t('Read more')}{' '}
                                 <BsArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -354,11 +354,11 @@ function Home() {
                             {myStats.map((stat) => (
                                 <div
                                     key={stat.id}
-                                    className="group relative overflow-hidden rounded-2xl border border-white/5 bg-[#0A1520]/80 p-6 backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-[#00A6F4]/30 hover:shadow-[0_10px_40px_-10px_rgba(0,166,244,0.2)]"
+                                    className="group relative overflow-hidden rounded-2xl border border-border bg-card/80 p-6 backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_10px_40px_-10px_rgba(0,166,244,0.2)]"
                                 >
-                                    <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#7C3AED]/10 blur-[40px] transition-all group-hover:bg-[#00A6F4]/20" />
+                                    <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-purple-500/10 blur-[40px] transition-all group-hover:bg-primary/20" />
                                     <div className="relative z-10 flex flex-col gap-2">
-                                        <p className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-4xl font-bold text-transparent lg:text-5xl">
+                                        <p className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-4xl font-bold text-transparent lg:text-5xl">
                                             <CountUp
                                                 start={0}
                                                 end={parseInt(stat.value)}
@@ -371,7 +371,7 @@ function Home() {
                                                 scrollSpyOnce
                                             />
                                         </p>
-                                        <p className="text-sm font-medium text-slate-400">
+                                        <p className="text-sm font-medium text-muted-foreground">
                                             {stat.title}
                                         </p>
                                     </div>
@@ -382,23 +382,23 @@ function Home() {
                 </section>
 
                 {/* My Services */}
-                <section className="relative z-10 flex flex-col items-center bg-[#0C1821] py-16 lg:py-28">
+                <section className="relative z-10 flex flex-col items-center bg-card/30 py-16 lg:py-28">
                     <div className="w-full max-w-6xl px-4">
                         <div className="w-full cursor-default gap-12 lg:grid lg:grid-cols-12">
                             {/* Left col */}
                             <div className="col-span-5 mb-8 flex flex-col gap-4 lg:mt-12 lg:mb-0 lg:gap-6">
                                 <div className="flex">
-                                    <span className="flex items-center gap-2 rounded-full border border-[#00A6F4]/30 bg-[#00A6F4]/10 px-3 py-1 text-xs font-semibold tracking-wide text-[#00A6F4] uppercase shadow-[0_0_15px_-3px_rgba(0,166,244,0.3)]">
+                                    <span className="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase shadow-[0_0_15px_-3px_rgba(0,166,244,0.3)]">
                                         My Services
                                     </span>
                                 </div>
                                 <RevealElement>
-                                    <h2 className="text-3xl font-bold text-white capitalize lg:text-5xl/snug">
+                                    <h2 className="text-3xl font-bold text-foreground capitalize lg:text-5xl/snug">
                                         Specialized Services
                                     </h2>
                                 </RevealElement>
                                 <RevealElement>
-                                    <p className="text-lg leading-relaxed text-slate-400">
+                                    <p className="text-lg leading-relaxed text-muted-foreground">
                                         A holistic approach to digital product
                                         development, covering technical
                                         architecture, full-stack implementation,
@@ -423,7 +423,7 @@ function Home() {
                 {/* CASE STUDIES */}
                 <section
                     id="work"
-                    className="relative z-10 flex flex-col items-center bg-[#0C1821] lg:h-[calc(100vh-60px)]"
+                    className="relative z-10 flex flex-col items-center bg-card/30 lg:h-[calc(100vh-60px)]"
                 >
                     <CaseStudies />
                 </section>
@@ -435,14 +435,14 @@ function Home() {
                             <RevealElement>
                                 <div className="flex w-full flex-col items-start gap-4">
                                     <div className="flex">
-                                        <span className="flex items-center gap-2 rounded-full border border-[#7C3AED]/30 bg-[#7C3AED]/10 px-3 py-1 text-xs font-semibold tracking-wide text-[#7C3AED] uppercase shadow-[0_0_15px_-3px_rgba(124,58,237,0.3)]">
+                                        <span className="flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-purple-500 uppercase shadow-[0_0_15px_-3px_rgba(124,58,237,0.3)]">
                                             Tools & Tech Stack
                                         </span>
                                     </div>
-                                    <h2 className="text-3xl font-medium text-white lg:text-5xl/snug">
+                                    <h2 className="text-3xl font-medium text-foreground lg:text-5xl/snug">
                                         My Arsenal
                                     </h2>
-                                    <p className="max-w-xl text-slate-400">
+                                    <p className="max-w-xl text-muted-foreground">
                                         The modern frameworks, languages, and
                                         design tools I use to bring full-scale
                                         web applications to life.
@@ -451,7 +451,7 @@ function Home() {
                             </RevealElement>
                             <Link
                                 href={`/${locale}/about`}
-                                className="group hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#7C3AED]/50 hover:bg-[#7C3AED]/10 hover:text-[#7C3AED] lg:flex"
+                                className="group hidden items-center gap-2 rounded-full border border-border bg-foreground/5 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur-md transition-all hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-purple-500 lg:flex"
                             >
                                 Read more{' '}
                                 <BsArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -463,13 +463,13 @@ function Home() {
                                 items={tools.map((tool) => (
                                     <div
                                         key={tool.id}
-                                        className="group relative flex w-48 cursor-pointer flex-col items-center gap-4 overflow-hidden rounded-3xl border border-white/5 bg-[#0C1821] px-4 py-8 font-semibold text-slate-300 shadow-xl transition-all hover:-translate-y-2 hover:border-[#7C3AED]/30 hover:shadow-[0_10px_30px_rgba(124,58,237,0.15)]"
+                                        className="group relative flex w-48 cursor-pointer flex-col items-center gap-4 overflow-hidden rounded-3xl border border-border bg-card px-4 py-8 font-semibold text-muted-foreground shadow-xl transition-all hover:-translate-y-2 hover:border-purple-500/30 hover:shadow-[0_10px_30px_rgba(124,58,237,0.15)]"
                                     >
-                                        <div className="absolute inset-0 bg-linear-to-b from-[#7C3AED]/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                                        <span className="relative z-10 text-5xl drop-shadow-[0_0_10px_rgba(124,58,237,0.5)] transition-transform group-hover:scale-110 group-hover:text-[#7C3AED]">
+                                        <div className="absolute inset-0 bg-linear-to-b from-purple-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                                        <span className="relative z-10 text-5xl drop-shadow-[0_0_10px_rgba(124,58,237,0.5)] transition-transform group-hover:scale-110 group-hover:text-purple-500">
                                             {tool.icon}
                                         </span>
-                                        <p className="relative z-10 transition-colors group-hover:text-white">
+                                        <p className="relative z-10 transition-colors group-hover:text-foreground">
                                             {tool.title}
                                         </p>
                                     </div>
@@ -480,13 +480,13 @@ function Home() {
                             {tools.map((tool) => (
                                 <div
                                     key={tool.id}
-                                    className="group relative flex cursor-pointer flex-col items-center gap-3 overflow-hidden rounded-2xl border border-white/5 bg-[#0C1821] p-5 font-semibold text-slate-300 shadow-md transition-all hover:border-[#7C3AED]/30"
+                                    className="group relative flex cursor-pointer flex-col items-center gap-3 overflow-hidden rounded-2xl border border-border bg-card p-5 font-semibold text-muted-foreground shadow-md transition-all hover:border-purple-500/30"
                                 >
-                                    <div className="absolute inset-0 bg-linear-to-b from-[#7C3AED]/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                                    <span className="relative z-10 text-3xl text-[#7C3AED] drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]">
+                                    <div className="absolute inset-0 bg-linear-to-b from-purple-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                                    <span className="relative z-10 text-3xl text-purple-500 drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]">
                                         {tool.icon}
                                     </span>
-                                    <p className="relative z-10 text-sm text-slate-400 group-hover:text-white">
+                                    <p className="relative z-10 text-sm text-muted-foreground group-hover:text-foreground">
                                         {tool.title}
                                     </p>
                                 </div>
@@ -494,7 +494,7 @@ function Home() {
                             <div className="col-span-2 mt-4 flex justify-center">
                                 <Link
                                     href={`/${locale}/about`}
-                                    className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-[#7C3AED]/50 hover:bg-[#7C3AED]/10 hover:text-[#7C3AED]"
+                                    className="group flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur-md transition-all hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-purple-500"
                                 >
                                     {t('Read more')}{' '}
                                     <BsArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -507,27 +507,27 @@ function Home() {
                 {/* CONTACT FORM */}
                 <section className="relative z-10 flex flex-col items-center py-20 lg:py-32">
                     <div className="w-full max-w-5xl">
-                        <div className="relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0C1821] p-6 shadow-2xl lg:p-16">
+                        <div className="relative overflow-hidden rounded-[2.5rem] border border-border bg-card p-6 shadow-lg shadow-foreground/5 lg:p-16 dark:shadow-2xl dark:shadow-black/50">
                             {/* Ambient Glows */}
-                            <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-[#00A6F4]/10 blur-[100px]" />
-                            <div className="absolute -right-32 -bottom-32 h-64 w-64 rounded-full bg-[#7C3AED]/10 blur-[100px]" />
+                            <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-primary/10 blur-[100px]" />
+                            <div className="absolute -right-32 -bottom-32 h-64 w-64 rounded-full bg-purple-500/10 blur-[100px]" />
 
                             <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
                                 {/* Left side text */}
                                 <div className="flex flex-col items-start gap-6">
                                     <RevealElement>
                                         <div className="flex w-full flex-col items-start gap-4">
-                                            <span className="flex items-center gap-2 rounded-full border border-[#00A6F4]/30 bg-[#00A6F4]/10 px-3 py-1 text-xs font-semibold tracking-wide text-[#00A6F4] uppercase shadow-[0_0_15px_-3px_rgba(0,166,244,0.3)]">
+                                            <span className="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase shadow-[0_0_15px_-3px_rgba(0,166,244,0.3)]">
                                                 Contact
                                             </span>
-                                            <h2 className="text-4xl font-bold text-white lg:text-5xl/tight">
+                                            <h2 className="text-4xl font-bold text-foreground lg:text-5xl/tight">
                                                 Let's build something{' '}
-                                                <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                                                <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
                                                     amazing
                                                 </span>{' '}
                                                 together.
                                             </h2>
-                                            <p className="text-lg leading-relaxed text-slate-400">
+                                            <p className="text-lg leading-relaxed text-muted-foreground">
                                                 Whether you have a fully formed
                                                 idea or just a concept, I'm here
                                                 to help turn it into a reality.
@@ -537,20 +537,20 @@ function Home() {
                                 </div>
 
                                 {/* Right side form */}
-                                <div className="rounded-3xl border border-white/5 bg-[#0A1520]/80 p-6 shadow-xl backdrop-blur-xl lg:p-8">
+                                <div className="rounded-3xl border border-border bg-card/80 p-6 shadow-md shadow-foreground/5 backdrop-blur-xl lg:p-8 dark:shadow-xl dark:shadow-black/50">
                                     <form
                                         onSubmit={submitContact}
                                         className="space-y-5"
                                     >
                                         {/* EMAIL */}
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-slate-300">
+                                            <label className="text-sm font-medium text-muted-foreground">
                                                 Email Address
                                             </label>
                                             <div className="relative">
-                                                <BsEnvelope className="absolute inset-y-0 left-4 my-auto size-5 text-slate-500 transition-colors peer-focus:text-[#00A6F4]" />
+                                                <BsEnvelope className="absolute inset-y-0 left-4 my-auto size-5 text-muted-foreground transition-colors peer-focus:text-primary" />
                                                 <input
-                                                    className="peer w-full rounded-xl border border-white/10 bg-[#0C1821] py-3.5 pr-4 pl-12 text-sm text-white transition-all placeholder:text-slate-600 focus:border-[#00A6F4]/50 focus:bg-[#00A6F4]/5 focus:ring-4 focus:ring-[#00A6F4]/10 focus:outline-none"
+                                                    className="peer w-full rounded-xl border border-border bg-background py-3.5 pr-4 pl-12 text-sm text-foreground transition-all placeholder:text-muted-foreground/50 focus:border-primary/50 focus:bg-primary/5 focus:ring-4 focus:ring-primary/10 focus:outline-none"
                                                     placeholder="hello@example.com"
                                                     type="email"
                                                     value={
@@ -573,13 +573,13 @@ function Home() {
 
                                         {/* FULL NAME */}
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-slate-300">
+                                            <label className="text-sm font-medium text-muted-foreground">
                                                 Full Name
                                             </label>
                                             <div className="relative">
-                                                <FiUser className="absolute inset-y-0 left-4 my-auto size-5 text-slate-500 transition-colors peer-focus:text-[#00A6F4]" />
+                                                <FiUser className="absolute inset-y-0 left-4 my-auto size-5 text-muted-foreground transition-colors peer-focus:text-primary" />
                                                 <input
-                                                    className="peer w-full rounded-xl border border-white/10 bg-[#0C1821] py-3.5 pr-4 pl-12 text-sm text-white transition-all placeholder:text-slate-600 focus:border-[#00A6F4]/50 focus:bg-[#00A6F4]/5 focus:ring-4 focus:ring-[#00A6F4]/10 focus:outline-none"
+                                                    className="peer w-full rounded-xl border border-border bg-background py-3.5 pr-4 pl-12 text-sm text-foreground transition-all placeholder:text-muted-foreground/50 focus:border-primary/50 focus:bg-primary/5 focus:ring-4 focus:ring-primary/10 focus:outline-none"
                                                     placeholder="John Doe"
                                                     type="text"
                                                     value={
@@ -602,13 +602,13 @@ function Home() {
 
                                         {/* MESSAGE */}
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-slate-300">
+                                            <label className="text-sm font-medium text-muted-foreground">
                                                 Message
                                             </label>
                                             <div className="relative">
-                                                <BsChatRightText className="absolute top-4 left-4 size-5 text-slate-500 transition-colors peer-focus:text-[#00A6F4]" />
+                                                <BsChatRightText className="absolute top-4 left-4 size-5 text-muted-foreground transition-colors peer-focus:text-primary" />
                                                 <textarea
-                                                    className="peer h-32 w-full resize-none rounded-xl border border-white/10 bg-[#0C1821] py-3.5 pr-4 pl-12 text-sm text-white transition-all placeholder:text-slate-600 focus:border-[#00A6F4]/50 focus:bg-[#00A6F4]/5 focus:ring-4 focus:ring-[#00A6F4]/10 focus:outline-none"
+                                                    className="peer h-32 w-full resize-none rounded-xl border border-border bg-background py-3.5 pr-4 pl-12 text-sm text-foreground transition-all placeholder:text-muted-foreground/50 focus:border-primary/50 focus:bg-primary/5 focus:ring-4 focus:ring-primary/10 focus:outline-none"
                                                     placeholder="Tell me about your project..."
                                                     value={
                                                         contactForm.data.message
@@ -631,7 +631,7 @@ function Home() {
                                         <button
                                             type="submit"
                                             disabled={contactForm.processing}
-                                            className="group relative flex h-12 w-full items-center justify-center overflow-hidden rounded-xl bg-linear-to-r from-[#00A6F4] to-[#7C3AED] font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_rgba(0,166,244,0.5)] disabled:pointer-events-none disabled:opacity-50"
+                                            className="group relative flex h-12 w-full items-center justify-center overflow-hidden rounded-xl bg-linear-to-r from-primary to-purple-500 font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_rgba(0,166,244,0.5)] disabled:pointer-events-none disabled:opacity-50"
                                         >
                                             <div className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100" />
                                             <span className="relative z-10">
@@ -651,11 +651,11 @@ function Home() {
                                         <RevealElement>
                                             <div className="mt-4 w-full space-y-6">
                                                 <div className="flex items-center gap-4 opacity-60">
-                                                    <div className="h-px grow bg-slate-600"></div>
-                                                    <p className="text-xs font-semibold tracking-widest text-slate-400 uppercase">
+                                                    <div className="h-px grow bg-border"></div>
+                                                    <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
                                                         Or
                                                     </p>
-                                                    <div className="h-px grow bg-slate-600"></div>
+                                                    <div className="h-px grow bg-border"></div>
                                                 </div>
                                                 <a
                                                     href={
@@ -663,10 +663,10 @@ function Home() {
                                                     }
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="group flex h-14 items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-6 font-semibold text-white backdrop-blur-md transition-all hover:border-[#00A6F4]/50 hover:bg-[#00A6F4]/10 hover:text-[#00A6F4]"
+                                                    className="group flex h-14 items-center justify-center gap-3 rounded-xl border border-border bg-foreground/5 px-6 font-semibold text-foreground backdrop-blur-md transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
                                                 >
                                                     <LuCalendarCheck
-                                                        className="text-[#00A6F4]"
+                                                        className="text-primary"
                                                         size={22}
                                                     />
                                                     Book a discovery call

@@ -7,6 +7,9 @@ i18n.use(initReactI18next).init({
         en: {
             translation: {
                 Accueil: 'Home',
+                'À propos': 'About Me',
+                Initiatives: 'Initiatives',
+                Contact: 'Contact',
                 'Contact Me': 'Contact Me',
                 'Get in touch': 'Get in touch',
                 'Your message has been sent successfully!':

@@ -32,10 +32,10 @@ export default function InfiniteCarousel({
     return (
         <div
             ref={containerRef}
-            className="relative w-full max-w-[100vw] overflow-hidden"
+            className="relative w-full max-w-[100vw] overflow-x-hidden"
         >
             {/* Fade edges */}
-            <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-r from-white via-transparent to-white dark:from-[#081118] dark:to-[#081118]" />
+            <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-r from-background via-transparent to-background" />
 
             <motion.div
                 className="flex touch-pan-x will-change-transform"

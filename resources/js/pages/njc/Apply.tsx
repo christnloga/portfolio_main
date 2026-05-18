@@ -59,12 +59,12 @@ const Apply = () => {
     };
 
     const inputClass =
-        'mt-2 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-slate-200 transition-all duration-300 placeholder:text-slate-600 focus:border-[#00A6F4]/50 focus:bg-black/60 focus:outline-none focus:ring-1 focus:ring-[#00A6F4]/50';
+        'mt-2 w-full rounded-xl border border-border bg-card px-4 py-3.5 text-sm text-foreground transition-all duration-300 placeholder:text-muted-foreground focus:border-primary/50 focus:bg-card/60 focus:outline-none focus:ring-1 focus:ring-primary/50';
     const labelClass =
-        'block text-xs font-semibold uppercase tracking-wider text-slate-400';
+        'block text-xs font-semibold uppercase tracking-wider text-muted-foreground';
 
     return (
-        <div className="relative min-h-screen overflow-hidden bg-[#081118] px-4 pb-24 font-sans sm:px-6 lg:px-8">
+        <div className="relative min-h-screen overflow-hidden bg-background px-4 pb-24 font-sans sm:px-6 lg:px-8">
             <Head title="Apply for NJC 2026" />
 
             {/* Background Glows */}
@@ -76,7 +76,7 @@ const Apply = () => {
                 <RevealElement>
                     <Link
                         href={landing.url()}
-                        className="mb-12 inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
+                        className="mb-12 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                         <ChevronLeft className="h-4 w-4" />
                         Back to NJC Setup
@@ -94,14 +94,14 @@ const Apply = () => {
                                         NJC 2026 Cohort
                                     </span>
                                 </div>
-                                <h1 className="mb-6 text-4xl leading-tight font-extrabold tracking-tight text-white lg:text-5xl">
+                                <h1 className="mb-6 text-4xl leading-tight font-extrabold tracking-tight text-foreground lg:text-5xl">
                                     Join the next generation of{' '}
                                     <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                         Builders
                                     </span>
                                     .
                                 </h1>
-                                <p className="mb-10 text-lg leading-relaxed text-slate-400">
+                                <p className="mb-10 text-lg leading-relaxed text-muted-foreground">
                                     We're looking for individuals who are
                                     obsessed with solving problems, designing
                                     beautiful interfaces, and engineering robust
@@ -109,26 +109,26 @@ const Apply = () => {
                                 </p>
 
                                 {/* Steps Indicator Sidebar (Desktop) */}
-                                <div className="relative hidden flex-col gap-6 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-px before:bg-white/10 lg:flex">
+                                <div className="relative hidden flex-col gap-6 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-px before:bg-border lg:flex">
                                     <div
                                         className={`relative flex items-center gap-6 transition-opacity duration-300 ${step >= 1 ? 'opacity-100' : 'opacity-40'}`}
                                     >
                                         <div
-                                            className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-300 ${step > 1 ? 'border-[#00A6F4] bg-[#00A6F4]' : step === 1 ? 'border-[#00A6F4] bg-[#081118]' : 'border-slate-700 bg-[#081118]'} shadow-[0_0_10px_rgba(0,166,244,0.2)]`}
+                                            className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-300 ${step > 1 ? 'border-primary bg-primary' : step === 1 ? 'border-primary bg-background' : 'border-border bg-background'} shadow-[0_0_10px_rgba(0,166,244,0.2)]`}
                                         >
                                             {step > 1 ? (
-                                                <CheckCircle2 className="h-4 w-4 text-white" />
+                                                <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
                                             ) : (
                                                 <div
-                                                    className={`h-2 w-2 rounded-full ${step === 1 ? 'bg-[#00A6F4]' : 'bg-transparent'}`}
+                                                    className={`h-2 w-2 rounded-full ${step === 1 ? 'bg-primary' : 'bg-transparent'}`}
                                                 />
                                             )}
                                         </div>
                                         <div>
-                                            <h4 className="text-sm font-bold tracking-wider text-white uppercase">
+                                            <h4 className="text-sm font-bold tracking-wider text-foreground uppercase">
                                                 The Foundation
                                             </h4>
-                                            <p className="mt-1 text-xs text-slate-500">
+                                            <p className="mt-1 text-xs text-muted-foreground">
                                                 Basic information & background
                                             </p>
                                         </div>
@@ -138,21 +138,21 @@ const Apply = () => {
                                         className={`relative flex items-center gap-6 transition-opacity duration-300 ${step >= 2 ? 'opacity-100' : 'opacity-40'}`}
                                     >
                                         <div
-                                            className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-300 ${step > 2 ? 'border-[#00A6F4] bg-[#00A6F4]' : step === 2 ? 'border-[#00A6F4] bg-[#081118]' : 'border-slate-700 bg-[#081118]'} shadow-[0_0_10px_rgba(0,166,244,0.2)]`}
+                                            className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-300 ${step > 2 ? 'border-primary bg-primary' : step === 2 ? 'border-primary bg-background' : 'border-border bg-background'} shadow-[0_0_10px_rgba(0,166,244,0.2)]`}
                                         >
                                             {step > 2 ? (
-                                                <CheckCircle2 className="h-4 w-4 text-white" />
+                                                <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
                                             ) : (
                                                 <div
-                                                    className={`h-2 w-2 rounded-full ${step === 2 ? 'bg-[#00A6F4]' : 'bg-transparent'}`}
+                                                    className={`h-2 w-2 rounded-full ${step === 2 ? 'bg-primary' : 'bg-transparent'}`}
                                                 />
                                             )}
                                         </div>
                                         <div>
-                                            <h4 className="text-sm font-bold tracking-wider text-white uppercase">
+                                            <h4 className="text-sm font-bold tracking-wider text-foreground uppercase">
                                                 The Craft
                                             </h4>
-                                            <p className="mt-1 text-xs text-slate-500">
+                                            <p className="mt-1 text-xs text-muted-foreground">
                                                 Your skills & digital footprint
                                             </p>
                                         </div>
@@ -162,17 +162,17 @@ const Apply = () => {
                                         className={`relative flex items-center gap-6 transition-opacity duration-300 ${step >= 3 ? 'opacity-100' : 'opacity-40'}`}
                                     >
                                         <div
-                                            className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-300 ${step === 3 ? 'border-[#00A6F4] bg-[#081118]' : 'border-slate-700 bg-[#081118]'} shadow-[0_0_10px_rgba(0,166,244,0.2)]`}
+                                            className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-300 ${step === 3 ? 'border-primary bg-background' : 'border-border bg-background'} shadow-[0_0_10px_rgba(0,166,244,0.2)]`}
                                         >
                                             <div
-                                                className={`h-2 w-2 rounded-full ${step === 3 ? 'bg-[#00A6F4]' : 'bg-transparent'}`}
+                                                className={`h-2 w-2 rounded-full ${step === 3 ? 'bg-primary' : 'bg-transparent'}`}
                                             />
                                         </div>
                                         <div>
-                                            <h4 className="text-sm font-bold tracking-wider text-white uppercase">
+                                            <h4 className="text-sm font-bold tracking-wider text-foreground uppercase">
                                                 The Mindset
                                             </h4>
-                                            <p className="mt-1 text-xs text-slate-500">
+                                            <p className="mt-1 text-xs text-muted-foreground">
                                                 How you approach problems
                                             </p>
                                         </div>
@@ -185,16 +185,16 @@ const Apply = () => {
                     {/* Right Column - Form */}
                     <div className="lg:col-span-7">
                         <RevealElement delay={200}>
-                            <div className="group relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-2xl">
-                                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#00A6F4]/10 via-transparent to-[#7C3AED]/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                <div className="relative rounded-3xl bg-[#0A1520] p-6 sm:p-10">
+                            <div className="group relative flex flex-col overflow-hidden rounded-3xl bg-linear-to-b from-foreground/10 to-foreground/5 p-px shadow-2xl">
+                                <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/10 via-transparent to-primary/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
+                                <div className="relative rounded-3xl bg-card p-6 sm:p-10">
                                     {/* Mobile Progress Bar (Visible only on mobile) */}
                                     <div className="mb-8 lg:hidden">
                                         <div className="mb-2 flex items-center justify-between">
-                                            <span className="text-xs font-bold tracking-wider text-[#00A6F4] uppercase">
+                                            <span className="text-xs font-bold tracking-wider text-primary uppercase">
                                                 Step {step} of 3
                                             </span>
-                                            <span className="text-xs text-slate-400">
+                                            <span className="text-xs text-muted-foreground">
                                                 {step === 1
                                                     ? 'The Foundation'
                                                     : step === 2
@@ -206,7 +206,7 @@ const Apply = () => {
                                             {[1, 2, 3].map((s) => (
                                                 <div
                                                     key={s}
-                                                    className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${step >= s ? 'bg-[#00A6F4]' : 'bg-slate-800'}`}
+                                                    className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${step >= s ? 'bg-primary' : 'bg-border'}`}
                                                 />
                                             ))}
                                         </div>
@@ -353,7 +353,7 @@ const Apply = () => {
                                                             setData('discipline', e.target.value)
                                                         }
                                                         required
-                                                        className={`${inputClass} appearance-none [&>option]:bg-[#0C1821] [&>option]:text-white`}
+                                                        className={`${inputClass} appearance-none [&>option]:bg-card [&>option]:text-foreground`}
                                                     >
                                                         <option value="" disabled>
                                                             Select your focus...
@@ -403,7 +403,7 @@ const Apply = () => {
                                                     <label className={labelClass}>
                                                         The Stack
                                                     </label>
-                                                    <p className="mb-2 mt-1 text-xs text-slate-500">
+                                                    <p className="mb-2 mt-1 text-xs text-muted-foreground">
                                                         List the tools, frameworks, and languages you are comfortable with.
                                                     </p>
                                                     <textarea
@@ -427,7 +427,7 @@ const Apply = () => {
                                                     <label className={labelClass}>
                                                         1. Why do you want to be one of the 25?
                                                     </label>
-                                                    <p className="mb-2 mt-1 text-xs text-slate-500">
+                                                    <p className="mb-2 mt-1 text-xs text-muted-foreground">
                                                         What makes your approach to problem-solving unique?
                                                     </p>
                                                     <textarea
@@ -450,7 +450,7 @@ const Apply = () => {
                                                     <label className={labelClass}>
                                                         2. Identify one "broken" digital experience.
                                                     </label>
-                                                    <p className="mb-2 mt-1 text-xs text-slate-500">
+                                                    <p className="mb-2 mt-1 text-xs text-muted-foreground">
                                                         Think of a major firm or service in Cameroon. How would you architect a solution to fix it? Think like a Solution Architect. Max 300 words.
                                                     </p>
                                                     <textarea
@@ -473,7 +473,7 @@ const Apply = () => {
                                                     <label className={labelClass}>
                                                         3. Tell us about something you built.
                                                     </label>
-                                                    <p className="mb-2 mt-1 text-xs text-slate-500">
+                                                    <p className="mb-2 mt-1 text-xs text-muted-foreground">
                                                         Or something you tried to build. What did you learn?
                                                     </p>
                                                     <textarea
@@ -496,12 +496,12 @@ const Apply = () => {
                                         )}
 
                                         {/* Navigation Footer */}
-                                        <div className="mt-12 flex items-center justify-between border-t border-white/10 pt-8">
+                                        <div className="mt-12 flex items-center justify-between border-t border-border pt-8">
                                             <button
                                                 type="button"
                                                 onClick={prevStep}
                                                 disabled={step === 1 || processing}
-                                                className={`rounded-xl px-5 py-2.5 text-sm font-medium transition-colors ${step === 1 ? 'cursor-not-allowed text-slate-700' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}
+                                                className={`rounded-xl px-5 py-2.5 text-sm font-medium transition-colors ${step === 1 ? 'cursor-not-allowed text-muted-foreground/30' : 'text-muted-foreground hover:bg-foreground/5 hover:text-foreground'}`}
                                             >
                                                 Back
                                             </button>
@@ -510,7 +510,7 @@ const Apply = () => {
                                                 <button
                                                     type="button"
                                                     onClick={nextStep}
-                                                    className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-2.5 text-sm font-bold text-[#081118] shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
+                                                    className="inline-flex items-center gap-2 rounded-xl bg-foreground px-6 py-2.5 text-sm font-bold text-background shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
                                                 >
                                                     Continue
                                                     <ArrowRight className="h-4 w-4" />

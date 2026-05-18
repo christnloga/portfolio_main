@@ -7,7 +7,7 @@ export function useCaseStudies() {
         queryKey: ['case-studies'],
         queryFn: async () => {
             const route = getCaseStudies();
-            const response = await fetch(route.url);
+            const response = await fetch(`${route.url}?all=true`);
             if (!response.ok) {
                 throw new Error('Failed to fetch case studies');
             }

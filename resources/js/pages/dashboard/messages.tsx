@@ -2,7 +2,6 @@ import { Head, router, usePage } from '@inertiajs/react';
 import dayjs from 'dayjs';
 import {
     Mail,
-    MailOpen,
     MessageSquare,
     Trash2,
     User,
@@ -215,12 +214,19 @@ export default function Messages() {
                                     }
                                 }}
                             >
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                    {!msg.is_read ? (
-                                        <Mail className="h-4 w-4" />
-                                    ) : (
-                                        <MailOpen className="h-4 w-4 text-muted-foreground" />
+                                <div
+                                    className={cn(
+                                        'flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold uppercase',
+                                        !msg.is_read
+                                            ? 'bg-primary/15 text-primary ring-2 ring-primary/20'
+                                            : 'bg-muted text-muted-foreground',
                                     )}
+                                >
+                                    {msg.name
+                                        .split(' ')
+                                        .slice(0, 2)
+                                        .map((w) => w[0])
+                                        .join('')}
                                 </div>
                                 <div className="min-w-0 flex-1">
                                     <div className="flex items-center gap-2">

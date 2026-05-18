@@ -63,7 +63,7 @@ export default function CaseStudies() {
                     </div>
                     <Button asChild>
                         <Link href={createCaseStudyAction().url}>
-                            <Plus className="mr-2 h-4 w-4" /> Add Case Study
+                            <Plus /> Add Case Study
                         </Link>
                     </Button>
                 </div>
@@ -152,7 +152,7 @@ export default function CaseStudies() {
                                                     setSelectedStudy(study)
                                                 }
                                             >
-                                                <Eye className="mr-2 h-4 w-4" />{' '}
+                                                <Eye className="mr-0 h-4 w-4" />{' '}
                                                 View
                                             </Button>
                                         </div>
@@ -338,7 +338,7 @@ function CaseStudyDetailSheet({
                         onClick={handleDelete}
                         disabled={deleteCaseStudy.isPending}
                     >
-                        <Trash2 className="mr-2 h-4 w-4" /> Delete
+                        <Trash2 className="h-4 w-4" /> Delete
                     </Button>
                     <Button
                         variant="secondary"
@@ -362,7 +362,7 @@ function CaseStudyDetailSheet({
                                 }).url
                             }
                         >
-                            <Edit className="mr-2 h-4 w-4" /> Edit
+                            <Edit className="h-4 w-4" /> Edit
                         </Link>
                     </Button>
                     {study.is_published && (
@@ -380,7 +380,7 @@ function CaseStudyDetailSheet({
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Globe className="mr-2 h-4 w-4" /> View Public
+                                <Globe className="h-4 w-4" /> View Public
                             </a>
                         </Button>
                     )}

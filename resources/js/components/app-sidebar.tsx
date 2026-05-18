@@ -8,7 +8,6 @@ import {
     Users,
     Folder,
 } from 'lucide-react';
-import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -89,7 +88,9 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href={dashboard()} prefetch>
-                                <AppLogo />
+                                <span className="text-xl font-black tracking-tighter text-foreground">
+                                    nloga<span className="text-primary">.</span>
+                                </span>
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

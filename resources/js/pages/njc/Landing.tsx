@@ -1,9 +1,8 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import {
     AlertTriangle,
     ArrowDown,
     ArrowRight,
-    BrainIcon,
     Building2,
     ChevronDown,
     HelpCircle,
@@ -16,9 +15,20 @@ import {
     UserPlus,
     Users2,
     Zap,
+    Shield,
+    Cpu,
+    Code2,
+    Fingerprint,
+    Terminal,
+    BrainIcon,
+    Stethoscope,
+    Wallet,
+    Truck,
+    ShoppingCart,
+    Command,
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { BsCheckCircle, BsCheckCircleFill, BsStarFill } from 'react-icons/bs';
+import { BsCheckCircle, BsEnvelopeArrowDown, BsStarFill } from 'react-icons/bs';
 import { GiFallingStar } from 'react-icons/gi';
 import { GoDotFill, GoRocket } from 'react-icons/go';
 import { HiOutlineLightBulb } from 'react-icons/hi2';
@@ -27,12 +37,15 @@ import { MdOutlineDesignServices } from 'react-icons/md';
 import { RiApps2AiLine } from 'react-icons/ri';
 import NJCLogo from '@/components/njc-logo';
 import RevealElement from '@/components/RevealElement';
-import TeamIllustration from '@/components/TeamIllustration';
+import SquadPulseIllustration from '@/components/SquadPulseIllustration';
 import { useGlobal } from '@/contexts/GlobalContext';
 import MainLayout from '@/layouts/MainLayout';
 import { apply } from '@/routes/page/njc';
 
 const Landing = () => {
+    const { props } = usePage();
+    const locale = (props as any).locale || 'fr';
+
     const { setNavbarLight } = useGlobal();
     const [logoLoading, setLogoLoading] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -61,26 +74,29 @@ const Landing = () => {
     }, [setNavbarLight]);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLogoLoading(false);
-        }, 3000);
-        return () => clearTimeout(timer);
+        if (localStorage.getItem('NJC_loaded_one') === 'false') {
+            const timer = setTimeout(() => {
+                setLogoLoading(false);
+            }, 3000);
+            localStorage.setItem('NJC_loaded_one', 'true');
+            return () => clearTimeout(timer);
+        }
     }, []);
 
     return (
         <>
             {logoLoading ? (
-                <div className="absolute z-50 flex h-screen w-full items-center justify-center bg-[#081118] text-white">
+                <div className="absolute z-50 flex h-screen w-full items-center justify-center bg-background text-foreground">
                     <NJCLogo className="animate-pulse" />
                 </div>
             ) : (
                 <>
-                    <header className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#081118] px-4 pt-28 lg:pt-48">
+                    <header className="relative flex min-h-[90vh] items-center overflow-hidden bg-background px-4 pt-28 lg:pt-48">
                         {/* Futuristic Background Elements */}
                         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                             {/* Grid pattern with overlay */}
                             <div className="absolute inset-0 bg-[url('/hero-grid.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                            <div className="absolute inset-0 bg-radial from-transparent to-[#081118] opacity-80" />
+                            <div className="absolute inset-0 bg-radial from-transparent to-background opacity-80" />
 
                             {/* Ambient Glows */}
                             <div
@@ -116,7 +132,7 @@ const Landing = () => {
 
                                 {/* Hero Typography */}
                                 <RevealElement>
-                                    <h1 className="text-5xl leading-[1.05] font-extrabold tracking-tight text-white md:text-7xl lg:text-[6rem]">
+                                    <h1 className="text-5xl leading-[1.05] font-extrabold tracking-tight text-foreground md:text-7xl lg:text-[6rem]">
                                         Build Real Tech Products{' '}
                                         <br className="hidden md:block" />
                                         Become Top{' '}
@@ -131,7 +147,7 @@ const Landing = () => {
                                 </RevealElement>
 
                                 <RevealElement>
-                                    <p className="mx-auto max-w-3xl text-lg leading-relaxed font-light text-slate-300 md:text-xl">
+                                    <p className="mx-auto max-w-3xl text-lg leading-relaxed font-light text-muted-foreground md:text-xl">
                                         NJC (Now Just Create) is a selective
                                         6-month fellowship for ambitious
                                         graduates ready to master UX,
@@ -146,7 +162,7 @@ const Landing = () => {
                                         <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
                                             <Link
                                                 href={apply.url()}
-                                                className="group relative flex h-14 w-full min-w-[200px] items-center justify-center gap-2 overflow-hidden rounded-xl bg-white px-8 text-sm font-bold text-black shadow-[0_0_40px_rgba(255,255,255,0.15)] transition-transform hover:scale-[1.02] active:scale-95 sm:w-auto"
+                                                className="group relative flex h-14 w-full min-w-[200px] items-center justify-center gap-2 overflow-hidden rounded-xl bg-foreground px-8 text-sm font-bold text-background shadow-lg transition-transform hover:scale-[1.02] active:scale-95 sm:w-auto"
                                             >
                                                 <div className="absolute inset-0 bg-gradient-to-r from-[#00A6F4]/10 to-[#7C3AED]/10 opacity-0 transition-opacity group-hover:opacity-100"></div>
                                                 <UserPlus
@@ -164,13 +180,13 @@ const Landing = () => {
 
                                             <a
                                                 href="#program"
-                                                className="flex h-14 w-full min-w-[200px] items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 active:scale-95 sm:w-auto"
+                                                className="flex h-14 w-full min-w-[200px] items-center justify-center gap-2 rounded-xl border border-border bg-foreground/5 px-8 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/20 hover:bg-foreground/10 active:scale-95 sm:w-auto"
                                             >
                                                 See Program Structure
                                             </a>
                                         </div>
 
-                                        <div className="flex items-center gap-4 text-xs font-medium tracking-[0.15em] text-slate-400 uppercase">
+                                        <div className="flex items-center gap-4 text-xs font-medium tracking-[0.15em] text-muted-foreground uppercase">
                                             <span>6 Months</span>
                                             <span className="h-1 w-1 rounded-full bg-slate-600"></span>
                                             <span>Real Projects</span>
@@ -183,10 +199,10 @@ const Landing = () => {
                         </div>
 
                         {/* Seamless transition to next section */}
-                        <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-full bg-gradient-to-t from-[#081118] to-transparent"></div>
+                        <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-full bg-gradient-to-t from-background to-transparent"></div>
                     </header>
                     {/* WHAT IS NJC */}
-                    <section className="relative overflow-hidden bg-[#081118] py-24 lg:py-32">
+                    <section className="relative overflow-hidden bg-background py-24 lg:py-32">
                         {/* Subtle background glow */}
                         <div className="pointer-events-none absolute top-1/2 left-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/5 blur-[120px]"></div>
 
@@ -200,7 +216,7 @@ const Landing = () => {
                                             </h2>
                                         </RevealElement>
                                         <RevealElement delay={100}>
-                                            <h2 className="mt-2 text-4xl font-extrabold tracking-tight text-white lg:text-6xl">
+                                            <h2 className="mt-2 text-4xl font-extrabold tracking-tight text-foreground lg:text-6xl">
                                                 A{' '}
                                                 <span className="bg-gradient-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                                     Product Fellowship
@@ -209,7 +225,7 @@ const Landing = () => {
                                         </RevealElement>
                                     </div>
                                     <RevealElement delay={200}>
-                                        <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-slate-400">
+                                        <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
                                             Bridging the gap between academic
                                             theory and high-impact product
                                             engineering.
@@ -221,9 +237,9 @@ const Landing = () => {
                                 <div className="grid gap-6 md:grid-cols-3">
                                     {/* Card 1 */}
                                     <RevealElement delay={100}>
-                                        <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-2xl shadow-black transition-transform duration-300 hover:-translate-y-2">
+                                        <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-foreground/5 transition-transform duration-300 hover:-translate-y-2 dark:shadow-2xl dark:shadow-black/50">
                                             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#00A6F4]/20 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                            <div className="relative flex h-full flex-col items-start overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                            <div className="relative flex h-full flex-col items-start overflow-hidden rounded-3xl bg-card p-8">
                                                 <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#00A6F4]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#00A6F4]/30"></div>
                                                 <div className="mb-8 inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_15px_rgba(0,166,244,0.1)] transition-all group-hover:shadow-[0_0_25px_rgba(0,166,244,0.3)]">
                                                     <HiOutlineLightBulb
@@ -231,7 +247,7 @@ const Landing = () => {
                                                         size={32}
                                                     />
                                                 </div>
-                                                <h4 className="mb-4 text-2xl font-bold tracking-tight text-white">
+                                                <h4 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
                                                     Think Different
                                                 </h4>
                                                 <p className="text-sm leading-relaxed text-slate-400 lg:text-base">
@@ -248,9 +264,9 @@ const Landing = () => {
 
                                     {/* Card 2 */}
                                     <RevealElement delay={200}>
-                                        <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-2xl shadow-black transition-transform duration-300 hover:-translate-y-2">
+                                        <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-foreground/5 transition-transform duration-300 hover:-translate-y-2 dark:shadow-2xl dark:shadow-black/50">
                                             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#7C3AED]/20 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                            <div className="relative flex h-full flex-col items-start overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                            <div className="relative flex h-full flex-col items-start overflow-hidden rounded-3xl bg-card p-8">
                                                 <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#7C3AED]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#7C3AED]/30"></div>
                                                 <div className="mb-8 inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_15px_rgba(124,58,237,0.1)] transition-all group-hover:shadow-[0_0_25px_rgba(124,58,237,0.3)]">
                                                     <RiApps2AiLine
@@ -258,7 +274,7 @@ const Landing = () => {
                                                         size={32}
                                                     />
                                                 </div>
-                                                <h4 className="mb-4 text-2xl font-bold tracking-tight text-white">
+                                                <h4 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
                                                     Build Real Solutions
                                                 </h4>
                                                 <p className="text-sm leading-relaxed text-slate-400 lg:text-base">
@@ -274,9 +290,9 @@ const Landing = () => {
 
                                     {/* Card 3 */}
                                     <RevealElement delay={300}>
-                                        <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-2xl shadow-black transition-transform duration-300 hover:-translate-y-2">
+                                        <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-foreground/5 transition-transform duration-300 hover:-translate-y-2 dark:shadow-2xl dark:shadow-black/50">
                                             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#00A6F4]/20 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                            <div className="relative flex h-full flex-col items-start overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                            <div className="relative flex h-full flex-col items-start overflow-hidden rounded-3xl bg-card p-8">
                                                 <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#00A6F4]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#00A6F4]/30"></div>
                                                 <div className="mb-8 inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_0_15px_rgba(0,166,244,0.1)] transition-all group-hover:shadow-[0_0_25px_rgba(0,166,244,0.3)]">
                                                     <GiFallingStar
@@ -284,7 +300,7 @@ const Landing = () => {
                                                         size={32}
                                                     />
                                                 </div>
-                                                <h4 className="mb-4 text-2xl font-bold tracking-tight text-white">
+                                                <h4 className="mb-4 text-2xl font-bold tracking-tight text-foreground">
                                                     Become Elite
                                                 </h4>
                                                 <p className="text-sm leading-relaxed text-slate-400 lg:text-base">
@@ -302,7 +318,7 @@ const Landing = () => {
                         </div>
                     </section>
                     {/* THE PROBLEM / THE GAP */}
-                    <section className="relative overflow-hidden bg-[#081118] py-20 lg:py-40">
+                    <section className="relative overflow-hidden bg-background py-20 lg:py-40">
                         <div className="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-[#7C3AED]/5 blur-[120px]" />
                         <div className="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-[#00A6F4]/5 blur-[120px]" />
 
@@ -316,33 +332,47 @@ const Landing = () => {
                                                 <AlertTriangle className="size-3.5" />
                                                 Reality Check
                                             </div>
-                                            <h2 className="text-5xl font-bold text-white lg:text-7xl/tight">
+                                            <h2 className="text-5xl font-bold text-foreground lg:text-7xl/tight">
                                                 The Gap <br />
-                                                <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">Is Real.</span>
+                                                <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                                                    Is Real.
+                                                </span>
                                             </h2>
                                         </div>
                                     </RevealElement>
 
                                     <div className="space-y-6">
                                         <RevealElement delay={200}>
-                                            <p className="text-xl leading-relaxed text-slate-300">
-                                                Tech is moving at light speed, but the distance between 
-                                                <span className="text-white italic"> "knowing syntax" </span> 
-                                                and 
-                                                <span className="font-semibold text-white italic"> "shipping world-class products" </span> 
+                                            <p className="text-xl leading-relaxed text-muted-foreground">
+                                                Tech is moving at light speed,
+                                                but the distance between
+                                                <span className="text-white italic">
+                                                    {' '}
+                                                    "knowing syntax"{' '}
+                                                </span>
+                                                and
+                                                <span className="font-semibold text-white italic">
+                                                    {' '}
+                                                    "shipping world-class
+                                                    products"{' '}
+                                                </span>
                                                 is growing every day.
                                             </p>
                                         </RevealElement>
-                                        
+
                                         <RevealElement delay={400}>
                                             <div className="flex gap-4 rounded-3xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm">
                                                 <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-[#00A6F4]/10 text-[#00A6F4]">
                                                     <Target size={24} />
                                                 </div>
-                                                <p className="text-base text-slate-400">
-                                                    NJC exists to bridge that gap. We don't just teach code; 
-                                                    we groom the specialists who will put our region on the map 
-                                                    alongside the tech giants of Nigeria and Kenya.
+                                                <p className="text-base text-muted-foreground">
+                                                    NJC exists to bridge that
+                                                    gap. We don't just teach
+                                                    code; we groom the
+                                                    specialists who will put our
+                                                    region on the map alongside
+                                                    the tech giants of Nigeria
+                                                    and Kenya.
                                                 </p>
                                             </div>
                                         </RevealElement>
@@ -354,43 +384,67 @@ const Landing = () => {
                                     <div className="relative grid gap-6">
                                         {/* Background decoration */}
                                         <div className="absolute inset-0 -z-10 rounded-full bg-linear-to-br from-[#00A6F4]/20 to-[#7C3AED]/20 opacity-30 blur-3xl" />
-                                        
+
                                         {/* Card 1: The Old Way */}
-                                        <div className="group relative -rotate-1 rounded-[2.5rem] border border-white/5 bg-[#0A1520]/60 p-8 shadow-xl backdrop-blur-xl transition-all hover:-translate-y-2">
+                                        <div className="group relative -rotate-1 rounded-[2.5rem] border border-border bg-card/60 p-8 shadow-xl backdrop-blur-xl transition-all hover:-translate-y-2">
                                             <div className="mb-4 flex items-center justify-between">
-                                                <span className="text-xs font-bold text-slate-500 uppercase">The Common Path</span>
-                                                <MinusCircle className="text-slate-600" size={20} />
+                                                <span className="text-xs font-bold text-slate-500 uppercase">
+                                                    The Common Path
+                                                </span>
+                                                <MinusCircle
+                                                    className="text-slate-600"
+                                                    size={20}
+                                                />
                                             </div>
-                                            <h3 className="mb-2 text-xl font-bold text-slate-300 line-through decoration-red-500/50">Tutorial Hell & Local Logic</h3>
-                                            <p className="text-sm text-slate-400">Learning syntax without context. Building for local browsers instead of global users.</p>
+                                            <h3 className="mb-2 text-xl font-bold text-foreground line-through decoration-red-500/50">
+                                                Tutorial Hell & Local Logic
+                                            </h3>
+                                            <p className="text-sm text-slate-400">
+                                                Learning syntax without context.
+                                                Building for local browsers
+                                                instead of global users.
+                                            </p>
                                         </div>
 
                                         {/* Bridge Icon */}
                                         <div className="relative z-10 -my-3 flex justify-center">
-                                            <div className="flex size-12 items-center justify-center rounded-full border border-[#00A6F4]/50 bg-[#081118] shadow-[0_0_20px_rgba(0,166,244,0.3)]">
+                                            <div className="flex size-12 items-center justify-center rounded-full border border-primary/50 bg-background shadow-[0_0_20px_rgba(0,166,244,0.3)]">
                                                 <ArrowDown className="animate-bounce text-[#00A6F4]" />
                                             </div>
                                         </div>
 
                                         {/* Card 2: The NJC Way */}
-                                        <div className="group relative rotate-1 rounded-[2.5rem] border border-[#00A6F4]/30 bg-[#0A1D26] p-10 shadow-2xl shadow-[#00A6F4]/10 backdrop-blur-xl transition-all hover:-translate-y-2">
-                                            <div className="absolute -right-2 -top-2">
+                                        <div className="group relative rotate-1 rounded-[2.5rem] border border-primary/30 bg-primary/5 p-10 shadow-2xl shadow-primary/10 backdrop-blur-xl transition-all hover:-translate-y-2">
+                                            <div className="absolute -top-2 -right-2">
                                                 <div className="flex size-10 items-center justify-center rounded-full bg-[#00A6F4] text-black shadow-lg">
                                                     <Zap size={20} />
                                                 </div>
                                             </div>
                                             <div className="mb-4 flex items-center justify-between">
-                                                <span className="text-xs font-bold tracking-widest text-[#00A6F4] uppercase">The NJC Standard</span>
-                                                <PlusCircle className="text-[#00A6F4]" size={20} />
+                                                <span className="text-xs font-bold tracking-widest text-[#00A6F4] uppercase">
+                                                    The NJC Standard
+                                                </span>
+                                                <PlusCircle
+                                                    className="text-[#00A6F4]"
+                                                    size={20}
+                                                />
                                             </div>
-                                            <h3 className="mb-3 text-2xl font-bold text-white">Engineering Excellence</h3>
-                                            <p className="text-slate-400">Mastering architectural design, performance optimization, and global-scale product thinking.</p>
-                                            
+                                            <h3 className="mb-3 text-2xl font-bold text-foreground">
+                                                Engineering Excellence
+                                            </h3>
+                                            <p className="text-slate-400">
+                                                Mastering architectural design,
+                                                performance optimization, and
+                                                global-scale product thinking.
+                                            </p>
+
                                             <div className="mt-6 flex items-center gap-4">
                                                 <div className="h-1 flex-1 rounded-full bg-white/5">
-                                                    <div className="h-full w-[90%] rounded-full bg-linear-to-r from-[#00A6F4] to-[#7C3AED]" />
+                                                    <div className="h-full w-[90%] rounded-full bg-linear-to-r from-primary to-purple-500" />
                                                 </div>
-                                                <span className="text-xs font-bold text-white">Top 1%</span>
+                                                <span className="text-xs font-bold text-white">
+                                                    Top 1%
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -399,7 +453,7 @@ const Landing = () => {
                         </div>
                     </section>
                     {/* WHAT YOU WILL LEARN */}
-                    <section className="relative z-10 flex flex-col items-center overflow-hidden bg-[#081118] py-24 lg:py-32">
+                    <section className="relative z-10 flex flex-col items-center overflow-hidden bg-background py-24 lg:py-32">
                         {/* Subtle background glow */}
                         <div className="pointer-events-none absolute top-1/3 right-0 h-[600px] w-[600px] translate-x-1/3 rounded-full bg-[#7C3AED]/5 blur-[150px]"></div>
 
@@ -417,7 +471,7 @@ const Landing = () => {
                                         </RevealElement>
 
                                         <RevealElement delay={100}>
-                                            <h2 className="text-4xl font-extrabold tracking-tight text-white lg:text-6xl/tight">
+                                            <h2 className="text-4xl font-extrabold tracking-tight text-foreground lg:text-6xl/tight">
                                                 What You Will{' '}
                                                 <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                                     Learn
@@ -426,7 +480,7 @@ const Landing = () => {
                                         </RevealElement>
 
                                         <RevealElement delay={200}>
-                                            <p className="text-lg leading-relaxed text-slate-400">
+                                            <p className="text-lg leading-relaxed text-muted-foreground">
                                                 A holistic curriculum designed
                                                 to turn developers into product
                                                 engineers who can lead projects
@@ -439,9 +493,9 @@ const Landing = () => {
                                     <div className="col-span-7 grid gap-6 sm:grid-cols-2">
                                         {/* Card 1 */}
                                         <RevealElement delay={100}>
-                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-black/50 transition-all duration-300 hover:-translate-y-2">
+                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-lg shadow-foreground/5 transition-all duration-300 hover:-translate-y-2 dark:shadow-xl dark:shadow-black/50">
                                                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#00A6F4]/10 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                                <div className="relative h-full overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                                <div className="relative h-full overflow-hidden rounded-3xl bg-card p-8">
                                                     <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-[#00A6F4]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#00A6F4]/20"></div>
                                                     <div className="mb-6 inline-flex rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_0_15px_rgba(0,166,244,0.1)] transition-all group-hover:shadow-[0_0_20px_rgba(0,166,244,0.2)]">
                                                         <BrainIcon
@@ -449,10 +503,10 @@ const Landing = () => {
                                                             size={28}
                                                         />
                                                     </div>
-                                                    <h4 className="mb-3 text-xl font-bold text-white">
+                                                    <h4 className="mb-3 text-xl font-bold text-foreground">
                                                         Product Thinking
                                                     </h4>
-                                                    <p className="text-sm leading-relaxed text-slate-400">
+                                                    <p className="text-sm leading-relaxed text-muted-foreground">
                                                         Bridge the gap between
                                                         business goals and user
                                                         needs to build what
@@ -464,9 +518,9 @@ const Landing = () => {
 
                                         {/* Card 2 */}
                                         <RevealElement delay={200}>
-                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-black/50 transition-all duration-300 hover:-translate-y-2 sm:mt-12">
+                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-lg shadow-foreground/5 transition-all duration-300 hover:-translate-y-2 sm:mt-12 dark:shadow-xl dark:shadow-black/50">
                                                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#7C3AED]/10 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                                <div className="relative h-full overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                                <div className="relative h-full overflow-hidden rounded-3xl bg-card p-8">
                                                     <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-[#7C3AED]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#7C3AED]/20"></div>
                                                     <div className="mb-6 inline-flex rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_0_15px_rgba(124,58,237,0.1)] transition-all group-hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]">
                                                         <MdOutlineDesignServices
@@ -474,10 +528,10 @@ const Landing = () => {
                                                             size={28}
                                                         />
                                                     </div>
-                                                    <h4 className="mb-3 text-xl font-bold text-white">
+                                                    <h4 className="mb-3 text-xl font-bold text-foreground">
                                                         UX/UI Mastery
                                                     </h4>
-                                                    <p className="text-sm leading-relaxed text-slate-400">
+                                                    <p className="text-sm leading-relaxed text-muted-foreground">
                                                         Design interfaces that
                                                         are intuitive,
                                                         accessible, and
@@ -490,9 +544,9 @@ const Landing = () => {
 
                                         {/* Card 3 */}
                                         <RevealElement delay={300}>
-                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-black/50 transition-all duration-300 hover:-translate-y-2">
+                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-lg shadow-foreground/5 transition-all duration-300 hover:-translate-y-2 dark:shadow-xl dark:shadow-black/50">
                                                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#00A6F4]/10 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                                <div className="relative h-full overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                                <div className="relative h-full overflow-hidden rounded-3xl bg-card p-8">
                                                     <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-[#00A6F4]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#00A6F4]/20"></div>
                                                     <div className="mb-6 inline-flex rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_0_15px_rgba(0,166,244,0.1)] transition-all group-hover:shadow-[0_0_20px_rgba(0,166,244,0.2)]">
                                                         <LuBlocks
@@ -500,10 +554,10 @@ const Landing = () => {
                                                             size={28}
                                                         />
                                                     </div>
-                                                    <h4 className="mb-3 text-xl font-bold text-white">
+                                                    <h4 className="mb-3 text-xl font-bold text-foreground">
                                                         System Architecture
                                                     </h4>
-                                                    <p className="text-sm leading-relaxed text-slate-400">
+                                                    <p className="text-sm leading-relaxed text-muted-foreground">
                                                         Think scalable from day
                                                         one. Build robust
                                                         foundations that can
@@ -516,9 +570,9 @@ const Landing = () => {
 
                                         {/* Card 4 */}
                                         <RevealElement delay={400}>
-                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-xl shadow-black/50 transition-all duration-300 hover:-translate-y-2 sm:mt-12">
+                                            <div className="group relative h-full rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-px shadow-lg shadow-foreground/5 transition-all duration-300 hover:-translate-y-2 sm:mt-12 dark:shadow-xl dark:shadow-black/50">
                                                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#7C3AED]/10 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                                <div className="relative h-full overflow-hidden rounded-3xl bg-[#0A1520] p-8">
+                                                <div className="relative h-full overflow-hidden rounded-3xl bg-card p-8">
                                                     <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-[#7C3AED]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#7C3AED]/20"></div>
                                                     <div className="mb-6 inline-flex rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_0_15px_rgba(124,58,237,0.1)] transition-all group-hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]">
                                                         <GoRocket
@@ -526,10 +580,10 @@ const Landing = () => {
                                                             size={28}
                                                         />
                                                     </div>
-                                                    <h4 className="mb-3 text-xl font-bold text-white">
+                                                    <h4 className="mb-3 text-xl font-bold text-foreground">
                                                         Execution
                                                     </h4>
-                                                    <p className="text-sm leading-relaxed text-slate-400">
+                                                    <p className="text-sm leading-relaxed text-muted-foreground">
                                                         Master the workflow of
                                                         shipping
                                                         production-ready code
@@ -547,7 +601,7 @@ const Landing = () => {
                     {/* PROGRAM STRUCTURE */}
                     <section
                         id="program"
-                        className="relative overflow-hidden bg-[#081118] py-24 lg:py-32"
+                        className="relative overflow-hidden bg-background py-24 lg:py-32"
                     >
                         {/* Subtle background glow */}
                         <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/5 blur-[150px]"></div>
@@ -556,7 +610,7 @@ const Landing = () => {
                             <div className="flex w-full max-w-7xl flex-col px-4">
                                 <div className="flex flex-col items-center gap-6">
                                     <RevealElement>
-                                        <h2 className="text-center text-4xl font-extrabold tracking-tight text-white lg:text-6xl/tight">
+                                        <h2 className="text-center text-4xl font-extrabold tracking-tight text-foreground lg:text-6xl/tight">
                                             6 Months Structured for{' '}
                                             <span className="bg-gradient-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                                 Excellence
@@ -565,7 +619,7 @@ const Landing = () => {
                                     </RevealElement>
 
                                     <RevealElement delay={100}>
-                                        <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-slate-400">
+                                        <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
                                             A phased roadmap designed to take
                                             you from foundational theory to a
                                             production-ready launch.
@@ -582,7 +636,7 @@ const Landing = () => {
                                     <div className="mb-8 grid w-full gap-8 lg:grid-cols-3">
                                         <RevealElement delay={100}>
                                             <div className="flex flex-col items-center gap-2 text-center">
-                                                <h4 className="text-xl font-bold text-white">
+                                                <h4 className="text-xl font-bold text-foreground">
                                                     Phase 1 : Foundation
                                                 </h4>
                                                 <p className="font-medium tracking-wide text-[#00A6F4]">
@@ -592,7 +646,7 @@ const Landing = () => {
                                         </RevealElement>
                                         <RevealElement delay={200}>
                                             <div className="flex flex-col items-center gap-2 text-center">
-                                                <h4 className="text-xl font-bold text-white">
+                                                <h4 className="text-xl font-bold text-foreground">
                                                     Phase 2 : Build
                                                 </h4>
                                                 <p className="font-medium tracking-wide text-[#00A6F4]">
@@ -602,7 +656,7 @@ const Landing = () => {
                                         </RevealElement>
                                         <RevealElement delay={300}>
                                             <div className="flex flex-col items-center gap-2 text-center">
-                                                <h4 className="text-xl font-bold text-white">
+                                                <h4 className="text-xl font-bold text-foreground">
                                                     Phase 3 : Launch
                                                 </h4>
                                                 <p className="font-medium tracking-wide text-[#7C3AED]">
@@ -616,13 +670,13 @@ const Landing = () => {
 
                             <div className="relative">
                                 {/* Fade edges */}
-                                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-[#081118] via-transparent to-[#081118]" />
+                                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-background via-transparent to-background" />
                                 <div className="relative z-10 flex w-full justify-center">
                                     <div className="flex lg:w-6xl">
                                         <div className="grid w-full justify-items-center gap-8 lg:grid-cols-3">
                                             {/* Dot 1 */}
                                             <RevealElement delay={150}>
-                                                <div className="flex size-10 items-center justify-center rounded-full border border-[#00A6F4]/30 bg-[#081118] shadow-[0_0_15px_rgba(0,166,244,0.3)]">
+                                                <div className="flex size-10 items-center justify-center rounded-full border border-primary/30 bg-background shadow-[0_0_15px_rgba(0,166,244,0.3)]">
                                                     <GoDotFill
                                                         size={20}
                                                         className="text-[#00A6F4]"
@@ -631,7 +685,7 @@ const Landing = () => {
                                             </RevealElement>
                                             {/* Dot 2 */}
                                             <RevealElement delay={250}>
-                                                <div className="flex size-10 items-center justify-center rounded-full border border-[#00A6F4]/30 bg-[#081118] shadow-[0_0_15px_rgba(0,166,244,0.3)]">
+                                                <div className="flex size-10 items-center justify-center rounded-full border border-primary/30 bg-background shadow-[0_0_15px_rgba(0,166,244,0.3)]">
                                                     <GoDotFill
                                                         size={20}
                                                         className="text-[#00A6F4]"
@@ -640,7 +694,7 @@ const Landing = () => {
                                             </RevealElement>
                                             {/* Dot 3 */}
                                             <RevealElement delay={350}>
-                                                <div className="flex size-10 items-center justify-center rounded-full border border-[#7C3AED]/50 bg-[#081118] shadow-[0_0_20px_rgba(124,58,237,0.4)]">
+                                                <div className="flex size-10 items-center justify-center rounded-full border border-purple-500/50 bg-background shadow-[0_0_20px_rgba(124,58,237,0.4)]">
                                                     <BsStarFill
                                                         size={18}
                                                         className="text-[#7C3AED]"
@@ -657,7 +711,7 @@ const Landing = () => {
                                 <div className="flex lg:w-6xl">
                                     <div className="grid w-full justify-items-center gap-8 lg:grid-cols-3">
                                         <RevealElement delay={100}>
-                                            <ul className="w-full max-w-[250px] space-y-4 text-slate-300">
+                                            <ul className="w-full max-w-[250px] space-y-4 text-muted-foreground">
                                                 <li className="flex gap-3">
                                                     <GoDotFill
                                                         size={14}
@@ -688,7 +742,7 @@ const Landing = () => {
                                             </ul>
                                         </RevealElement>
                                         <RevealElement delay={200}>
-                                            <ul className="w-full max-w-[250px] space-y-4 text-slate-300">
+                                            <ul className="w-full max-w-[250px] space-y-4 text-muted-foreground">
                                                 <li className="flex gap-3">
                                                     <GoDotFill
                                                         size={14}
@@ -721,7 +775,7 @@ const Landing = () => {
                                             </ul>
                                         </RevealElement>
                                         <RevealElement delay={300}>
-                                            <ul className="w-full max-w-[250px] space-y-4 text-slate-300">
+                                            <ul className="w-full max-w-[250px] space-y-4 text-muted-foreground">
                                                 <li className="flex gap-3">
                                                     <GoDotFill
                                                         size={14}
@@ -763,19 +817,19 @@ const Landing = () => {
                             <div className="relative ml-4 space-y-12 border-l border-dashed border-white/20 pl-8">
                                 <RevealElement delay={100}>
                                     <div className="relative">
-                                        <div className="absolute top-0 -left-[49px] flex size-8 items-center justify-center rounded-full border border-[#00A6F4]/30 bg-[#081118] shadow-[0_0_15px_rgba(0,166,244,0.3)]">
+                                        <div className="absolute top-0 -left-[49px] flex size-8 items-center justify-center rounded-full border border-primary/30 bg-background shadow-[0_0_15px_rgba(0,166,244,0.3)]">
                                             <GoDotFill
                                                 size={16}
                                                 className="text-[#00A6F4]"
                                             />
                                         </div>
-                                        <h4 className="mb-1 text-xl font-bold text-white">
+                                        <h4 className="mb-1 text-xl font-bold text-foreground">
                                             Phase 1 : Foundation
                                         </h4>
                                         <p className="mb-6 font-medium tracking-wide text-[#00A6F4]">
                                             Month 1-2
                                         </p>
-                                        <ul className="space-y-4 text-slate-300">
+                                        <ul className="space-y-4 text-muted-foreground">
                                             <li className="flex gap-3">
                                                 <GoDotFill
                                                     size={14}
@@ -808,19 +862,19 @@ const Landing = () => {
                                 </RevealElement>
                                 <RevealElement delay={200}>
                                     <div className="relative">
-                                        <div className="absolute top-0 -left-[49px] flex size-8 items-center justify-center rounded-full border border-[#00A6F4]/30 bg-[#081118] shadow-[0_0_15px_rgba(0,166,244,0.3)]">
+                                        <div className="absolute top-0 -left-[49px] flex size-8 items-center justify-center rounded-full border border-primary/30 bg-background shadow-[0_0_15px_rgba(0,166,244,0.3)]">
                                             <GoDotFill
                                                 size={16}
                                                 className="text-[#00A6F4]"
                                             />
                                         </div>
-                                        <h4 className="mb-1 text-xl font-bold text-white">
+                                        <h4 className="mb-1 text-xl font-bold text-foreground">
                                             Phase 2 : Build
                                         </h4>
                                         <p className="mb-6 font-medium tracking-wide text-[#00A6F4]">
                                             Month 3-4
                                         </p>
-                                        <ul className="space-y-4 text-slate-300">
+                                        <ul className="space-y-4 text-muted-foreground">
                                             <li className="flex gap-3">
                                                 <GoDotFill
                                                     size={14}
@@ -853,19 +907,19 @@ const Landing = () => {
                                 </RevealElement>
                                 <RevealElement delay={300}>
                                     <div className="relative">
-                                        <div className="absolute top-0 -left-[49px] flex size-8 items-center justify-center rounded-full border border-[#7C3AED]/50 bg-[#081118] shadow-[0_0_20px_rgba(124,58,237,0.4)]">
+                                        <div className="absolute top-0 -left-[49px] flex size-8 items-center justify-center rounded-full border border-purple-500/50 bg-background shadow-[0_0_20px_rgba(124,58,237,0.4)]">
                                             <BsStarFill
                                                 size={14}
                                                 className="text-[#7C3AED]"
                                             />
                                         </div>
-                                        <h4 className="mb-1 text-xl font-bold text-white">
+                                        <h4 className="mb-1 text-xl font-bold text-foreground">
                                             Phase 3 : Launch
                                         </h4>
                                         <p className="mb-6 font-medium tracking-wide text-[#7C3AED]">
                                             Month 5-6
                                         </p>
-                                        <ul className="space-y-4 text-slate-300">
+                                        <ul className="space-y-4 text-muted-foreground">
                                             <li className="flex gap-3">
                                                 <GoDotFill
                                                     size={14}
@@ -900,90 +954,209 @@ const Landing = () => {
                             </div>
                         </div>
                     </section>
-                    {/* TEAM EXPERIENCE */}
-                    <section className="relative overflow-hidden bg-[#0C1821] pt-28 pb-12 lg:pb-20">
-                        {/* Subtle background glow */}
-                        <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7C3AED]/5 blur-[150px]"></div>
 
-                        <div className="relative z-10 flex w-full justify-center">
-                            <div className="flex lg:max-w-6xl">
-                                <div className="flex flex-col items-center gap-6 px-4 lg:gap-6">
+                    {/* TEAM EXPERIENCE */}
+                    <section className="relative overflow-hidden bg-background py-24 lg:py-32">
+                        {/* Ambient Background Elements */}
+                        <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-[#00A6F4]/5 blur-[120px]" />
+                        <div className="pointer-events-none absolute right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-[#7C3AED]/5 blur-[120px]" />
+
+                        <div className="container mx-auto max-w-6xl px-4">
+                            <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:gap-20">
+                                {/* Left Side: Content & Roles */}
+                                <div className="flex-1 space-y-8">
                                     <RevealElement>
-                                        <div className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/30 bg-[#7C3AED]/10 px-4 py-1.5 shadow-[0_0_15px_rgba(124,58,237,0.15)]">
-                                            <span className="text-xs font-bold tracking-widest text-[#7C3AED] uppercase">
-                                                Team experience
-                                            </span>
+                                        <div className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/30 bg-[#7C3AED]/10 px-4 py-1.5 text-xs font-bold tracking-widest text-[#7C3AED] uppercase">
+                                            <Users2 className="size-3.5" />
+                                            The Team Experience
                                         </div>
                                     </RevealElement>
-                                    <div className="flex flex-col">
+
+                                    <div className="space-y-6">
                                         <RevealElement delay={100}>
-                                            <h2 className="text-center text-4xl font-extrabold tracking-tight text-white lg:text-5xl/snug">
-                                                Work Like a Real{' '}
+                                            <h2 className="text-4xl font-bold text-foreground lg:text-6xl/tight">
+                                                Synergy in{' '}
                                                 <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
-                                                    Product Team
+                                                    Motion
                                                 </span>
                                             </h2>
                                         </RevealElement>
+                                        <RevealElement delay={200}>
+                                            <p className="text-lg leading-relaxed text-muted-foreground">
+                                                In the NJC Fellowship, you don't
+                                                work in isolation. You're part
+                                                of a high-performance,
+                                                cross-functional squad of 3-5
+                                                builders, simulating the intense
+                                                velocity of a world-class
+                                                startup.
+                                            </p>
+                                        </RevealElement>
                                     </div>
-                                    <RevealElement delay={200}>
-                                        <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-slate-400">
-                                            You will be placed in a
-                                            cross-functional team of 3-5 members
-                                            to simulate high-stakes startup
-                                            environments.
-                                        </p>
+
+                                    {/* Active Roles Visualization */}
+                                    <RevealElement
+                                        delay={300}
+                                        className="grid grid-cols-2 gap-4 pt-4 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4"
+                                    >
+                                        {[
+                                            {
+                                                label: 'Product Lead',
+                                                color: 'bg-blue-500',
+                                            },
+                                            {
+                                                label: 'UI/UX Designer',
+                                                color: 'bg-purple-500',
+                                            },
+                                            {
+                                                label: 'Frontend Dev',
+                                                color: 'bg-emerald-500',
+                                            },
+                                            {
+                                                label: 'Backend Dev',
+                                                color: 'bg-amber-500',
+                                            },
+                                        ].map((role, i) => (
+                                            <div
+                                                key={i}
+                                                className="flex items-center gap-3 rounded-2xl border border-border bg-foreground/5 p-3 transition-colors hover:bg-foreground/10"
+                                            >
+                                                <div
+                                                    className={`size-2 animate-pulse rounded-full ${role.color} shadow-[0_0_8px_rgba(255,255,255,0.5)]`}
+                                                />
+                                                <span className="text-[10px] font-bold text-foreground uppercase">
+                                                    {role.label}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </RevealElement>
+                                </div>
+
+                                {/* Right Side: Illustration & HUD */}
+                                <div className="relative flex-1">
+                                    <RevealElement
+                                        delay={400}
+                                        className="relative"
+                                    >
+                                        {/* HUD Decorative Corners */}
+                                        <div className="absolute -top-4 -left-4 size-8 border-t-2 border-l-2 border-[#00A6F4]/30" />
+                                        <div className="absolute -top-4 -right-4 size-8 border-t-2 border-r-2 border-[#7C3AED]/30" />
+                                        <div className="absolute -bottom-4 -left-4 size-8 border-b-2 border-l-2 border-[#7C3AED]/30" />
+                                        <div className="absolute -right-4 -bottom-4 size-8 border-r-2 border-b-2 border-[#00A6F4]/30" />
+
+                                        {/* Status Indicators */}
+                                        <div className="absolute top-4 left-4 flex items-center gap-2 rounded-lg border border-border bg-card/40 px-3 py-1.5 backdrop-blur-md">
+                                            <div className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
+                                            <span className="text-[10px] font-bold tracking-widest text-emerald-500 uppercase">
+                                                Active Team: 2026 Batch
+                                            </span>
+                                        </div>
+
+                                        <div className="absolute right-4 bottom-4 flex items-center gap-2 rounded-lg border border-border bg-card/40 px-3 py-1.5 backdrop-blur-md">
+                                            <Command className="size-3 text-slate-400" />
+                                            <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                                                Sprint Cycle: Week 08
+                                            </span>
+                                        </div>
+
+                                        {/* SQUAD PULSE ILLUSTRATION */}
+                                        <div className="relative z-10 flex aspect-square w-full items-center justify-center lg:aspect-video">
+                                            <SquadPulseIllustration className="w-full max-w-lg" />
+                                        </div>
                                     </RevealElement>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="relative z-30 mt-12 flex w-full justify-center lg:mt-20">
-                            <div className="mx-4 flex flex-col lg:w-6xl">
-                                <RevealElement delay={300}>
-                                    <TeamIllustration className="relative z-10 mx-auto -mb-[59px] w-full lg:-mb-2" />
+                            {/* What You'll Build: Mission Selection */}
+                            <div className="mt-24 lg:mt-32">
+                                <RevealElement className="mb-12 flex flex-col items-center text-center">
+                                    <h3 className="mb-4 text-2xl font-bold text-foreground lg:text-3xl">
+                                        Mission Selection: What You'll Build
+                                    </h3>
+                                    <p className="max-w-xl text-muted-foreground">
+                                        Each team is assigned a high-impact
+                                        mission based on real-world market gaps
+                                        and technological challenges.
+                                    </p>
                                 </RevealElement>
 
-                                <RevealElement delay={400}>
-                                    <div className="group relative flex w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-linear-to-b from-white/5 to-transparent p-px shadow-2xl backdrop-blur-md lg:items-center">
-                                        <div className="absolute inset-0 bg-linear-to-br from-[#00A6F4]/5 via-transparent to-[#7C3AED]/5 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-                                        <div className="relative flex w-full flex-col rounded-3xl bg-[#0A1D26]/80 px-6 py-12 lg:items-center">
-                                            <h2 className="text-2xl font-bold text-white lg:text-3xl">
-                                                What You will Build
-                                            </h2>
-                                            <div className="mt-10 flex flex-col gap-6 lg:flex-row lg:gap-0 lg:divide-x lg:divide-white/10">
-                                                <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)]" />
-                                                    <p className="font-medium text-slate-300">
-                                                        Logistics platform
+                                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                                    {[
+                                        {
+                                            title: 'Logistics platform',
+                                            desc: 'Optimizing supply chains and last-mile delivery systems.',
+                                            icon: (
+                                                <Truck className="size-6 text-blue-400" />
+                                            ),
+                                            focus: 'Operations',
+                                            color: 'hover:border-blue-400/30',
+                                        },
+                                        {
+                                            title: 'Fintech solution',
+                                            desc: 'Building secure, scalable financial infrastructure for the future.',
+                                            icon: (
+                                                <Wallet className="size-6 text-purple-400" />
+                                            ),
+                                            focus: 'Security',
+                                            color: 'hover:border-purple-400/30',
+                                        },
+                                        {
+                                            title: 'Health tech system',
+                                            desc: 'Modernizing patient care and medical data management.',
+                                            icon: (
+                                                <Stethoscope className="size-6 text-emerald-400" />
+                                            ),
+                                            focus: 'Impact',
+                                            color: 'hover:border-emerald-400/30',
+                                        },
+                                        {
+                                            title: 'Marketplace',
+                                            desc: 'Creating dynamic platforms for commerce and trade.',
+                                            icon: (
+                                                <ShoppingCart className="size-6 text-amber-400" />
+                                            ),
+                                            focus: 'Commerce',
+                                            color: 'hover:border-amber-400/30',
+                                        },
+                                    ].map((mission, i) => (
+                                        <RevealElement
+                                            key={i}
+                                            delay={500 + i * 100}
+                                        >
+                                            <div
+                                                className={`group relative overflow-hidden rounded-3xl border border-border bg-card/80 p-8 transition-all duration-500 hover:-translate-y-2 ${mission.color}`}
+                                            >
+                                                {/* Card Background Glow */}
+                                                <div className="absolute -top-8 -right-8 size-24 rounded-full bg-white/[0.02] blur-2xl transition-transform duration-700 group-hover:scale-150" />
+
+                                                <div className="relative z-10">
+                                                    <div className="mb-6 flex size-12 items-center justify-center rounded-2xl bg-foreground/5 text-foreground transition-transform duration-500 group-hover:scale-110">
+                                                        {mission.icon}
+                                                    </div>
+                                                    <h4 className="mb-2 text-lg font-bold text-foreground">
+                                                        {mission.title}
+                                                    </h4>
+                                                    <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                                                        {mission.desc}
                                                     </p>
-                                                </div>
-                                                <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)]" />
-                                                    <p className="font-medium text-slate-300">
-                                                        Fintech solution
-                                                    </p>
-                                                </div>
-                                                <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#7C3AED] shadow-[0_0_10px_rgba(124,58,237,0.3)]" />
-                                                    <p className="font-medium text-slate-300">
-                                                        Health tech system
-                                                    </p>
-                                                </div>
-                                                <div className="flex items-center gap-3 px-6 transition-transform hover:-translate-y-1">
-                                                    <BsCheckCircle className="size-5 shrink-0 rounded-full text-[#7C3AED] shadow-[0_0_10px_rgba(124,58,237,0.3)]" />
-                                                    <p className="font-medium text-slate-300">
-                                                        Marketplace
-                                                    </p>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase">
+                                                            Focus:
+                                                        </span>
+                                                        <span className="text-[10px] font-bold text-foreground uppercase">
+                                                            {mission.focus}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </RevealElement>
+                                        </RevealElement>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </section>
                     {/* DEMO DAY SECTION */}
-                    <section className="relative z-10 flex flex-col items-center bg-[#0C1821] py-20 lg:py-32">
+                    <section className="relative z-10 flex flex-col items-center bg-background py-20 lg:py-32">
                         <div className="absolute top-0 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-[#00A6F4]/10 blur-[120px]" />
 
                         <div className="w-full max-w-6xl px-4">
@@ -996,7 +1169,7 @@ const Landing = () => {
                                     </div>
 
                                     <RevealElement>
-                                        <h2 className="text-4xl font-bold text-white lg:text-6xl/tight">
+                                        <h2 className="text-4xl font-bold text-foreground lg:text-6xl/tight">
                                             The{' '}
                                             <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                                 Demo Day
@@ -1005,7 +1178,7 @@ const Landing = () => {
                                     </RevealElement>
 
                                     <RevealElement>
-                                        <p className="max-w-xl text-lg leading-relaxed text-pretty text-slate-400">
+                                        <p className="max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
                                             This isn't just a presentation; it's
                                             a high-stakes pitch event where
                                             industry leaders, top-tier firms,
@@ -1041,12 +1214,12 @@ const Landing = () => {
                                         ].map((item, i) => (
                                             <div
                                                 key={i}
-                                                className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/5 p-4 transition-all hover:bg-white/10"
+                                                className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-all hover:bg-foreground/5"
                                             >
                                                 <span className={item.color}>
                                                     {item.icon}
                                                 </span>
-                                                <span className="text-sm font-medium text-white">
+                                                <span className="text-sm font-medium text-foreground">
                                                     {item.label}
                                                 </span>
                                             </div>
@@ -1063,7 +1236,7 @@ const Landing = () => {
 
                                 {/* Right Column: Visual Card */}
                                 <RevealElement className="relative">
-                                    <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0A1520]/80 p-10 shadow-2xl backdrop-blur-xl transition-all hover:border-[#00A6F4]/30">
+                                    <div className="group relative overflow-hidden rounded-[2.5rem] border border-border bg-card/80 p-10 shadow-2xl backdrop-blur-xl transition-all hover:border-primary/30">
                                         {/* Background decoration */}
                                         <div className="absolute top-0 right-0 h-40 w-40 translate-x-1/4 -translate-y-1/4 rounded-full bg-[#7C3AED]/10 blur-[60px] transition-transform duration-700 group-hover:scale-150" />
 
@@ -1073,10 +1246,10 @@ const Landing = () => {
                                                     <Presentation size={24} />
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl font-bold text-white">
+                                                    <h3 className="text-xl font-bold text-foreground">
                                                         The Pitch Experience
                                                     </h3>
-                                                    <p className="text-sm text-slate-400">
+                                                    <p className="text-sm text-muted-foreground">
                                                         6 Months of work, 10
                                                         Minutes to shine.
                                                     </p>
@@ -1104,10 +1277,10 @@ const Landing = () => {
                                                     >
                                                         <BsCheckCircle className="mt-1 size-5 shrink-0 text-[#00A6F4] shadow-[0_0_10px_rgba(0,166,244,0.3)]" />
                                                         <div>
-                                                            <h4 className="font-semibold text-white">
+                                                            <h4 className="font-semibold text-foreground">
                                                                 {feature.title}
                                                             </h4>
-                                                            <p className="text-sm text-slate-400">
+                                                            <p className="text-sm text-muted-foreground">
                                                                 {feature.desc}
                                                             </p>
                                                         </div>
@@ -1115,12 +1288,12 @@ const Landing = () => {
                                                 ))}
                                             </div>
 
-                                            <div className="mt-6 flex items-center border-t border-white/5 pt-8">
+                                            <div className="mt-6 flex items-center border-t border-border pt-8">
                                                 <div className="flex -space-x-3">
                                                     {[1, 2, 3, 4].map((i) => (
                                                         <div
                                                             key={i}
-                                                            className="flex size-10 items-center justify-center overflow-hidden rounded-full border-2 border-[#0A1520] bg-slate-800"
+                                                            className="flex size-10 items-center justify-center overflow-hidden rounded-full border-2 border-background bg-muted"
                                                         >
                                                             <img
                                                                 src={`https://i.pravatar.cc/100?u=recruiter${i}`}
@@ -1128,7 +1301,7 @@ const Landing = () => {
                                                             />
                                                         </div>
                                                     ))}
-                                                    <div className="flex size-10 items-center justify-center rounded-full border-2 border-[#0A1520] bg-[#1A323F] text-[10px] font-bold text-[#00A6F4]">
+                                                    <div className="flex size-10 items-center justify-center rounded-full border-2 border-background bg-primary/10 text-[10px] font-bold text-primary">
                                                         +50
                                                     </div>
                                                 </div>
@@ -1136,7 +1309,7 @@ const Landing = () => {
                                                     <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">
                                                         Attendees
                                                     </span>
-                                                    <span className="text-sm font-bold text-white">
+                                                    <span className="text-sm font-bold text-foreground">
                                                         Industry Leaders
                                                     </span>
                                                 </div>
@@ -1145,156 +1318,278 @@ const Landing = () => {
                                     </div>
 
                                     {/* Floating Decorative Element */}
-                                    <div className="absolute -bottom-6 -left-6 hidden size-24 items-center justify-center rounded-3xl border border-white/10 bg-[#0C1821] p-6 shadow-2xl backdrop-blur-xl transition-transform hover:scale-110 lg:flex">
+                                    <div className="absolute -bottom-6 -left-6 hidden size-24 items-center justify-center rounded-3xl border border-border bg-card p-6 shadow-2xl backdrop-blur-xl transition-transform hover:scale-110 lg:flex">
                                         <Target className="size-10 text-[#7C3AED] drop-shadow-[0_0_10px_rgba(124,58,237,0.5)]" />
                                     </div>
                                 </RevealElement>
                             </div>
                         </div>
                     </section>
-                    <div className="relative bg-[#0C1821] py-4">
+                    <div className="relative bg-background py-4">
                         {/* Fade edges */}
-                        <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-r from-white via-transparent to-white dark:from-[#0C1821] dark:to-[#0C1821]" />
+                        <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-r from-background via-transparent to-background dark:from-background dark:to-background" />
                         <div className="absolute top-1/2 h-px w-full border border-slate-500/20"></div>
                     </div>
-                    {/* WHO SHOULD APPLY & SELECTION PROCESS */}
-                    <section className="relative z-10 flex flex-col items-center bg-[#0C1821] lg:py-28">
-                        <div className="absolute top-1/2 left-1/2 z-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4] opacity-50 blur-3xl"></div>
-                        <div className="flex w-full justify-center">
-                            <div className="flex lg:max-w-6xl">
-                                <div className="relative z-10 w-full cursor-default gap-12 py-16 lg:grid lg:grid-cols-12 lg:px-0">
-                                    <div className="col-span-12 lg:col-span-6">
-                                        <div className="flex h-full flex-col gap-6 rounded-4xl border border-slate-500/20 bg-[#0A1D26]/80 p-8 backdrop-blur-lg lg:p-10">
-                                            <div className="space-y-4">
-                                                <h2 className="text-3xl font-bold text-white lg:text-4xl">
-                                                    Who Should Apply
-                                                </h2>
-                                                <p className="max-w-md text-slate-400">
-                                                    The NJC Fellowship is a
-                                                    high-intensity environment
-                                                    for builders. We are looking
-                                                    for those who live to
-                                                    create.
-                                                </p>
-                                            </div>
+                    {/* WHO SHOULD APPLY */}
+                    <section className="relative z-10 overflow-hidden bg-background py-24 lg:py-32">
+                        {/* Background Text Decor */}
+                        <div className="pointer-events-none absolute top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-black text-white/[0.02] uppercase select-none">
+                            Builders
+                        </div>
 
-                                            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-4">
-                                                {[
-                                                    {
-                                                        title: 'Passionate Builders',
-                                                        desc: "Developers & designers who don't just code, but create products.",
-                                                        icon: (
-                                                            <GoRocket
-                                                                size={20}
-                                                            />
-                                                        ),
-                                                    },
-                                                    {
-                                                        title: 'Technical Talent',
-                                                        desc: 'Top talent in Cameroon looking to compete at a global scale.',
-                                                        icon: (
-                                                            <BrainIcon
-                                                                size={20}
-                                                            />
-                                                        ),
-                                                    },
-                                                    {
-                                                        title: 'Impact Driven',
-                                                        desc: 'Individuals ready to build high-impact products from scratch.',
-                                                        icon: (
-                                                            <BsStarFill
-                                                                size={20}
-                                                            />
-                                                        ),
-                                                    },
-                                                    {
-                                                        title: 'Full Commitment',
-                                                        desc: 'Ready for 6 months of intense, full-time learning and building.',
-                                                        icon: (
-                                                            <BsCheckCircleFill
-                                                                size={20}
-                                                            />
-                                                        ),
-                                                    },
-                                                ].map((item, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className="group relative rounded-2xl border border-slate-500/10 bg-slate-900/30 p-5 transition-all hover:border-[#00A6F4]/30 hover:bg-slate-900/50"
-                                                    >
-                                                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#00A6F4]/10 text-[#00A6F4] transition-transform group-hover:scale-110">
-                                                            {item.icon}
-                                                        </div>
-                                                        <h4 className="mb-1 font-semibold text-white">
-                                                            {item.title}
-                                                        </h4>
-                                                        <p className="text-xs leading-relaxed text-slate-400">
-                                                            {item.desc}
-                                                        </p>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
+                        <div className="container mx-auto max-w-6xl px-4">
+                            <div className="mb-16 flex flex-col items-center text-center lg:mb-24">
+                                <RevealElement>
+                                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00A6F4]/20 bg-[#00A6F4]/5 px-4 py-1.5 text-xs font-bold tracking-widest text-[#00A6F4] uppercase">
+                                        <Fingerprint className="size-3.5" />
+                                        Ideal Candidate
                                     </div>
+                                </RevealElement>
+                                <RevealElement delay={100}>
+                                    <h2 className="mb-6 text-4xl font-bold text-foreground lg:text-6xl">
+                                        Built for the{' '}
+                                        <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                                            Relentless
+                                        </span>
+                                    </h2>
+                                </RevealElement>
+                                <RevealElement delay={200}>
+                                    <p className="max-w-2xl text-lg text-muted-foreground">
+                                        The NJC Fellowship isn't just a program;
+                                        it's a high-intensity environment for
+                                        those who live to create. We look for
+                                        individuals who embody these four
+                                        archetypes.
+                                    </p>
+                                </RevealElement>
+                            </div>
 
-                                    <div className="col-span-12 mt-8 lg:col-span-6 lg:mt-0">
-                                        <div className="h-full rounded-4xl border border-slate-500/20 bg-[#0A1D26]/80 p-8 backdrop-blur-lg lg:p-10">
-                                            <div className="mb-10 space-y-4">
-                                                <h2 className="text-3xl font-bold text-white lg:text-4xl">
-                                                    Selection Process
-                                                </h2>
-                                                <p className="max-w-md text-slate-400">
-                                                    A multi-stage process
-                                                    designed to find the most
-                                                    committed and capable
-                                                    builders.
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                                {[
+                                    {
+                                        title: 'The Craftsman',
+                                        role: 'Technical Excellence',
+                                        desc: 'Developers and designers who obsess over the details, from clean architecture to pixel-perfect interfaces.',
+                                        icon: (
+                                            <Code2 className="size-6 text-[#00A6F4]" />
+                                        ),
+                                        traits: [
+                                            'Clean Code',
+                                            'UI/UX',
+                                            'Scale',
+                                        ],
+                                        color: 'from-[#00A6F4]/20 to-transparent',
+                                        border: 'hover:border-[#00A6F4]/50',
+                                    },
+                                    {
+                                        title: 'The Architect',
+                                        role: 'Systems Thinking',
+                                        desc: 'Engineers who see the big picture, building robust systems that handle complexity with elegance.',
+                                        icon: (
+                                            <Cpu className="size-6 text-[#7C3AED]" />
+                                        ),
+                                        traits: [
+                                            'Logic',
+                                            'Performance',
+                                            'Data',
+                                        ],
+                                        color: 'from-[#7C3AED]/20 to-transparent',
+                                        border: 'hover:border-[#7C3AED]/50',
+                                    },
+                                    {
+                                        title: 'The Innovator',
+                                        role: 'Product Mindset',
+                                        desc: 'Visionaries who understand that code is a tool for solving real-world problems and creating impact.',
+                                        icon: (
+                                            <HiOutlineLightBulb className="size-6 text-amber-400" />
+                                        ),
+                                        traits: [
+                                            'Vision',
+                                            'UX Strategy',
+                                            'MVP',
+                                        ],
+                                        color: 'from-amber-400/20 to-transparent',
+                                        border: 'hover:border-amber-400/50',
+                                    },
+                                    {
+                                        title: 'The Dedicated',
+                                        role: 'Extreme Grit',
+                                        desc: 'Builders ready to commit 6 months of intense, full-time effort to master their craft and ship products.',
+                                        icon: (
+                                            <Shield className="size-6 text-emerald-400" />
+                                        ),
+                                        traits: [
+                                            'Consistency',
+                                            'Resilience',
+                                            'Grit',
+                                        ],
+                                        color: 'from-emerald-400/20 to-transparent',
+                                        border: 'hover:border-emerald-400/50',
+                                    },
+                                ].map((archetype, i) => (
+                                    <RevealElement
+                                        key={i}
+                                        delay={300 + i * 100}
+                                    >
+                                        <div
+                                            className={`group relative h-full overflow-hidden rounded-[2rem] border border-border bg-card/80 p-8 shadow-2xl backdrop-blur-xl transition-all duration-500 ${archetype.border} hover:-translate-y-2`}
+                                        >
+                                            {/* Glow effect */}
+                                            <div
+                                                className={`absolute inset-0 bg-linear-to-br ${archetype.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+                                            />
+
+                                            <div className="relative z-10">
+                                                <div className="mb-6 flex size-14 items-center justify-center rounded-2xl bg-foreground/5 shadow-inner transition-transform duration-500 group-hover:scale-110">
+                                                    {archetype.icon}
+                                                </div>
+                                                <h3 className="mb-1 text-xl font-bold text-foreground">
+                                                    {archetype.title}
+                                                </h3>
+                                                <p className="mb-4 text-xs font-bold tracking-widest text-slate-500 uppercase">
+                                                    {archetype.role}
                                                 </p>
-                                            </div>
-
-                                            <div className="relative space-y-8">
-                                                {/* Vertical Line for Desktop Timeline */}
-                                                <div className="absolute top-2 left-6 h-[calc(100%-1.5rem)] w-px border-l border-dashed border-slate-500/30 lg:left-7"></div>
-
-                                                {[
-                                                    {
-                                                        step: '01',
-                                                        title: 'Apply Online',
-                                                        desc: 'Submit your application and portfolio. Tell us about your craft.',
-                                                    },
-                                                    {
-                                                        step: '02',
-                                                        title: 'Review Phase',
-                                                        desc: 'Our lead engineers and designers evaluate your technical potential.',
-                                                    },
-                                                    {
-                                                        step: '03',
-                                                        title: 'The Deep Dive',
-                                                        desc: 'A structured technical interview focusing on your problem-solving.',
-                                                    },
-                                                    {
-                                                        step: '04',
-                                                        title: 'Final Selection',
-                                                        desc: ' Induction into the 2026 Batch and project matching.',
-                                                    },
-                                                ].map((item, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className="relative flex items-start gap-6 lg:gap-8"
-                                                    >
-                                                        <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-500/20 bg-white text-lg font-bold text-[#0A1D26] lg:h-14 lg:w-14">
-                                                            {item.step}
-                                                        </div>
-                                                        <div className="pt-1">
-                                                            <h4 className="text-lg font-semibold text-white">
-                                                                {item.title}
-                                                            </h4>
-                                                            <p className="mt-1 text-sm text-slate-400">
-                                                                {item.desc}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                ))}
+                                                <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                                                    {archetype.desc}
+                                                </p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {archetype.traits.map(
+                                                        (trait, j) => (
+                                                            <span
+                                                                key={j}
+                                                                className="rounded-full border border-border bg-foreground/5 px-3 py-1 text-[10px] font-medium text-muted-foreground"
+                                                            >
+                                                                {trait}
+                                                            </span>
+                                                        ),
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
+                                    </RevealElement>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* SELECTION PROCESS */}
+                    <section className="relative z-10 bg-background py-24 lg:py-32">
+                        {/* Decorative Gradient */}
+                        <div className="absolute top-0 left-1/2 -z-10 h-full w-full -translate-x-1/2 bg-radial from-[#7C3AED]/5 to-transparent" />
+
+                        <div className="container mx-auto max-w-6xl px-4">
+                            <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+                                {/* Left Side: Content */}
+                                <div className="space-y-8">
+                                    <RevealElement>
+                                        <div className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/20 bg-[#7C3AED]/5 px-4 py-1.5 text-xs font-bold tracking-widest text-[#7C3AED] uppercase">
+                                            <Zap className="size-3.5" />
+                                            Admissions
+                                        </div>
+                                    </RevealElement>
+
+                                    <RevealElement delay={100}>
+                                        <h2 className="text-4xl font-bold text-foreground lg:text-6xl/tight">
+                                            The{' '}
+                                            <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
+                                                Forge
+                                            </span>
+                                            <br />
+                                            Your Path to the 1%
+                                        </h2>
+                                    </RevealElement>
+
+                                    <RevealElement delay={200}>
+                                        <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
+                                            Our selection process is rigorous,
+                                            designed to identify not just
+                                            talent, but potential and character.
+                                            This is where the journey begins.
+                                        </p>
+                                    </RevealElement>
+
+                                    <div className="flex items-center gap-4 pt-4">
+                                        <Link
+                                            href={apply.url()}
+                                            className="group flex items-center gap-3 rounded-2xl bg-[#00A6F4] px-8 py-4 text-sm font-bold text-black transition-all hover:bg-[#00A6F4]/90 hover:shadow-[0_0_20px_rgba(0,166,244,0.4)]"
+                                        >
+                                            Begin Your Application
+                                            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* Right Side: Interactive Timeline */}
+                                <div className="relative">
+                                    <div className="absolute top-8 bottom-8 left-[31px] w-px border-l border-dashed border-border lg:left-[39px]"></div>
+
+                                    <div className="space-y-12">
+                                        {[
+                                            {
+                                                title: 'Initial Access',
+                                                desc: 'Submit your digital portfolio and answer our core craft questions.',
+                                                status: 'Phase 01',
+                                                icon: <Terminal size={20} />,
+                                                color: 'bg-[#00A6F4]',
+                                            },
+                                            {
+                                                title: 'Technical Review',
+                                                desc: 'Our lead engineers evaluate your technical foundation and problem-solving.',
+                                                status: 'Phase 02',
+                                                icon: <Cpu size={20} />,
+                                                color: 'bg-[#7C3AED]',
+                                            },
+                                            {
+                                                title: 'The Crucible',
+                                                desc: 'A deep-dive technical interview focusing on real-world execution.',
+                                                status: 'Phase 03',
+                                                icon: <Target size={20} />,
+                                                color: 'bg-amber-400',
+                                            },
+                                            {
+                                                title: 'Ascension',
+                                                desc: 'Final selection and induction into the 2026 Batch.',
+                                                status: 'The Selection',
+                                                icon: <Trophy size={20} />,
+                                                color: 'bg-emerald-400',
+                                            },
+                                        ].map((step, i) => (
+                                            <RevealElement
+                                                key={i}
+                                                delay={300 + i * 100}
+                                                className="group relative flex gap-8 lg:gap-10"
+                                            >
+                                                {/* Timeline Node */}
+                                                <div
+                                                    className={`relative z-10 flex size-16 shrink-0 items-center justify-center rounded-3xl border border-border bg-card transition-all duration-500 group-hover:border-primary/30 lg:size-20`}
+                                                >
+                                                    <div
+                                                        className={`flex size-10 items-center justify-center rounded-2xl ${step.color} text-black shadow-lg lg:size-12`}
+                                                    >
+                                                        {step.icon}
+                                                    </div>
+                                                    {/* Glowing pulse */}
+                                                    <div
+                                                        className={`absolute inset-0 -z-10 animate-pulse rounded-3xl ${step.color} opacity-0 blur-xl transition-opacity group-hover:opacity-20`}
+                                                    />
+                                                </div>
+
+                                                <div className="pt-2">
+                                                    <div className="mb-1 flex items-center gap-3">
+                                                        <span className="text-[10px] font-bold tracking-widest text-[#00A6F4] uppercase">
+                                                            {step.status}
+                                                        </span>
+                                                        <div className="h-px w-8 bg-white/10" />
+                                                    </div>
+                                                    <h4 className="mb-2 text-xl font-bold text-foreground">
+                                                        {step.title}
+                                                    </h4>
+                                                    <p className="text-sm leading-relaxed text-muted-foreground">
+                                                        {step.desc}
+                                                    </p>
+                                                </div>
+                                            </RevealElement>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -1304,7 +1599,7 @@ const Landing = () => {
                     {/* FAQ SECTION */}
                     <section
                         id="faq"
-                        className="relative z-10 flex flex-col items-center bg-[#0C1821] py-20 lg:py-32"
+                        className="relative z-10 flex flex-col items-center bg-background py-20 lg:py-32"
                     >
                         <div className="w-full max-w-6xl px-4">
                             <div className="grid gap-16 lg:grid-cols-12">
@@ -1316,7 +1611,7 @@ const Landing = () => {
                                             Common Questions
                                         </div>
                                         <RevealElement>
-                                            <h2 className="text-4xl font-bold text-white lg:text-5xl">
+                                            <h2 className="text-4xl font-bold text-foreground lg:text-5xl">
                                                 Everything you{' '}
                                                 <span className="text-[#00A6F4]">
                                                     need to know
@@ -1324,7 +1619,7 @@ const Landing = () => {
                                             </h2>
                                         </RevealElement>
                                         <RevealElement>
-                                            <p className="text-lg leading-relaxed text-slate-400">
+                                            <p className="text-lg leading-relaxed text-muted-foreground">
                                                 Have questions about the
                                                 fellowship, the selection
                                                 process, or the curriculum?
@@ -1332,17 +1627,20 @@ const Landing = () => {
                                                 most frequent inquiries.
                                             </p>
                                         </RevealElement>
-                                        {/* <div className="rounded-3xl border border-white/5 bg-white/5 p-8 transition-all hover:border-[#00A6F4]/20">
-                                            <p className="mb-4 text-sm font-medium text-white">
-                                                Still have questions?
-                                            </p>
-                                            <a
-                                                href="mailto:christ.nloga@gmail.com"
-                                                className="text-sm font-bold text-[#00A6F4] hover:underline"
-                                            >
-                                                Contact our support team →
-                                            </a>
-                                        </div> */}
+                                        <div className="flex items-center gap-6 rounded-3xl border border-border bg-foreground/5 p-6 transition-all hover:border-primary/20">
+                                            <BsEnvelopeArrowDown className="size-10 text-purple-400" />
+                                            <div>
+                                                <p className="mb-1 text-sm font-medium text-foreground">
+                                                    Still have questions?
+                                                </p>
+                                                <Link
+                                                    href={`/${locale}/contact`}
+                                                    className="text-sm font-bold text-[#00A6F4] hover:underline"
+                                                >
+                                                    Get in touch with me →
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1356,8 +1654,8 @@ const Landing = () => {
                                             <div
                                                 className={`group overflow-hidden rounded-3xl border transition-all duration-500 ${
                                                     openFaq === index
-                                                        ? 'border-[#00A6F4]/30 bg-[#0A1D26] shadow-[0_0_30px_-10px_rgba(0,166,244,0.2)]'
-                                                        : 'border-white/5 bg-[#0A1D26]/40 hover:border-white/10 hover:bg-[#0A1D26]/60'
+                                                        ? 'border-primary/30 bg-card shadow-[0_0_30px_-10px_rgba(0,166,244,0.2)]'
+                                                        : 'border-border bg-card/40 hover:border-border/60 hover:bg-card/60'
                                                 }`}
                                             >
                                                 <button
@@ -1373,8 +1671,8 @@ const Landing = () => {
                                                     <span
                                                         className={`text-lg font-semibold transition-colors duration-300 ${
                                                             openFaq === index
-                                                                ? 'text-[#00A6F4]'
-                                                                : 'text-white'
+                                                                ? 'text-primary'
+                                                                : 'text-foreground'
                                                         }`}
                                                     >
                                                         {faq.question}
@@ -1382,8 +1680,8 @@ const Landing = () => {
                                                     <div
                                                         className={`flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
                                                             openFaq === index
-                                                                ? 'rotate-180 border-[#00A6F4]/50 bg-[#00A6F4] text-black shadow-[0_0_15px_rgba(0,166,244,0.4)]'
-                                                                : 'border-white/10 bg-white/5 text-white'
+                                                                ? 'rotate-180 border-primary/50 bg-primary text-black shadow-[0_0_15px_rgba(0,166,244,0.4)]'
+                                                                : 'border-border bg-card text-foreground'
                                                         }`}
                                                     >
                                                         <ChevronDown
@@ -1398,8 +1696,8 @@ const Landing = () => {
                                                             : 'max-h-0 opacity-0'
                                                     }`}
                                                 >
-                                                    <div className="px-7 pb-7 text-base leading-relaxed text-slate-400">
-                                                        <div className="mb-6 h-px w-full bg-white/5" />
+                                                    <div className="px-7 pb-7 text-base leading-relaxed text-muted-foreground">
+                                                        <div className="mb-6 h-px w-full bg-border" />
                                                         {faq.answer}
                                                     </div>
                                                 </div>
@@ -1411,14 +1709,14 @@ const Landing = () => {
                         </div>
                     </section>
                     {/* FINAL CALL TO ACTION */}
-                    <section className="relative overflow-hidden bg-[#0C1821] py-28 lg:py-40">
+                    <section className="relative overflow-hidden bg-background py-28 lg:py-40">
                         {/* Animated Background Elements */}
                         <div className="absolute top-1/2 left-1/2 -z-10 size-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A6F4]/10 blur-[120px]" />
                         <div className="absolute top-1/2 left-1/2 -z-10 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7C3AED]/5 blur-[100px]" />
 
                         <div className="container mx-auto max-w-6xl">
                             <RevealElement>
-                                <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#0A1520]/80 p-8 shadow-2xl backdrop-blur-3xl lg:p-20">
+                                <div className="relative overflow-hidden rounded-[3rem] border border-border bg-card/80 p-8 shadow-2xl backdrop-blur-3xl lg:p-20">
                                     {/* Internal Glow */}
                                     <div className="absolute -top-20 -right-20 size-64 rounded-full bg-[#00A6F4]/10 blur-3xl" />
                                     <div className="absolute -bottom-20 -left-20 size-64 rounded-full bg-[#7C3AED]/10 blur-3xl" />
@@ -1432,14 +1730,14 @@ const Landing = () => {
                                             <div className="h-px w-8 bg-linear-to-l from-transparent to-[#00A6F4]" />
                                         </div>
 
-                                        <h2 className="mb-8 text-4xl font-bold text-pretty text-white sm:text-5xl lg:text-7xl/tight">
+                                        <h2 className="mb-8 text-4xl font-bold text-pretty text-foreground sm:text-5xl lg:text-7xl/tight">
                                             Ready to{' '}
                                             <span className="bg-linear-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent">
                                                 Build the Future?
                                             </span>
                                         </h2>
 
-                                        <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-pretty text-slate-400">
+                                        <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
                                             Join a selective cohort of visionary
                                             engineers and designers. Master the
                                             craft of shipping world-class
@@ -1459,7 +1757,7 @@ const Landing = () => {
 
                                             <a
                                                 href="#program"
-                                                className="group flex h-16 w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-10 text-lg font-semibold text-white backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 active:scale-[0.98] sm:w-auto"
+                                                className="group flex h-16 w-full items-center justify-center gap-3 rounded-2xl border border-border bg-foreground/5 px-10 text-lg font-semibold text-foreground backdrop-blur-md transition-all hover:border-border/20 hover:bg-foreground/10 active:scale-[0.98] sm:w-auto"
                                             >
                                                 Explore Program
                                                 <ArrowRight
@@ -1469,13 +1767,13 @@ const Landing = () => {
                                             </a>
                                         </div>
 
-                                        <div className="mt-16 flex flex-col items-center gap-4 border-t border-white/5 pt-12">
+                                        <div className="mt-16 flex flex-col items-center gap-4 border-t border-border pt-12">
                                             <p className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase">
                                                 Limited Slots Available
                                             </p>
                                             <div className="flex items-center gap-2">
                                                 <span className="flex size-2 animate-pulse rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
-                                                <span className="text-xs font-medium text-slate-400">
+                                                <span className="text-xs font-medium text-muted-foreground">
                                                     Applications are currently
                                                     open for the next cohort
                                                 </span>

@@ -15,7 +15,13 @@ class CaseStudyController extends Controller
     {
         try {
 
-            $caseStudies = CaseStudy::orderBy('created_at', 'desc')->get();
+            $query = CaseStudy::orderBy('created_at', 'desc');
+
+            if (! request()->boolean('all')) {
+                $query->where('is_published', true);
+            }
+
+            $caseStudies = $query->get();
 
             return response()->json($caseStudies);
 

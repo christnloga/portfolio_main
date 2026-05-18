@@ -150,11 +150,11 @@ const About = () => {
     return (
         <>
             <Head title={t('À propos')} />
-            <div className="min-h-screen overflow-x-hidden bg-[#081118] text-slate-200 selection:bg-[#00A6F4]/30">
+            <div className="min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-primary/30">
                 {/* Fixed ambient orbs */}
                 <div className="pointer-events-none fixed inset-0 overflow-hidden">
-                    <div className="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-[#00A6F4]/8 blur-[120px]" />
-                    <div className="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-[#7C3AED]/8 blur-[120px]" />
+                    <div className="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-primary/8 blur-[120px]" />
+                    <div className="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-500/8 blur-[120px]" />
                 </div>
 
                 <main className="relative z-10 mx-auto max-w-6xl px-4 pt-32 pb-24 lg:px-6">
@@ -162,7 +162,7 @@ const About = () => {
                     <RevealElement>
                         <Link
                             href="/"
-                            className="group mb-12 inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-[#00A6F4]"
+                            className="group mb-12 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                         >
                             <BsArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
                             Back to Home
@@ -172,19 +172,19 @@ const About = () => {
                     {/* Hero Section */}
                     <section className="mb-28">
                         <RevealElement>
-                            <p className="mb-4 text-sm font-semibold tracking-widest text-[#00A6F4] uppercase">
+                            <p className="mb-4 text-sm font-semibold tracking-widest text-primary uppercase">
                                 Product Designer & Solution Architect
                             </p>
                         </RevealElement>
                         <RevealElement>
-                            <h1 className="mb-8 text-5xl leading-tight font-bold text-white lg:text-7xl">
-                                <span className="bg-linear-to-r from-white to-slate-500 bg-clip-text text-transparent">
+                            <h1 className="mb-8 text-5xl leading-tight font-bold text-foreground lg:text-7xl">
+                                <span className="bg-linear-to-r from-foreground to-foreground/50 bg-clip-text text-transparent">
                                     Joseph Christ Nloga
                                 </span>
                             </h1>
                         </RevealElement>
                         <RevealElement>
-                            <p className="max-w-3xl text-xl leading-relaxed text-slate-400">
+                            <p className="max-w-3xl text-xl leading-relaxed text-muted-foreground">
                                 A Solution Architect & UX Engineer with 7+ years
                                 of experience. I specialize in building
                                 scalable, full-stack applications using Laravel,
@@ -198,8 +198,8 @@ const About = () => {
                     <section className="mb-28">
                         <RevealElement>
                             <div className="mb-12 flex items-center gap-3">
-                                <BsLightning className="size-5 text-[#00A6F4]" />
-                                <h3 className="text-2xl font-bold text-white">
+                                <BsLightning className="size-5 text-primary" />
+                                <h3 className="text-2xl font-bold text-foreground">
                                     Technical Ecosystem
                                 </h3>
                             </div>
@@ -207,18 +207,18 @@ const About = () => {
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                             {techStack.map((cat, i) => (
                                 <RevealElement key={i}>
-                                    <div className="group h-full rounded-2xl border border-white/5 bg-[#0C1821] p-6 shadow-xl backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#00A6F4]/30 hover:shadow-[0_10px_40px_-10px_rgba(0,166,244,0.15)]">
-                                        <div className="mb-4 text-[#00A6F4] transition-transform group-hover:scale-110">
+                                    <div className="group h-full rounded-2xl border border-border bg-card p-6 shadow-xl backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_10px_40px_-10px_rgba(0,166,244,0.15)]">
+                                        <div className="mb-4 text-primary transition-transform group-hover:scale-110">
                                             {cat.icon}
                                         </div>
-                                        <h4 className="mb-4 text-lg font-semibold text-white">
+                                        <h4 className="mb-4 text-lg font-semibold text-foreground">
                                             {cat.title}
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {cat.skills.map((skill) => (
                                                 <span
                                                     key={skill}
-                                                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300"
+                                                    className="rounded-full border border-border bg-foreground/5 px-3 py-1 text-xs font-medium text-muted-foreground"
                                                 >
                                                     {skill}
                                                 </span>
@@ -234,8 +234,8 @@ const About = () => {
                     <section className="mb-28">
                         <RevealElement>
                             <div className="mb-12 flex items-center gap-3">
-                                <BsBriefcase className="size-5 text-[#7C3AED]" />
-                                <h3 className="text-2xl font-bold text-white">
+                                <BsBriefcase className="size-5 text-purple-500" />
+                                <h3 className="text-2xl font-bold text-foreground">
                                     Professional Journey
                                 </h3>
                             </div>
@@ -243,28 +243,28 @@ const About = () => {
                         <div className="space-y-8">
                             {experiences.map((exp, i) => (
                                 <RevealElement key={i}>
-                                    <div className="group relative border-l border-white/10 pl-8">
+                                    <div className="group relative border-l border-border pl-8">
                                         {/* Timeline dot */}
-                                        <div className="absolute top-0 -left-[5px] size-2.5 rounded-full bg-[#00A6F4] shadow-[0_0_10px_#00A6F4] transition-transform group-hover:scale-150" />
+                                        <div className="absolute top-0 -left-[5px] size-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(0,166,244,0.5)] transition-transform group-hover:scale-150" />
 
-                                        <div className="rounded-2xl border border-white/5 bg-[#0C1821] p-8 shadow-xl transition-all duration-500 hover:border-[#00A6F4]/20 hover:bg-[#0C1821]/80">
+                                        <div className="rounded-2xl border border-border bg-card p-8 shadow-xl transition-all duration-500 hover:border-primary/20 hover:bg-card/80">
                                             <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row">
                                                 <div>
-                                                    <h4 className="text-xl font-bold text-white transition-colors group-hover:text-[#00A6F4]">
+                                                    <h4 className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
                                                         {exp.role}
                                                     </h4>
-                                                    <div className="mt-1 flex items-center gap-2 font-medium text-slate-300">
-                                                        <BsBriefcase className="size-4 text-[#00A6F4]" />
+                                                    <div className="mt-1 flex items-center gap-2 font-medium text-muted-foreground">
+                                                        <BsBriefcase className="size-4 text-primary" />
                                                         <span>
                                                             {exp.company}
                                                         </span>
-                                                        <span className="rounded-md border border-white/10 px-2 py-0.5 text-xs text-slate-500">
+                                                        <span className="rounded-md border border-border px-2 py-0.5 text-xs text-muted-foreground/60">
                                                             {exp.type}
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col md:items-end">
-                                                    <div className="flex items-center gap-2 font-mono text-sm text-[#00A6F4]/80">
+                                                    <div className="flex items-center gap-2 font-mono text-sm text-primary/80">
                                                         <BsCalendar3 className="size-4" />
                                                         {exp.period}
                                                     </div>
@@ -276,12 +276,12 @@ const About = () => {
                                                     (item, idx) => (
                                                         <li
                                                             key={idx}
-                                                            className="group/item flex gap-3 text-[15px] leading-relaxed text-slate-400"
+                                                            className="group/item flex gap-3 text-[15px] leading-relaxed text-muted-foreground"
                                                         >
                                                             <div className="mt-1.5">
-                                                                <BsChevronRight className="size-3.5 text-[#00A6F4] opacity-50 transition-all group-hover/item:translate-x-1 group-hover/item:opacity-100" />
+                                                                <BsChevronRight className="size-3.5 text-primary opacity-50 transition-all group-hover/item:translate-x-1 group-hover/item:opacity-100" />
                                                             </div>
-                                                            <span className="transition-colors group-hover/item:text-slate-200">
+                                                            <span className="transition-colors group-hover/item:text-foreground">
                                                                 {item}
                                                             </span>
                                                         </li>
@@ -298,12 +298,12 @@ const About = () => {
                     {/* Mastery Tools & Mentorship */}
                     <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <RevealElement>
-                            <div className="h-full rounded-3xl border border-[#00A6F4]/20 bg-linear-to-br from-[#00A6F4]/10 to-transparent p-8 shadow-xl">
-                                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-white">
-                                    <BsLayers className="size-5 text-[#00A6F4]" />
+                            <div className="h-full rounded-3xl border border-primary/20 bg-linear-to-br from-primary/10 to-transparent p-8 shadow-xl">
+                                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-foreground">
+                                    <BsLayers className="size-5 text-primary" />
                                     Mastery Tools
                                 </h3>
-                                <p className="mb-6 text-sm leading-relaxed text-slate-400">
+                                <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
                                     Leveraging the best of design and
                                     productivity to accelerate product
                                     lifecycles.
@@ -312,7 +312,7 @@ const About = () => {
                                     {masteryTools.map((tool) => (
                                         <span
                                             key={tool}
-                                            className="rounded-full border border-[#00A6F4]/20 bg-[#00A6F4]/5 px-3 py-1 text-xs font-medium text-[#00A6F4]/80"
+                                            className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary/80"
                                         >
                                             {tool}
                                         </span>
@@ -321,14 +321,14 @@ const About = () => {
                             </div>
                         </RevealElement>
                         <RevealElement>
-                            <div className="h-full rounded-3xl border border-[#7C3AED]/20 bg-linear-to-br from-[#7C3AED]/10 to-transparent p-8 shadow-xl">
-                                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-white">
-                                    <BsGlobe className="size-5 text-[#7C3AED]" />
+                            <div className="h-full rounded-3xl border border-purple-500/20 bg-linear-to-br from-purple-500/10 to-transparent p-8 shadow-xl">
+                                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-foreground">
+                                    <BsGlobe className="size-5 text-purple-500" />
                                     Mentorship & Impact
                                 </h3>
-                                <p className="text-sm leading-relaxed text-slate-400">
+                                <p className="text-sm leading-relaxed text-muted-foreground">
                                     Founded the{' '}
-                                    <strong className="font-semibold text-white">
+                                    <strong className="font-semibold text-foreground">
                                         Now Just Create (NJC)
                                     </strong>{' '}
                                     initiative, mentoring 25+ graduates annually

@@ -1,7 +1,7 @@
 import { router } from '@inertiajs/react';
 import { useQuery } from '@tanstack/react-query';
 import useEmblaCarousel from 'embla-carousel-react';
-
+import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useState } from 'react';
 import { HiArrowSmallLeft, HiArrowSmallRight } from 'react-icons/hi2';
 
@@ -105,107 +105,88 @@ const CaseStudies = () => {
     }
 
     return (
-        <div className="relative h-full w-full flex-col items-center overflow-hidden py-28 lg:flex">
-            {/* Background Image */}
-            {/* <div className="absolute inset-0 -z-20">
-                <AnimatePresence>
-                    <motion.img
-                        key={selectedIndex}
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 0.05, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                        src={
-                            caseStudies[selectedIndex % caseStudies.length]
-                                .background
-                        }
-                        alt={
-                            caseStudies[selectedIndex % caseStudies.length]
-                                .title
-                        }
-                        className="h-full w-full object-cover blur-sm grayscale"
-                    />
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-[#0C1821]"></div>
-            </div> */}
-            {/* Dynamic Background Overlay */}
-            {/* <div className="absolute inset-0 -z-10 transition-colors duration-700 ease-in-out">
+        <div className="relative flex h-full w-full flex-col items-center overflow-hidden py-24 lg:py-32">
+            {/* Background Glows */}
+            <div className="pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
+            <div className="pointer-events-none absolute right-1/4 -bottom-24 h-96 w-96 rounded-full bg-purple-500/10 blur-[120px]" />
+
+            {/* Dynamic Background Image Crossfade */}
+            <div className="absolute inset-0 -z-20 overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedIndex}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className={`absolute inset-0 bg-linear-to-b ${caseStudies[selectedIndex % caseStudies.length].color} to-zinc-900 opacity-60`}
-                    />
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 0.15, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 1, ease: 'easeInOut' }}
+                        className="absolute inset-0"
+                    >
+                        <img
+                            src={
+                                caseStudies[selectedIndex % caseStudies.length]
+                                    .background
+                            }
+                            alt=""
+                            className="h-full w-full object-cover blur-2xl saturate-150"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-b from-background via-background/80 to-background" />
+                    </motion.div>
                 </AnimatePresence>
-            </div> */}
-            {/* <div className="absolute inset-0 -z-10 bg-[#0C1821]/10"></div> */}
+            </div>
 
-            <div className="my-auto lg:max-w-6xl">
-                <div className="flex w-full items-end justify-between px-4 lg:mx-0 lg:mb-12 lg:px-0">
-                    <div className="space-y-10 lg:space-y-20">
-                        <div className="space-y-4">
-                            <div className="flex">
-                                <span className="flex rounded-md border border-slate-500/20 bg-[#0A1D26] px-2 py-1 text-xs font-medium text-[#00A6F4] uppercase">
-                                    Portfolio
-                                </span>
-                            </div>
-                            <h2 className="text-3xl font-medium text-white lg:text-5xl/snug">
-                                Latest Works
-                            </h2>
+            <div className="my-auto w-full max-w-6xl">
+                <div className="flex w-full flex-col gap-6 px-4 lg:flex-row lg:items-end lg:justify-between lg:px-0 lg:mb-12">
+                    <div className="space-y-4">
+                        <div className="flex">
+                            <span className="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase shadow-[0_0_15px_-3px_rgba(0,166,244,0.3)]">
+                                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                                Case Studies
+                            </span>
                         </div>
-                        {/* <div className="border-l-4 border-[#00A6F4] px-4">
-                            <h4 className="max-w-xl text-lg font-bold text-[#00A6F4]">
-                                {
-                                    caseStudies[
-                                        selectedIndex % caseStudies.length
-                                    ].title
-                                }
-                            </h4>
-                            <p className="mt-2 max-w-xl text-slate-400">
-                                {
-                                    caseStudies[
-                                        selectedIndex % caseStudies.length
-                                    ].description
-                                }
-                            </p>
-                        </div> */}
+                        <h2 className="text-3xl font-bold text-foreground lg:text-6xl/tight">
+                            Featured{' '}
+                            <span className="bg-linear-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+                                Projects
+                            </span>
+                        </h2>
+                        <p className="max-w-md text-sm text-muted-foreground lg:text-base">
+                            A curated selection of my most impactful digital
+                            products and technical solutions.
+                        </p>
                     </div>
-                    {/* Navigation Buttons desktop */}
-                    <div className="mt-6 flex gap-2 lg:mt-0">
+                    {/* Navigation Buttons */}
+                    <div className="flex gap-2">
                         <button
                             onClick={scrollPrev}
-                            className="flex size-12 shrink-0 cursor-pointer overflow-hidden rounded-xl border border-sky-400/20 bg-sky-500/10 p-3 text-[#00A6F4] ring-0 outline-0 transition-colors duration-200 hover:border-[#00A6F4] hover:bg-[#00A6F4]/10 active:opacity-80"
+                            className="flex size-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-border bg-card text-primary ring-0 outline-0 transition-colors duration-200 hover:border-primary hover:bg-primary/10 active:opacity-80 lg:size-12"
                             aria-label="Previous"
                         >
-                            <HiArrowSmallLeft size={24} />
+                            <HiArrowSmallLeft size={20} />
                         </button>
                         <button
                             onClick={scrollNext}
-                            className="flex size-12 shrink-0 cursor-pointer overflow-hidden rounded-xl border border-sky-400/20 bg-sky-500/10 p-3 text-[#00A6F4] ring-0 outline-0 transition-colors duration-200 hover:border-[#00A6F4] hover:bg-[#00A6F4]/10 active:opacity-80"
+                            className="flex size-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-border bg-card text-primary ring-0 outline-0 transition-colors duration-200 hover:border-primary hover:bg-primary/10 active:opacity-80 lg:size-12"
                             aria-label="Next"
                         >
-                            <HiArrowSmallRight size={24} />
+                            <HiArrowSmallRight size={20} />
                         </button>
                     </div>
                 </div>
 
-                <div className="relative mt-8 w-full pl-4 lg:pl-0">
+                <div className="relative mt-6 w-full pl-4 lg:mt-8 lg:pl-0">
                     <div className="overflow-visible" ref={emblaMainRef}>
                         <div className="flex cursor-grab touch-pan-x gap-0 py-4 select-none">
                             {caseStudies
-                                .filter((i) => i.is_published != false)
                                 .map((study: LocalCaseStudy, index: number) => (
                                     <div
                                         key={`${study.id}-${index}`}
-                                        className="flex flex-[0_0_320px] justify-center lg:flex-[0_0_380px]"
+                                        className="flex flex-[0_0_280px] justify-center sm:flex-[0_0_320px] lg:flex-[0_0_640px]"
                                     >
                                         <CaseStudyCard
                                             title={study.title}
                                             image={study.image}
                                             category={study.category}
+                                            description={study.description}
                                             slug={study.id.toString()}
                                             selected={index === selectedIndex}
                                             onClick={() => {
