@@ -138,7 +138,7 @@ const Landing = () => {
                                         Become Top{' '}
                                         <span className="relative mt-2 inline-block md:mt-0">
                                             <span className="absolute -inset-2 bg-gradient-to-r from-[#00A6F4] to-[#7C3AED] opacity-50 blur-xl"></span>
-                                            <span className="relative bg-gradient-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(124,58,237,0.5)]">
+                                            <span className="relative bg-gradient-to-r from-[#00A6F4] to-[#7C3AED] bg-clip-text text-transparent dark:drop-shadow-[0_0_15px_rgba(124,58,237,0.5)]">
                                                 1%
                                             </span>
                                         </span>{' '}
@@ -346,12 +346,12 @@ const Landing = () => {
                                             <p className="text-xl leading-relaxed text-muted-foreground">
                                                 Tech is moving at light speed,
                                                 but the distance between
-                                                <span className="text-white italic">
+                                                <span className="text-muted-foreground italic dark:text-white">
                                                     {' '}
                                                     "knowing syntax"{' '}
                                                 </span>
                                                 and
-                                                <span className="font-semibold text-white italic">
+                                                <span className="font-semibold text-muted-foreground italic dark:text-white">
                                                     {' '}
                                                     "shipping world-class
                                                     products"{' '}
